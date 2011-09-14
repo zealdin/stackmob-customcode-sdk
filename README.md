@@ -166,20 +166,15 @@ In order to register this method as a valid REST API endpoint, create a class th
 
     package com.stackmob.example.helloworld
 
-    import com.stackmob.core.jar.JarEntryObject
     import com.stackmob.core.customcode.CustomCodeMethod
-    import collection.mutable.ListBuffer
-    import java.util.List
-    import scala.collection.JavaConversions._
+    import com.stackmob.core.jar.JarEntryObject
 
     class EntryPointExtender extends JarEntryObject {
 
       override def methods: List[CustomCodeMethod] = {
-        val list = new ListBuffer[CustomCodeMethod]()
-        list += new HelloWorldExample
-        list
+        List(new HelloWorldExample)
       }
-
+    
     }
 
 Congratulations! You've just extended your REST API! Let's get it packaged up and ready to upload to StackMob.
@@ -296,7 +291,7 @@ Note, this example only shows the execute method of a `CustomCodeMethod` subclas
       String username = request.getParams().get("username");
       Integer score = Integer.parseInt(request.getParams().get("score"));
 
-      if (username == null || username.equals("") || score == null) {
+      if (username == null || username.isEmpty() || score == null) {
         HashMap<String, String> errParams = new HashMap<String, String>();
         errParams.put("error", "one or both the username or score was empty or null");
         return new ResponseToProcess(400, errParams); // http 400 - bad request
@@ -388,7 +383,7 @@ Note, this example only shows the execute method of a `CustomCodeMethod` subclas
           case _ => (Map("username" -> username), true)
         }
 
-        // if it is a new high score, the datastore needs to be updated
+        // if it's a new high score, the datastore needs to be updated
         val updated = userMap.get("score") match {
           case _ @ s if s != null && s.toString.toInt < score => true
           case _ => false
