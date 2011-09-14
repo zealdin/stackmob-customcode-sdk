@@ -1,8 +1,10 @@
 # Stackmob Custom Code SDK
 
+The StackMob Custom Code SDK supports both Java and Scala custom code. Ruby support is also available via a Heroku add-on. Please see the [stackmob-ruby](https://github.com/stackmob/stackmob-ruby) SDK for more details.
+
 ## Using the SDK
 
-The StackMob Custom Code SDK supports both Java and Scala custom code and is available via the Central Maven Repository. Ruby support is also available via a Heroku add-on. Please see the [stackmob-ruby](https://github.com/stackmob/stackmob-ruby) SDK for more details. Below are examples for a number of popular build tools.
+The Custom Code SDK is available via the Central Maven Repository (coming soon). Below are examples of using the Custom Code SDK with a number of popular build tools.
 
 **Maven**
 
@@ -24,7 +26,7 @@ The StackMob Custom Code SDK supports both Java and Scala custom code and is ava
 
     'com.stackmob:customcode:jar:0.1.0'
 
-### Javadocs
+## Javadocs
 
 Javadocs are available [here](http://stackmob.github.com/stackmob-customcode-sdk/0.1.0/apidocs/).
 
@@ -133,7 +135,7 @@ will return a JSON object:
         new ResponseToProcess(200, Map("greeting" -> "hello world!"))
       }
 
-  }
+    }
 
 ### Register your new REST API method
 
@@ -184,7 +186,7 @@ Congratulations! You've just extended your REST API! Let's get it packaged up an
 
 ## Define the JAR Manifest
 
-StackMob requires that your custom code JAR have a manifest with the Main-Class manifest attribute defined. The main class *must* extend `JarEntryObject`.
+StackMob requires that your custom code JAR have a manifest with the Main-Class attribute defined. The main class *must* extend `JarEntryObject`.
 
 **Maven**
 
@@ -251,8 +253,6 @@ If the output of the `ls` command showed `EntryPointExtender.class`, then your J
 
     > cd ..
     > rm -rf JarUnzipped
-
-Now you're ready to upload your JAR to StackMob.
 
 ### Uploading your JAR to StackMob
 
