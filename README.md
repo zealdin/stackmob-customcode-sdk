@@ -34,7 +34,7 @@ The Custom Code SDK is available via the Central Maven Repository (coming soon).
 
 ### Why should I extend my REST API?
 
-StackMob generates your persistence layer and a REST API for you automatically via the [Object Model creation process](http://www.stackmob.com/platform/api/objects/create), but you'll likely want to do more than just save and fetch data. The SDK enables you to run custom server-side code, interact with the datastore, and extend the REST API to support your own custom methods.
+StackMob generates your persistence layer and a REST API for you automatically via the [Object Model creation process](https://www.stackmob.com/platform/api/objects/create), but you'll likely want to do more than just save and fetch data. The SDK enables you to run custom server-side code, interact with the datastore, and extend the REST API to support your own custom methods.
 
 ### Write a new REST API method
 
