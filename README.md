@@ -1,6 +1,6 @@
-## Stackmob Custom Code SDK
+# Stackmob Custom Code SDK
 
-### Using the SDK
+## Using the SDK
 
 The StackMob Custom Code SDK supports both Java and Scala custom code and is available via the Central Maven Repository. Ruby support is also available via a Heroku add-on. Please see the [stackmob-ruby](https://github.com/stackmob/stackmob-ruby) SDK for more details. Below are examples for a number of popular build tools.
 
@@ -24,17 +24,17 @@ The StackMob Custom Code SDK supports both Java and Scala custom code and is ava
 
     'com.stackmob:customcode:jar:0.1.0'
 
-###Javadocs###
+### Javadocs
 
 Javadocs are available [here](http://stackmob.github.com/stackmob-customcode-sdk/0.1.0/apidocs/).
 
-### Extend your REST API
+## Extend your REST API
 
-#### Why should I extend my REST API?
+### Why should I extend my REST API?
 
 StackMob generates your persistence layer and a REST API for you automatically via the object schema creation process in the [console](http://www.stackmob.com/platform/), but you'll likely want to do more than just save and fetch data. Via the SDK, it's possible to run custom server-side code, interact with the datastore, and extend the REST API to support your own custom methods.
 
-#### Write a new REST API method
+### Write a new REST API method
 
 Once the JAR file is in your classpath, let's try a "Hello World" example. We will be extending your REST API so that calling:
 
@@ -135,7 +135,7 @@ will return a JSON object:
 
   }
 
-#### Register your new REST API method
+### Register your new REST API method
 
 In order to register this method as a valid REST API endpoint, create a class that extends `JaryEntryObject` and include your custom code method in the list of returned methods.
 
@@ -182,7 +182,7 @@ In order to register this method as a valid REST API endpoint, create a class th
 
 Congratulations! You've just extended your REST API! Let's get it packaged up and ready to upload to StackMob.
 
-#### Define the JAR Manifest
+## Define the JAR Manifest
 
 StackMob requires that your custom code JAR have a manifest with the Main-Class manifest attribute defined. The main class *must* extend `JarEntryObject`.
 
@@ -254,13 +254,13 @@ If the output of the `ls` command showed `EntryPointExtender.class`, then your J
 
 Now you're ready to upload your JAR to StackMob.
 
-#### Uploading your JAR to StackMob
+### Uploading your JAR to StackMob
 
 Once you have your custom methods written, package it as a JAR so that it can be uploaded to StackMob. Upon uploading, StackMob will immediately process and roll out the code to your application's sandbox environment. To test your new REST API method, use the [console](http://www.stackmob.com/platform/).
 
-### Fetch Parameters
+## Fetch Parameters
 
-Each parameter returned in the `getParams` method of a custom code method can be access at runtime via:
+Each parameter returned in the `getParams` method of a custom code method can be accessed at runtime via:
 
 **Java**
 
@@ -276,11 +276,11 @@ Each parameter returned in the `getParams` method of a custom code method can be
       ...
     }
 
-### Datastore Service
+## Datastore Service
 
 The datastore service provides server-side access to the StackMob datastore and can be used to create REST API extensions.
 
-#### Interact with the datastore
+### Interact with the datastore
 
 The example below shows how to set a high score on a user model via the URL:
 
@@ -444,3 +444,19 @@ Note, this example only shows the execute method of a `CustomCodeMethod` subclas
       }
 
     }
+
+## Copyright
+
+Copyright 2011 StackMob
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
