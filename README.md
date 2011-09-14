@@ -14,7 +14,7 @@ The Custom Code SDK is available via the Central Maven Repository (coming soon).
       <version>0.1.0</version>
     </dependency>
 
-**SBT**
+**sbt**
 
     val stackmob = "com.stackmob" % "customcode" % "0.1.0"
 
