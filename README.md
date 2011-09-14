@@ -2,9 +2,7 @@
 
 ### Using the SDK
 
-The StackMob Custom Code SDK supports both Java and Scala custom code and is available via the Central Maven repository. Ruby support is also available via a Heroku add-on. Please see the [stackmob-ruby](https://github.com/stackmob/stackmob-ruby) SDK for more details.
-
-Below are examples for a number of popular build tools.
+The StackMob Custom Code SDK supports both Java and Scala custom code and is available via the Central Maven Repository. Ruby support is also available via a Heroku add-on. Please see the [stackmob-ruby](https://github.com/stackmob/stackmob-ruby) SDK for more details. Below are examples for a number of popular build tools.
 
 **Maven**
 
@@ -34,7 +32,7 @@ Javadocs are available [here](http://stackmob.github.com/stackmob-customcode-sdk
 
 #### Why should I extend my REST API?
 
-StackMob generates your persistence layer and a REST API for you automatically via the object schema creation process in the [console](http://www.stackmob.com/platform/), but you likely want to do more than just save and fetch data. Via the SDK, it's possible to run custom server-side code, interact with the datastore, and extend the REST API to support your own custom methods.
+StackMob generates your persistence layer and a REST API for you automatically via the object schema creation process in the [console](http://www.stackmob.com/platform/), but you'll likely want to do more than just save and fetch data. Via the SDK, it's possible to run custom server-side code, interact with the datastore, and extend the REST API to support your own custom methods.
 
 #### Write a new REST API method
 
@@ -139,7 +137,7 @@ will return a JSON object:
 
 #### Register your new REST API method
 
-In order to register this method as a valid REST API endpoint, create a class that extends JaryEntryObject and include your custom code method in the list of returned methods.
+In order to register this method as a valid REST API endpoint, create a class that extends `JaryEntryObject` and include your custom code method in the list of returned methods.
 
 **Java**
 
@@ -186,7 +184,7 @@ Congratulations! You've just extended your REST API! Let's get it packaged up an
 
 #### Define the JAR Manifest
 
-Now that the code is written, let's package it up into a JAR and get it ready to upload. StackMob requires that your custom code JAR have a manifest that has a Main-Class defined. The Main-Class *must* extend JarEntryObject.
+StackMob requires that your custom code JAR have a manifest with the Main-Class manifest attribute defined. The main class *must* extend `JarEntryObject`.
 
 **Maven**
 
@@ -224,7 +222,7 @@ We recommend that you use a build tool like Ant or Maven, but if you decide to u
 
     Main-Class: com.stackmob.example.helloworld.EntryPointExtender
 
-Then, in the same directory as that file, execute these two commands on the command line:
+Then, in the same directory as that file, execute these three commands on the command line:
 
     > mkdir -p target/classes
     > javac -d target/classes -classpath CLASSPATH SOURCE_FILES_SPACE_DELIMITED
@@ -249,7 +247,7 @@ Now, let's make sure all the classes were packaged correctly:
     > cd ..
     > ls -la com/stackmob/example/helloworld
 
-If the output of the ls command showed EntryPointExtender.class, then your JAR is correct and ready to upload and the unzipped JAR contents can be deleted:
+If the output of the `ls` command showed `EntryPointExtender.class`, then your JAR is correct and ready to upload and the unzipped JAR contents can be deleted:
 
     > cd ..
     > rm -rf JarUnzipped
@@ -258,11 +256,11 @@ Now you're ready to upload your JAR to StackMob.
 
 #### Uploading your JAR to StackMob
 
-Once you have your custom methods written, wrap it up in a JAR so that you can upload the JAR to StackMob. Upon uploading, StackMob will immediately process and roll out the code to your application's sandbox environment. To test the new REST API method, use the StackMob [console](http://www.stackmob.com/platform/).
+Once you have your custom methods written, package it as a JAR so that it can be uploaded to StackMob. Upon uploading, StackMob will immediately process and roll out the code to your application's sandbox environment. To test your new REST API method, use the [console](http://www.stackmob.com/platform/).
 
 ### Fetch Parameters
 
-Each parameter returned in the getParams method of a custom code method can be access at runtime via:
+Each parameter returned in the `getParams` method of a custom code method can be access at runtime via:
 
 **Java**
 
@@ -288,7 +286,7 @@ The example below shows how to set a high score on a user model via the URL:
 
     http://yourclient.mob1.stackmob.com/api/1/yourapp/set_high_score?username=user_10&score=12345.
 
-Note, this example only shows the execute method of a CustomCodeMethod subclass.
+Note, this example only shows the execute method of a `CustomCodeMethod` subclass.
 
 **Java**
 
