@@ -4,7 +4,7 @@ The StackMob Custom Code SDK supports both Java and Scala custom code. Ruby supp
 
 ## Javadoc
 
-(Version 0.1.0)[http://stackmob.github.com/stackmob-customcode-sdk/0.1.0/apidocs/]
+[Version 0.1.0](http://stackmob.github.com/stackmob-customcode-sdk/0.1.0/apidocs/)
 
 ## Copyright
 
