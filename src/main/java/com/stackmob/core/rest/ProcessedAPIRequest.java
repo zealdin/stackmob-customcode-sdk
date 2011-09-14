@@ -29,7 +29,7 @@ public class ProcessedAPIRequest {
   private final String url;
   private final String loggedInUser;
   private final Map<String, String> params;
-  private final String appUrlSafeName;
+  private final String appName;
   private final int apiVersion;
   private final String methodName;
   private final long counter;
@@ -41,16 +41,16 @@ public class ProcessedAPIRequest {
    * @param url the url which represents the request
    * @param apiVersion the api version number associated with this request
    * @param params the query parameters of the request
-   * @param appUrlSafeName the name of the app this request refers to
+   * @param appName the name of the app this request refers to
    * @param methodName the name of the method being called by the request
    * @param loggedInUser if a logged in user sent the request, their username is represented here
    * @param counter the number of requests this particular JVM instance has handled up until this request
    */
   public ProcessedAPIRequest(MethodVerb verb, String url, String loggedInUser, Map<String, String> params,
-                             String appUrlSafeName, int apiVersion, String methodName, long counter) {
+                             String appName, int apiVersion, String methodName, long counter) {
     this.verb = verb;
     this.url = url;
-    this.appUrlSafeName = appUrlSafeName;
+    this.appName = appName;
     this.apiVersion = apiVersion;
     this.methodName = methodName;
     this.loggedInUser = (loggedInUser != null && loggedInUser.isEmpty()) ? null : loggedInUser;
@@ -114,8 +114,18 @@ public class ProcessedAPIRequest {
    *
    * @return the application name
    */
+  @Deprecated
   public String getAppUrlSafeName() {
-    return appUrlSafeName;
+    return appName;
+  }
+
+  /**
+   * Returns the application name.
+   *
+   * @return the application name
+   */
+  public String getAppName() {
+    return appName;
   }
 
   /**
