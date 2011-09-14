@@ -251,7 +251,7 @@ If the output of the `ls` command showed `EntryPointExtender.class`, then your J
 
 ### Uploading your JAR to StackMob
 
-Once you have your custom methods written, package it as a JAR so that it can be uploaded to StackMob. Upon uploading, StackMob will immediately process and roll out the code to your application's sandbox environment. To test your new REST API method, use the [console](http://www.stackmob.com/platform/).
+Once you have your custom methods written, package it as a JAR so that it can be uploaded to StackMob. Upon uploading, StackMob will immediately process and roll out the code to your application's sandbox environment. To test your new REST API method, use the [console](https://www.stackmob.com/platform/api/console).
 
 ## Fetch Parameters
 
