@@ -28,13 +28,13 @@ The Custom Code SDK is available via the Central Maven Repository (coming soon).
 
 ## Javadocs
 
-Javadocs are available [here](http://stackmob.github.com/stackmob-customcode-sdk/0.1.0/apidocs/).
+[Javadocs are available here](http://stackmob.github.com/stackmob-customcode-sdk/0.1.0/apidocs/).
 
 ## Extend your REST API
 
 ### Why should I extend my REST API?
 
-StackMob generates your persistence layer and a REST API for you automatically via the object schema creation process in the [console](http://www.stackmob.com/platform/), but you'll likely want to do more than just save and fetch data. Via the SDK, it's possible to run custom server-side code, interact with the datastore, and extend the REST API to support your own custom methods.
+StackMob generates your persistence layer and a REST API for you automatically via the [Object Model creation process](http://www.stackmob.com/platform/api/objects/create), but you'll likely want to do more than just save and fetch data. Via the SDK, it's possible to run custom server-side code, interact with the datastore, and extend the REST API to support your own custom methods.
 
 ### Write a new REST API method
 
@@ -139,7 +139,7 @@ will return a JSON object:
 
 ### Register your new REST API method
 
-In order to register this method as a valid REST API endpoint, create a class that extends `JaryEntryObject` and include your custom code method in the list of returned methods.
+In order to register this method as a valid REST API endpoint, create a class that extends `JarEntryObject` and include your custom code method in the list of returned methods.
 
 **Java**
 
