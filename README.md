@@ -368,79 +368,43 @@ Note, this example only shows the execute method of a `CustomCodeMethod` subclas
 **Scala**
 
     override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServiceProvider): ResponseToProcess = {
-
       val username = request.getParams.get("username")
-      val score = Integer.parseInt(request.getParams.get("score"))
+      val score = request.getParams.get("score").toInt
 
-      if (username == null || username.equals("") || score == null) {
-        val errParams = new HashMap[String, String]
-        errParams.put("error", "one or both the username or score was empty or null")
-        return new ResponseToProcess(400, errParams) // http 400 - bad request
+      if (username == null || username.isEmpty || score == null) { // http 400 - bad request
+        return new ResponseToProcess(400, Map("error" -> "one or both the username or score was empty or null"))
       }
 
       // get the datastore service and assemble the query
-      val datastoreService = serviceProvider.getDatastoreService()
-      val query = new HashMap[String, List[String]]
-      query.put("username", Arrays.asList(username))
+      val datastoreService = serviceProvider.getDatastoreService
 
-      // execute the query
-      var result: List[Map[String, Object]] = null
       try {
-        var newUser = false
-        var updated = false
+        // execute the query
+        val result = datastoreService.readObjects("users", Map("username" -> Arrays.asList(username)))
 
-        result = datastoreService.readObjects("users", query)
-
-        var userMap: Map[String, Object] = null
-
-        // user was in the datastore, so check the score and update if necessary
-        if (result != null && result.size() == 1) {
-          userMap = result.get(0)
-        } else {
-          userMap = new HashMap[String, Object]
-          userMap.put("username", username)
-          userMap.put("score", new Integer(0))
-          newUser = true
+        // check if the user is in the datastore
+        val (userMap: Map[String, Object], newUser) = result match {
+          case _ if result != null && result.size == 1 => (result.get(0), false)
+          case _ => (Map("username" -> username), true)
         }
 
-        val oldScore = userMap.get("score").toString.toInt
-
-        // if it was a high score, update the datastore
-        if (oldScore != null && oldScore < score) {
-          userMap.put("score", new Integer(score))
-          updated = true
+        // if it is a new high score, the datastore needs to be updated
+        val updated = userMap.get("score") match {
+          case _ @ s if s != null && s.toString.toInt < score => true
+          case _ => false
         }
 
         if (newUser) {
-          datastoreService.createObject("users", userMap)
+          datastoreService.createObject("users", if (updated) userMap + ("score" -> new Integer(score)) else userMap)
         } else if (updated) {
-          datastoreService.updateObject("users", username, userMap)
+          datastoreService.updateObject("users", username, userMap + ("score" -> new Integer(score)))
         }
 
-        val returnMap = new HashMap[String, Object]
-        returnMap.put("updated", new Boolean(updated))
-        returnMap.put("newUser", new Boolean(newUser))
-        returnMap.put("username", username)
-        new ResponseToProcess(200, returnMap)
-      } catch {
-        case e: InvalidSchemaException => {
-          val errMap = new HashMap[String, String]
-          errMap.put("error", "invalid_schema")
-          errMap.put("detail", e.toString)
-          new ResponseToProcess(500, errMap) // http 500 - internal server error
-        }
-        case e: DatastoreException => {
-          val errMap = new HashMap[String, String]
-          errMap.put("error", "datastore_exception")
-          errMap.put("detail", e.toString)
-          new ResponseToProcess(500, errMap) // http 500 - internal server error
-        }
-        case e => {
-          val errMap = new HashMap[String, String]
-          errMap.put("error", "unknown")
-          errMap.put("detail", e.toString)
-          new ResponseToProcess(500, errMap) // http 500 - internal server error
-        }
+        new ResponseToProcess(200, Map("updated" -> updated, "newUser" -> newUser, "username" -> username)) // http 200 - ok
+      } catch { // http 500 - internal server error
+        case e: InvalidSchemaException => new ResponseToProcess(500, Map("error" -> "invalid_schema", "detail" -> e.toString))
+        case e: DatastoreException => new ResponseToProcess(500, Map("error" -> "datastore_exception", "detail" -> e.toString))
+        case e => new ResponseToProcess(500, Map("error" -> "unknown", "detail" -> e.toString))
       }
 
     }
