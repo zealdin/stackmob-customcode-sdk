@@ -47,7 +47,7 @@ will return a JSON object:
     {"greeting": "hello world!"}
 
 **Java**
-<code class="brush: java; toolbar: false;"> 
+
     package com.stackmob.example.helloworld;
 
     import com.stackmob.core.customcode.CustomCodeMethod;
@@ -92,7 +92,7 @@ will return a JSON object:
       }
 
     }
-</code>
+
 **Scala**
 
     package com.stackmob.example.helloworld
