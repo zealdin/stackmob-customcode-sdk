@@ -1,3 +1,6 @@
 .idea
+*.ipr
+*.iml
+*.iws
 stackmob-customcode-sdk.iml
 /target
