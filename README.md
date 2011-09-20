@@ -8,19 +8,25 @@ The Custom Code SDK is available via the Central Maven Repository. Below are exa
 
 **Maven**
 
-    <dependency>
-      <groupId>com.stackmob</groupId>
-      <artifactId>customcode</artifactId>
-      <version>0.1.0</version>
-    </dependency>
+```xml
+<dependency>
+  <groupId>com.stackmob</groupId>
+  <artifactId>customcode</artifactId>
+  <version>0.1.0</version>
+</dependency>
+```
 
 **sbt**
 
-    val stackmob = "com.stackmob" % "customcode" % "0.1.0"
+```scala
+val stackmob = "com.stackmob" % "customcode" % "0.1.0"
+```
 
 **Apache Ivy (Ant)**
 
-    <dependency org="com.stackmob" name="customcode" rev="0.1.0"/>
+```xml
+<dependency org="com.stackmob" name="customcode" rev="0.1.0"/>
+```
 
 **Apache Buildr**
 
@@ -44,102 +50,105 @@ Once the JAR file is in your classpath, let's try a "Hello World" example. We wi
 
 will return a JSON object:
 
-    {"greeting": "hello world!"}
+```json
+{"greeting": "hello world!"}
+```
 
 **Java**
 
 ```java
 
-    package com.stackmob.example.helloworld;
+package com.stackmob.example.helloworld;
 
-    import com.stackmob.core.customcode.CustomCodeMethod;
-    import com.stackmob.core.rest.ProcessedAPIRequest;
-    import com.stackmob.core.rest.ResponseToProcess;
-    import com.stackmob.sdkapi.SDKServiceProvider;
-    import java.util.HashMap;
+import com.stackmob.core.customcode.CustomCodeMethod;
+import com.stackmob.core.rest.ProcessedAPIRequest;
+import com.stackmob.core.rest.ResponseToProcess;
+import com.stackmob.sdkapi.SDKServiceProvider;
+import java.util.HashMap;
 
-    public class HelloWorldExample implements CustomCodeMethod {
+public class HelloWorldExample implements CustomCodeMethod {
 
-      /**
-       * This method simply returns the name of your method that we'll expose over REST for
-       * this class. Although this name can be anything you want, we recommend replacing the
-       * camel case convention in your class name with underscores, as shown here.
-       *
-       * @return the name of the method that should be exposed over REST
-       */
-      @Override
-      public String getMethodName() {
-        return "hello_world_example";
-      }
+  /**
+   * This method simply returns the name of your method that we'll expose over REST for
+   * this class. Although this name can be anything you want, we recommend replacing the
+   * camel case convention in your class name with underscores, as shown here.
+   *
+   * @return the name of the method that should be exposed over REST
+   */
+  @Override
+  public String getMethodName() {
+    return "hello_world_example";
+  }
 
-      /**
-       * This method returns the parameters that your method should expect in its query string.
-       * Here we are using no parameters, so we just return an empty list.
-       *
-       * @return a list of the parameters to expect for this REST method
-       */
-      @Override
-      public List<String> getParams() {
-        return Arrays.asList();
-      }
+  /**
+   * This method returns the parameters that your method should expect in its query string.
+   * Here we are using no parameters, so we just return an empty list.
+   *
+   * @return a list of the parameters to expect for this REST method
+   */
+  @Override
+  public List<String> getParams() {
+    return Arrays.asList();
+  }
 
-      /**
-       * This method contains the code that you want to execute.
-       *
-       * @return the response
-       */
-      @Override
-      public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider serviceProvider) {
-        return new ResponseToProcess(200, new HashMap<String, String>("greeting", "hello world!"));
-      }
+  /**
+   * This method contains the code that you want to execute.
+   *
+   * @return the response
+   */
+  @Override
+  public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider serviceProvider) {
+    return new ResponseToProcess(200, new HashMap<String, String>("greeting", "hello world!"));
+  }
 
-    }
-    
+}    
 ```
 
 **Scala**
 
-    package com.stackmob.example.helloworld
+```scala
+package com.stackmob.example.helloworld
 
-    import com.stackmob.core.customcode.CustomCodeMethod
-    import com.stackmob.sdkapi.SDKServiceProvider
-    import com.stackmob.core.rest.{ResponseToProcess, ProcessedAPIRequest}
-    import java.util.{Arrays, List}
-    import scala.collection.JavaConversions._
+import com.stackmob.core.customcode.CustomCodeMethod
+import com.stackmob.sdkapi.SDKServiceProvider
+import com.stackmob.core.rest.{ResponseToProcess, ProcessedAPIRequest}
+import java.util.{Arrays, List}
+import scala.collection.JavaConversions._
 
-    class HelloWorldExample extends CustomCodeMethod {
+class HelloWorldExample extends CustomCodeMethod {
 
-      /**
-       * This method simply returns the name of your method that we'll expose over REST for
-       * this class. Although this name can be anything you want, we recommend replacing the
-       * camel case convention in your class name with underscores, as shown here.
-       *
-       * @return the name of the method that should be exposed over REST
-       */
-      override def getMethodName: String = {
-        "hello_world_example"
-      }
+  /**
+   * This method simply returns the name of your method that we'll expose over REST for
+   * this class. Although this name can be anything you want, we recommend replacing the
+   * camel case convention in your class name with underscores, as shown here.
+   *
+   * @return the name of the method that should be exposed over REST
+   */
+  override def getMethodName: String = {
+    "hello_world_example"
+  }
 
-      /**
-       * This method returns the parameters that your method should expect in its query string.
-       * Here we are using no parameters, so we just return an empty list.
-       *
-       * @return a list of the parameters to expect for this REST method
-       */
-      override def getParams: List[String] = {
-        Arrays.asList()
-      }
+  /**
+   * This method returns the parameters that your method should expect in its query string.
+   * Here we are using no parameters, so we just return an empty list.
+   *
+   * @return a list of the parameters to expect for this REST method
+   */
+  override def getParams: List[String] = {
+    Arrays.asList()
+  }
 
-      /**
-       * This method contains the code that you want to execute.
-       *
-       * @return the response
-       */
-      override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServiceProvider): ResponseToProcess = {
-        new ResponseToProcess(200, Map("greeting" -> "hello world!"))
-      }
+  /**
+   * This method contains the code that you want to execute.
+   *
+   * @return the response
+   */
+  override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServiceProvider): ResponseToProcess = {
+    new ResponseToProcess(200, Map("greeting" -> "hello world!"))
+  }
 
-    }
+}
+```
 
 ### Register your new REST API method
 
@@ -147,39 +156,43 @@ In order to register this method as a valid REST API endpoint, create a class th
 
 **Java**
 
-    package com.stackmob.example.helloworld;
+```java
+package com.stackmob.example.helloworld;
 
-    import com.stackmob.core.jar.JarEntryObject;
-    import com.stackmob.core.customcode.CustomCodeMethod;
-    import com.stackmob.example.helloworld.HelloWorldExample;
-    import java.util.List;
-    import java.util.ArrayList;
+import com.stackmob.core.jar.JarEntryObject;
+import com.stackmob.core.customcode.CustomCodeMethod;
+import com.stackmob.example.helloworld.HelloWorldExample;
+import java.util.List;
+import java.util.ArrayList;
 
-    public class EntryPointExtender extends JarEntryObject {
+public class EntryPointExtender extends JarEntryObject {
 
-      @Override
-      public List<CustomCodeMethod> methods() {
-        List<CustomCodeMethod> list = new ArrayList<CustomCodeMethod>();
-        list.add(new HelloWorldExample());
-        return list;
-      }
+  @Override
+  public List<CustomCodeMethod> methods() {
+    List<CustomCodeMethod> list = new ArrayList<CustomCodeMethod>();
+    list.add(new HelloWorldExample());
+    return list;
+  }
 
-    }
+}
+```
 
 **Scala**
 
-    package com.stackmob.example.helloworld
+```scala
+package com.stackmob.example.helloworld
 
-    import com.stackmob.core.customcode.CustomCodeMethod
-    import com.stackmob.core.jar.JarEntryObject
+import com.stackmob.core.customcode.CustomCodeMethod
+import com.stackmob.core.jar.JarEntryObject
 
-    class EntryPointExtender extends JarEntryObject {
+class EntryPointExtender extends JarEntryObject {
 
-      override def methods: List[CustomCodeMethod] = {
-        List(new HelloWorldExample)
-      }
+  override def methods: List[CustomCodeMethod] = {
+    List(new HelloWorldExample)
+  }
     
-    }
+}
+```
 
 Congratulations! You've just extended your REST API! Let's get it packaged up and ready to upload to StackMob.
 
@@ -191,33 +204,37 @@ StackMob requires that your custom code JAR have a manifest with the Main-Class 
 
 Add this to the pom.xml file, in the build plugins section:
 
-    <build>
-      ...
-      <plugins>
-        ...
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <configuration>
-            <archive>
-              <manifest>
-                <mainClass>com.stackmob.example.helloworld.EntryPointExtender</mainClass>
-              </manifest>
-            </archive>
-          </configuration>
-        </plugin>
-      </plugins>
-    </build>
+```xml
+<build>
+  ...
+  <plugins>
+    ...
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+      <configuration>
+        <archive>
+          <manifest>
+            <mainClass>com.stackmob.example.helloworld.EntryPointExtender</mainClass>
+          </manifest>
+        </archive>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
+```
 
 **Ant**
 
 Add this to the build.xml file:
 
-    <jar destfile="${dist}/target/HelloWorldExample.jar" basedir="${build}/classes" excludes="**Tests.class">
-      <manifest>
-        <attribute name="Main-Class" value="com.stackmob.example.helloworld.EntryPointExtender"/>
-      </manifest>
-    </jar>
+```xml
+<jar destfile="${dist}/target/HelloWorldExample.jar" basedir="${build}/classes" excludes="**Tests.class">
+  <manifest>
+    <attribute name="Main-Class" value="com.stackmob.example.helloworld.EntryPointExtender"/>
+  </manifest>
+</jar>
+```
 
 We recommend that you use a build tool like Ant or Maven, but if you decide to use the command line to build your code, create a file called JarManifest with nothing but this line in it:
 
@@ -263,17 +280,21 @@ Each parameter returned in the `getParams` method of a custom code method can be
 
 **Java**
 
-    public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider serviceProvider) {
-      String data = request.getParams().get("my_param");
-      ...
-    }
+```java
+public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider serviceProvider) {
+  String data = request.getParams().get("my_param");
+  ...
+}
+```
 
 **Scala**
 
-    override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServiceProvider): ResponseToProcess = {
-      val data = request.getParams.get("timeout_ms")
-      ...
-    }
+```scala
+override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServiceProvider): ResponseToProcess = {
+  val data = request.getParams.get("timeout_ms")
+  ...
+}
+```
 
 ## Datastore Service
 
@@ -289,124 +310,129 @@ Note, this example only shows the execute method of a `CustomCodeMethod` subclas
 
 **Java**
 
-    @Override
-    public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider serviceProvider) {
+```java
+@Override
+public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider serviceProvider) {
 
-      String username = request.getParams().get("username");
-      Integer score = Integer.parseInt(request.getParams().get("score"));
+  String username = request.getParams().get("username");
+  Integer score = Integer.parseInt(request.getParams().get("score"));
 
-      if (username == null || username.isEmpty() || score == null) {
-        HashMap<String, String> errParams = new HashMap<String, String>();
-        errParams.put("error", "one or both the username or score was empty or null");
-        return new ResponseToProcess(400, errParams); // http 400 - bad request
-      }
+  if (username == null || username.isEmpty() || score == null) {
+    HashMap<String, String> errParams = new HashMap<String, String>();
+    errParams.put("error", "one or both the username or score was empty or null");
+    return new ResponseToProcess(400, errParams); // http 400 - bad request
+  }
 
-      // get the datastore service and assemble the query
-      DatastoreService datastoreService = serviceProvider.getDatastoreService();
-      HashMap<String, List<String>> query = new HashMap<String, List<String>>();
-      query.put("username", Arrays.asList(username));
+  // get the datastore service and assemble the query
+  DatastoreService datastoreService = serviceProvider.getDatastoreService();
+  HashMap<String, List<String>> query = new HashMap<String, List<String>>();
+  query.put("username", Arrays.asList(username));
 
-      // execute the query
-      List<Map<String, Object>> result;
-      try {
-        boolean newUser = false;
-        boolean updated = false;
+  // execute the query
+  List<Map<String, Object>> result;
+  try {
+    boolean newUser = false;
+    boolean updated = false;
 
-        result = datastoreService.readObjects("users", query);
+    result = datastoreService.readObjects("users", query);
 
-        Map<String, Object> userMap;
+    Map<String, Object> userMap;
 
-        // user was in the datastore, so check the score and update if necessary
-        if (result != null && result.size() == 1) {
-          userMap = result.get(0);
-        } else {
-          userMap = new HashMap<String, Object>();
-          userMap.put("username", username);
-          userMap.put("score", new Integer(0));
-          newUser = true;
-        }
-
-        int oldScore = Integer.decode(userMap.get("score").toString());
-
-        // if it was a high score, update the datastore
-        if (oldScore != null && oldScore < score) {
-          userMap.put("score", score);
-          updated = true;
-        }
-
-        if(newUser) {
-          datastoreService.createObject("users", userMap);
-        } else if(updated) {
-          datastoreService.updateObject("users", username, userMap);
-        }
-
-        Map<String, Object> returnMap = new HashMap<String, Object>();
-        returnMap.put("updated", new Boolean(updated));
-        returnMap.put("newUser", new Boolean(newUser));
-        returnMap.put("username", username);
-        return new ResponseToProcess(200, returnMap);
-      } catch (InvalidSchemaException e) {
-        HashMap<String, String> errMap = new HashMap<String, String>();
-        errMap.put("error", "invalid_schema");
-        errMap.put("detail", e.toString());
-        return new ResponseToProcess(500, errMap); // http 500 - internal server error
-      } catch (DatastoreException e) {
-        HashMap<String, String> errMap = new HashMap<String, String>();
-        errMap.put("error", "datastore_exception");
-        errMap.put("detail", e.toString());
-        return new ResponseToProcess(500, errMap); // http 500 - internal server error
-      } catch(Exception e) {
-        HashMap<String, String> errMap = new HashMap<String, String>();
-        errMap.put("error", "unknown");
-        errMap.put("detail", e.toString());
-        return new ResponseToProcess(500, errMap); // http 500 - internal server error
-      }
-
+    // user was in the datastore, so check the score and update if necessary
+    if (result != null && result.size() == 1) {
+      userMap = result.get(0);
+    } else {
+      userMap = new HashMap<String, Object>();
+      userMap.put("username", username);
+      userMap.put("score", new Integer(0));
+      newUser = true;
     }
+
+    int oldScore = Integer.decode(userMap.get("score").toString());
+
+    // if it was a high score, update the datastore
+    if (oldScore != null && oldScore < score) {
+      userMap.put("score", score);
+      updated = true;
+    }
+
+    if(newUser) {
+      datastoreService.createObject("users", userMap);
+    } else if(updated) {
+      datastoreService.updateObject("users", username, userMap);
+    }
+
+    Map<String, Object> returnMap = new HashMap<String, Object>();
+    returnMap.put("updated", new Boolean(updated));
+    returnMap.put("newUser", new Boolean(newUser));
+    returnMap.put("username", username);
+    
+    return new ResponseToProcess(200, returnMap);
+  } catch (InvalidSchemaException e) {
+    HashMap<String, String> errMap = new HashMap<String, String>();
+    errMap.put("error", "invalid_schema");
+    errMap.put("detail", e.toString());
+    return new ResponseToProcess(500, errMap); // http 500 - internal server error
+  } catch (DatastoreException e) {
+    HashMap<String, String> errMap = new HashMap<String, String>();
+    errMap.put("error", "datastore_exception");
+    errMap.put("detail", e.toString());
+    return new ResponseToProcess(500, errMap); // http 500 - internal server error
+  } catch(Exception e) {
+    HashMap<String, String> errMap = new HashMap<String, String>();
+    errMap.put("error", "unknown");
+    errMap.put("detail", e.toString());
+    return new ResponseToProcess(500, errMap); // http 500 - internal server error
+  }
+
+}
+```
 
 **Scala**
 
-    override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServiceProvider): ResponseToProcess = {
-      val username = request.getParams.get("username")
-      val score = request.getParams.get("score").toInt
+```scala
+override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServiceProvider): ResponseToProcess = {
+  val username = request.getParams.get("username")
+  val score = request.getParams.get("score").toInt
 
-      if (username == null || username.isEmpty || score == null) { // http 400 - bad request
-        return new ResponseToProcess(400, Map("error" -> "one or both the username or score was empty or null"))
-      }
+  if (username == null || username.isEmpty || score == null) { // http 400 - bad request
+    return new ResponseToProcess(400, Map("error" -> "one or both the username or score was empty or null"))
+  }
 
-      // get the datastore service and assemble the query
-      val datastoreService = serviceProvider.getDatastoreService
+  // get the datastore service and assemble the query
+  val datastoreService = serviceProvider.getDatastoreService
 
-      try {
-        // execute the query
-        val result = datastoreService.readObjects("users", Map("username" -> Arrays.asList(username)))
+  try {
+    // execute the query
+    val result = datastoreService.readObjects("users", Map("username" -> Arrays.asList(username)))
 
-        // check if the user is in the datastore
-        val (userMap: Map[String, Object], newUser) = result match {
-          case _ if result != null && result.size == 1 => (result.get(0), false)
-          case _ => (Map("username" -> username), true)
-        }
-
-        // if it's a new high score, the datastore needs to be updated
-        val updated = userMap.get("score") match {
-          case _ @ s if s != null && s.toString.toInt < score => true
-          case _ => false
-        }
-
-        if (newUser) {
-          datastoreService.createObject("users", if (updated) userMap + ("score" -> new Integer(score)) else userMap)
-        } else if (updated) {
-          datastoreService.updateObject("users", username, userMap + ("score" -> new Integer(score)))
-        }
-
-        new ResponseToProcess(200, Map("updated" -> updated, "newUser" -> newUser, "username" -> username)) // http 200 - ok
-      } catch { // http 500 - internal server error
-        case e: InvalidSchemaException => new ResponseToProcess(500, Map("error" -> "invalid_schema", "detail" -> e.toString))
-        case e: DatastoreException => new ResponseToProcess(500, Map("error" -> "datastore_exception", "detail" -> e.toString))
-        case e => new ResponseToProcess(500, Map("error" -> "unknown", "detail" -> e.toString))
-      }
-
+    // check if the user is in the datastore
+    val (userMap: Map[String, Object], newUser) = result match {
+      case _ if result != null && result.size == 1 => (result.get(0), false)
+      case _ => (Map("username" -> username), true)
     }
+
+    // if it's a new high score, the datastore needs to be updated
+    val updated = userMap.get("score") match {
+      case _ @ s if s != null && s.toString.toInt < score => true
+      case _ => false
+    }
+
+    if (newUser) {
+      datastoreService.createObject("users", if (updated) userMap + ("score" -> new Integer(score)) else userMap)
+    } else if (updated) {
+      datastoreService.updateObject("users", username, userMap + ("score" -> new Integer(score)))
+    }
+
+    new ResponseToProcess(200, Map("updated" -> updated, "newUser" -> newUser, "username" -> username)) // http 200 - ok
+  } catch { // http 500 - internal server error
+    case e: InvalidSchemaException => new ResponseToProcess(500, Map("error" -> "invalid_schema", "detail" -> e.toString))
+    case e: DatastoreException => new ResponseToProcess(500, Map("error" -> "datastore_exception", "detail" -> e.toString))
+    case e => new ResponseToProcess(500, Map("error" -> "unknown", "detail" -> e.toString))
+  }
+
+}
+```
 
 ## Copyright
 
