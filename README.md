@@ -313,7 +313,6 @@ Note, this example only shows the execute method of a `CustomCodeMethod` subclas
 ```java
 @Override
 public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider serviceProvider) {
-
   String username = request.getParams().get("username");
   Integer score = Integer.parseInt(request.getParams().get("score"));
 
