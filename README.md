@@ -48,7 +48,7 @@ will return a JSON object:
 
 **Java**
 
-```java
+    ```java
     package com.stackmob.example.helloworld;
 
     import com.stackmob.core.customcode.CustomCodeMethod;
@@ -93,7 +93,7 @@ will return a JSON object:
       }
 
     }
-```
+    ```
 
 **Scala**
 
