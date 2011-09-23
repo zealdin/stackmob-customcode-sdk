@@ -4,7 +4,7 @@ The StackMob Custom Code SDK supports both Java and Scala custom code. Ruby supp
 
 ## Using the SDK
 
-The Custom Code SDK is available via the Central Maven Repository. Below are examples of using the Custom Code SDK with Maven and sbt.
+The Custom Code SDK is available via the Central Maven Repository. Below are examples of using the Custom Code SDK with Maven and sbt. It is also available for download [here](http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.1.0/customcode-0.1.0.jar).
 
 **Maven**
 
@@ -20,7 +20,7 @@ The Custom Code SDK is available via the Central Maven Repository. Below are exa
 **sbt**
 
 ```scala
-val stackmob = "com.stackmob" % "customcode" % "0.1.0" % "provided"
+libraryDependencies += "com.stackmob" % "customcode" % "0.1.0" % "provided"
 ```
 
 ## Javadocs
