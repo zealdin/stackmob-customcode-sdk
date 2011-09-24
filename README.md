@@ -1,10 +1,10 @@
 # Stackmob Custom Code SDK
 
-The StackMob Custom Code SDK supports both Java and Scala custom code. Ruby support is also available via a Heroku add-on. Please see the [stackmob-ruby](https://github.com/stackmob/stackmob-ruby) SDK for more details.
+The StackMob Custom Code SDK supports both Java and Scala custom code. Ruby support is also available via a Heroku add-on. Please see the <a href="https://github.com/stackmob/stackmob-ruby">stackmob-ruby</a> SDK for more details.
 
 ## Using the SDK
 
-The Custom Code SDK is available via the Central Maven Repository. Below are examples of using the Custom Code SDK with Maven and sbt. It is also available for download [here](http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.1.0/customcode-0.1.0.jar).
+The Custom Code SDK is available via the Central Maven Repository. Below are examples of using the Custom Code SDK with Maven and sbt. It is also available for download <a href="http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.1.0/customcode-0.1.0.jar">here</a>.
 
 **Maven**
 
@@ -25,13 +25,13 @@ libraryDependencies += "com.stackmob" % "customcode" % "0.1.0" % "provided"
 
 ## Javadocs
 
-[Javadocs are available here](http://stackmob.github.com/stackmob-customcode-sdk/0.1.0/apidocs/).
+Javadocs are available <a href="http://stackmob.github.com/stackmob-customcode-sdk/0.1.0/apidocs/">here</a>.
 
 ## Extend your REST API
 
 ### Why should I extend my REST API?
 
-StackMob generates your persistence layer and a REST API for you automatically via the [Object Model creation process](https://www.stackmob.com/platform/api/objects/create), but you'll likely want to do more than just save and fetch data. The SDK enables you to run custom server-side code, interact with the datastore, and extend the REST API to support your own custom methods.
+StackMob generates your persistence layer and a REST API for you automatically via the <a href="https://www.stackmob.com/platform/api/objects/create">Object Model creation process</a>, but you'll likely want to do more than just save and fetch data. The SDK enables you to run custom server-side code, interact with the datastore, and extend the REST API to support your own custom methods.
 
 ### Write a new REST API method
 
@@ -263,7 +263,7 @@ If the output of the `ls` command showed `EntryPointExtender.class`, then your J
 
 ### Uploading your JAR to StackMob
 
-Once you have your custom methods written, package it as a JAR so that it can be uploaded to StackMob. Upon uploading, StackMob will immediately process and roll out the code to your application's sandbox environment. To test your new REST API method, use the [console](https://www.stackmob.com/platform/api/console).
+Once you have your custom methods written, package it as a JAR so that it can be uploaded to StackMob. Upon uploading, StackMob will immediately process and roll out the code to your application's sandbox environment. To test your new REST API method, use the <a href="https://www.stackmob.com/platform/api/console">console</a>.
 
 ## Fetch Parameters
 
