@@ -24,6 +24,22 @@ import com.stackmob.core.ServiceNotActivatedException;
 public interface SDKServiceProvider {
 
   /**
+   * Get a <code>LoggerService</code> named corresponding to the given class. Use this for logging within custom code.
+   *
+   * @param clazz the logger service will be named after clazz
+   * @return the logger service
+   */
+  LoggerService getLoggerService(Class clazz);
+
+  /**
+   * Get a <code>LoggerService</code> named using the given name. Use this for logging within custom code.
+   *
+   * @param name the name of the logger service
+   * @return the logger service
+   */
+  LoggerService getLoggerService(String name);
+
+  /**
    * Get the <code>DatastoreService</code> required to access the datastore for the current application.
    *
    * @return the datastore service
