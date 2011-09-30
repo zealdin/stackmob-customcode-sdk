@@ -25,12 +25,12 @@ import java.util.Set;
 
 public interface PushService {
 
-  public enum TokenType {
+  public static enum TokenType {
       iOS,
       Android
     }
 
-  public class TokenAndType {
+  public static class TokenAndType {
     private String token;
     private TokenType type;
     public TokenAndType(String token, TokenType type) {
