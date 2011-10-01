@@ -1,3 +1,4 @@
 .idea
 stackmob-customcode-sdk.iml
 target
+*.DS_Store
