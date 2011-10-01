@@ -4,7 +4,7 @@ The StackMob Custom Code SDK supports both Java and Scala custom code. Ruby supp
 
 ## Using the SDK
 
-The Custom Code SDK is available via the Central Maven Repository. Below are examples of using the Custom Code SDK with Maven and sbt. It is also available for download <a href="http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.1.0/customcode-0.1.0.jar">here</a>.
+The Custom Code SDK is available via the Central Maven Repository. Below are examples of using the Custom Code SDK with Maven and sbt. It is also available for download <a href="http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.2.0/customcode-0.2.0.jar">here</a>.
 
 **Maven**
 
@@ -429,6 +429,7 @@ override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServicePr
 The SDK gives access to the StackMob Push Notification service through the PushService class. Here's how to use it:
 
 **Java**
+
 ```java
 import com.stackmob.core.rest.ProcessedAPIRequest;
 import com.stackmob.sdkapi.SDKServiceProvider;
@@ -480,6 +481,7 @@ public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider
 ```
 
 **Scala**
+
 ```scala
 import com.stackmob.core.rest.ProcessedAPIRequest
 import com.stackmob.sdkapi.{SDKServiceProvider, PushService}
@@ -518,7 +520,6 @@ override def execute(request:ProcessedAPIRequest, serviceProvider:SDKServiceProv
     //remove the iOS token for John Doe
     pushService.removeToken(iosToken)
 }
-
 ```
 
 ## Copyright
