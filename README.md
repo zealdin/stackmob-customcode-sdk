@@ -12,7 +12,7 @@ The Custom Code SDK is available via the Central Maven Repository. Below are exa
 <dependency>
   <groupId>com.stackmob</groupId>
   <artifactId>customcode</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
   <scope>provided</scope>
 </dependency>
 ```
@@ -20,12 +20,12 @@ The Custom Code SDK is available via the Central Maven Repository. Below are exa
 **sbt**
 
 ```scala
-libraryDependencies += "com.stackmob" % "customcode" % "0.1.0" % "provided"
+libraryDependencies += "com.stackmob" % "customcode" % "0.2.0" % "provided"
 ```
 
 ## Javadocs
 
-Javadocs are available <a href="http://stackmob.github.com/stackmob-customcode-sdk/0.1.0/apidocs/">here</a>.
+Javadocs are available <a href="http://stackmob.github.com/stackmob-customcode-sdk/0.2.0/apidocs/">here</a>.
 
 ## Extend your REST API
 
@@ -422,6 +422,103 @@ override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServicePr
   }
 
 }
+```
+
+### Push Notifications
+
+The SDK gives access to the StackMob Push Notification service through the PushService class. Here's how to use it:
+
+**Java**
+```java
+import com.stackmob.core.rest.ProcessedAPIRequest;
+import com.stackmob.sdkapi.SDKServiceProvider;
+import com.stackmob.sdkapi.PushService;
+import static PushService.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+
+...
+
+@Override
+public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider serviceProvider) {
+    PushService pushService = serviceProvider.getPushService();
+
+    //register iOS token for John Doe
+    TokenAndType iOSToken = new TokenAndType("deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef", TokenType.iOS);
+    pushService.registerTokenForUser("JohnDoe", iosToken);
+
+    //register Android token for John Doe
+    TokenAndType androidToken = new TokenAndType("androidtoken", TokenType.Android);
+    pushService.registerTokenForUser("JohnDoe", androidToken);
+
+    //get all tokens for John Doe
+    List<String> users = new ArrayList<String>();
+    users.add("JohnDoe");
+    Map<String, List<TokenAndType>> tokensForJohnDoe = pushService.getAllTokensForUsers(users);
+
+    //send a push notification just to John Doe's iOS device
+    List<TokenAndType> tokensToSendTo = new ArrayList<TokenAndType>();
+    tokensToSendTo.add(iosToken);
+    Map<String, String> payload = new HashMap<String, String>();
+    payload.put("badge", "1");
+    payload.put("sound", "customsound.wav");
+    payload.put("alert", "Hello from Stackmob!");
+    payload.put("other", "stuff");
+    pushService.sendPushToTokens(tokensToSendTo, payload);
+
+    //send a push notification to all of John Doe's devices
+    pushService.sendPushToUsers(users, payload);
+
+    //broadcast a push notification to EVERYONE - use carefully!
+    pushService.broadcastPush(payload);
+
+    //remove the iOS token for John Doe
+    pushService.removeToken(iosToken);
+}
+```
+
+**Scala**
+```scala
+import com.stackmob.core.rest.ProcessedAPIRequest
+import com.stackmob.sdkapi.{SDKServiceProvider, PushService}
+import PushService._
+import collection.JavaConversions._
+import java.util.{Map => JavaMap, List => JavaList}
+
+...
+
+override def execute(request:ProcessedAPIRequest, serviceProvider:SDKServiceProvider) {
+    val pushService = serviceProvider.getPushService
+
+    //register iOS token for John Doe
+    val iOSToken = new TokenAndType("deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef", TokenType.iOS);
+    val androidToken = new TokenAndType("androidtoken", TokenType.Android)
+    pushService.registerTokenForUser("JohnDoe", androidToken);
+
+    //get all tokens for John Doe
+    val users:JavaList[String] = List("JohnDoe")
+    val tokensForJohnDoe = pushService.getAllTokensForUsers(users)
+
+    //send a push notification just to John Doe's iOS device
+    val tokensToSendTo:JavaList[TokenAndType] = List(iosToken)
+    val payload:JavaMap[String, String] = Map("badge" -> 1,
+        "sound" -> "customsound.wav",
+        "alert" -> "Hello from Stackmob!",
+        "other" -> "stuff")
+    pushService.sendPushToTokens(tokensToSendTo, payload)
+
+    //send a push notification to all of John Doe's devices
+    pushService.sendPushToUsers(users, payload)
+
+    //broadcast a push notification to EVERYONE - use carefully!
+    pushService.broadcastPush(payload)
+
+    //remove the iOS token for John Doe
+    pushService.removeToken(iosToken)
+}
+
 ```
 
 ## Copyright
