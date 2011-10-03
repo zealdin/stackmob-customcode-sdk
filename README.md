@@ -4,7 +4,7 @@ The StackMob Custom Code SDK supports both Java and Scala custom code. Ruby supp
 
 ## Using the SDK
 
-The Custom Code SDK is available via the Central Maven Repository. Below are examples of using the Custom Code SDK with Maven and sbt. It is also available for download <a href="http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.2.0/customcode-0.2.0.jar">here</a>.
+The Custom Code SDK is available via the Central Maven Repository. Below are examples of using the Custom Code SDK with Maven and sbt. It is also available for download <a href="http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.3.0/customcode-0.3.0.jar">here</a>.
 
 **Maven**
 
@@ -12,7 +12,7 @@ The Custom Code SDK is available via the Central Maven Repository. Below are exa
 <dependency>
   <groupId>com.stackmob</groupId>
   <artifactId>customcode</artifactId>
-  <version>0.2.0</version>
+  <version>0.3.0</version>
   <scope>provided</scope>
 </dependency>
 ```
@@ -20,12 +20,16 @@ The Custom Code SDK is available via the Central Maven Repository. Below are exa
 **sbt**
 
 ```scala
-libraryDependencies += "com.stackmob" % "customcode" % "0.2.0" % "provided"
+libraryDependencies += "com.stackmob" % "customcode" % "0.3.0" % "provided"
 ```
 
 ## Javadocs
 
-Javadocs are available <a href="http://stackmob.github.com/stackmob-customcode-sdk/0.2.0/apidocs/">here</a>.
+Javadocs are available <a href="http://stackmob.github.com/stackmob-customcode-sdk/0.3.0/apidocs/">here</a>.
+
+## Release Notes
+
+Release notes are available <a href="https://github.com/stackmob/stackmob-customcode-sdk/blob/master/RELEASE_NOTES.md">here</a>.
 
 ## Extend your REST API
 
@@ -444,39 +448,39 @@ import java.util.HashMap;
 
 @Override
 public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider serviceProvider) {
-    PushService pushService = serviceProvider.getPushService();
+  PushService pushService = serviceProvider.getPushService();
 
-    //register iOS token for John Doe
-    TokenAndType iOSToken = new TokenAndType("deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef", TokenType.iOS);
-    pushService.registerTokenForUser("JohnDoe", iosToken);
+  //register iOS token for John Doe
+  TokenAndType iOSToken = new TokenAndType("deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef", TokenType.iOS);
+  pushService.registerTokenForUser("JohnDoe", iosToken);
 
-    //register Android token for John Doe
-    TokenAndType androidToken = new TokenAndType("androidtoken", TokenType.Android);
-    pushService.registerTokenForUser("JohnDoe", androidToken);
+  //register Android token for John Doe
+  TokenAndType androidToken = new TokenAndType("androidtoken", TokenType.Android);
+  pushService.registerTokenForUser("JohnDoe", androidToken);
 
-    //get all tokens for John Doe
-    List<String> users = new ArrayList<String>();
-    users.add("JohnDoe");
-    Map<String, List<TokenAndType>> tokensForJohnDoe = pushService.getAllTokensForUsers(users);
+  //get all tokens for John Doe
+  List<String> users = new ArrayList<String>();
+  users.add("JohnDoe");
+  Map<String, List<TokenAndType>> tokensForJohnDoe = pushService.getAllTokensForUsers(users);
 
-    //send a push notification just to John Doe's iOS device
-    List<TokenAndType> tokensToSendTo = new ArrayList<TokenAndType>();
-    tokensToSendTo.add(iosToken);
-    Map<String, String> payload = new HashMap<String, String>();
-    payload.put("badge", "1");
-    payload.put("sound", "customsound.wav");
-    payload.put("alert", "Hello from Stackmob!");
-    payload.put("other", "stuff");
-    pushService.sendPushToTokens(tokensToSendTo, payload);
+  //send a push notification just to John Doe's iOS device
+  List<TokenAndType> tokensToSendTo = new ArrayList<TokenAndType>();
+  tokensToSendTo.add(iosToken);
+  Map<String, String> payload = new HashMap<String, String>();
+  payload.put("badge", "1");
+  payload.put("sound", "customsound.wav");
+  payload.put("alert", "Hello from Stackmob!");
+  payload.put("other", "stuff");
+  pushService.sendPushToTokens(tokensToSendTo, payload);
 
-    //send a push notification to all of John Doe's devices
-    pushService.sendPushToUsers(users, payload);
+  //send a push notification to all of John Doe's devices
+  pushService.sendPushToUsers(users, payload);
 
-    //broadcast a push notification to EVERYONE - use carefully!
-    pushService.broadcastPush(payload);
+  //broadcast a push notification to EVERYONE - use carefully!
+  pushService.broadcastPush(payload);
 
-    //remove the iOS token for John Doe
-    pushService.removeToken(iosToken);
+  //remove the iOS token for John Doe
+  pushService.removeToken(iosToken);
 }
 ```
 
@@ -492,33 +496,78 @@ import java.util.{Map => JavaMap, List => JavaList}
 ...
 
 override def execute(request:ProcessedAPIRequest, serviceProvider:SDKServiceProvider) {
-    val pushService = serviceProvider.getPushService
+  val pushService = serviceProvider.getPushService
 
-    //register iOS token for John Doe
-    val iOSToken = new TokenAndType("deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef", TokenType.iOS);
-    val androidToken = new TokenAndType("androidtoken", TokenType.Android)
-    pushService.registerTokenForUser("JohnDoe", androidToken);
+  //register iOS token for John Doe
+  val iOSToken = new TokenAndType("deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef", TokenType.iOS);
+  val androidToken = new TokenAndType("androidtoken", TokenType.Android)
+  pushService.registerTokenForUser("JohnDoe", androidToken);
 
-    //get all tokens for John Doe
-    val users:JavaList[String] = List("JohnDoe")
-    val tokensForJohnDoe = pushService.getAllTokensForUsers(users)
+  //get all tokens for John Doe
+  val users:JavaList[String] = List("JohnDoe")
+  val tokensForJohnDoe = pushService.getAllTokensForUsers(users)
 
-    //send a push notification just to John Doe's iOS device
-    val tokensToSendTo:JavaList[TokenAndType] = List(iosToken)
-    val payload:JavaMap[String, String] = Map("badge" -> 1,
-        "sound" -> "customsound.wav",
-        "alert" -> "Hello from Stackmob!",
-        "other" -> "stuff")
-    pushService.sendPushToTokens(tokensToSendTo, payload)
+  //send a push notification just to John Doe's iOS device
+  val tokensToSendTo:JavaList[TokenAndType] = List(iosToken)
+  val payload:JavaMap[String, String] = Map("badge" -> 1,
+    "sound" -> "customsound.wav",
+    "alert" -> "Hello from Stackmob!",
+    "other" -> "stuff")
+  pushService.sendPushToTokens(tokensToSendTo, payload)
 
-    //send a push notification to all of John Doe's devices
-    pushService.sendPushToUsers(users, payload)
+  //send a push notification to all of John Doe's devices
+  pushService.sendPushToUsers(users, payload)
 
-    //broadcast a push notification to EVERYONE - use carefully!
-    pushService.broadcastPush(payload)
+  //broadcast a push notification to EVERYONE - use carefully!
+  pushService.broadcastPush(payload)
 
-    //remove the iOS token for John Doe
-    pushService.removeToken(iosToken)
+  //remove the iOS token for John Doe
+  pushService.removeToken(iosToken)
+}
+```
+
+### Logging
+
+The logger service provided by the SDK should be used to log information from within your custom code. Anything logged via the logger service will be accessible via StackMob's web platform (coming soon).
+
+**Java**
+
+```java
+@Override
+public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider provider) {
+  LoggerService logger = provider.getLoggerService(MyCustomCodeMethod.class);
+
+  logger.debug("log anything");
+
+  try {
+    throw new NullPointerException("some npe");
+  } catch (NullPointerException e) {
+    logger.error(e.getMessage(), e);
+  }
+
+  Map<String, Object> map = new HashMap<String, Object>();
+  map.put("status", "ok");
+  return new ResponseToProcess(200, map);
+}
+```
+
+**Scala**
+
+```scala
+override def execute(request: ProcessedAPIRequest, sdk: SDKServiceProvider): ResponseToProcess = {
+  val logger = sdk.getLoggerService(classOf[MyCustomCodeMethod])
+
+  logger.debug("log anything")
+
+  try {
+    throw new NullPointerException("some npe")
+  } catch {
+    case e: NullPointerException => {
+      logger.error(e.getMessage, e)
+    }
+  }
+
+  new ResponseToProcess(200, Map("status" -> "ok"))
 }
 ```
 
