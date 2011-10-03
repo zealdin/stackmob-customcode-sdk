@@ -428,7 +428,7 @@ override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServicePr
 }
 ```
 
-### Push Notifications
+## Push Notifications
 
 The SDK gives access to the StackMob Push Notification service through the PushService class. Here's how to use it:
 
@@ -526,7 +526,7 @@ override def execute(request:ProcessedAPIRequest, serviceProvider:SDKServiceProv
 }
 ```
 
-### Logging
+## Logging
 
 The logger service provided by the SDK should be used to log information from within your custom code. Anything logged via the logger service will be accessible via StackMob's web platform (coming soon).
 
