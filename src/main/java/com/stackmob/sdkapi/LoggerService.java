@@ -16,6 +16,9 @@
 
 package com.stackmob.sdkapi;
 
+/**
+ * The logger service.
+ */
 public interface LoggerService {
 
   /**

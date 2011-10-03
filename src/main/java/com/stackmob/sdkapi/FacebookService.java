@@ -19,7 +19,7 @@ package com.stackmob.sdkapi;
 import com.stackmob.core.FacebookServiceException;
 
 /**
- * Provides an object that can be used to communicate with Facebook.
+ * The Facebook service.
  */
 public interface FacebookService {
 

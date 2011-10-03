@@ -19,7 +19,7 @@ package com.stackmob.sdkapi;
 import com.stackmob.core.TwitterServiceException;
 
 /**
- * Provides access to an object that can be used to communicate with Twitter.
+ * The Twitter service.
  */
 public interface TwitterService {
 

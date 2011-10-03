@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Provides access to the datastore for the active application.
+ * The datastore service.
  */
 public interface DatastoreService {
   

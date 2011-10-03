@@ -23,6 +23,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * The push notification service.
+ */
 public interface PushService {
 
   public static enum TokenType {

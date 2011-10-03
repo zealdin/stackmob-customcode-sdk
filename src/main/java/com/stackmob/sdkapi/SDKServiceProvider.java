@@ -19,7 +19,7 @@ package com.stackmob.sdkapi;
 import com.stackmob.core.ServiceNotActivatedException;
 
 /**
- * Provides access to the object datastore, as well as to various services provided by StackMob.
+ * Provides access to the various StackMob services.
  */
 public interface SDKServiceProvider {
 
