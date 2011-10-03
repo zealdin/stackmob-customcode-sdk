@@ -1,5 +1,3 @@
-package com.stackmob.sdkapi;
-
 /**
  * Copyright 2011 StackMob
  *
@@ -15,6 +13,8 @@ package com.stackmob.sdkapi;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package com.stackmob.sdkapi;
 
 public interface LoggerService {
 
