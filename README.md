@@ -534,7 +534,7 @@ override def execute(request:ProcessedAPIRequest, serviceProvider:SDKServiceProv
 
 ## Logging
 
-The logger service provided by the SDK should be used to log information from within your custom code. Anything logged via the logger service will be accessible via StackMob's web platform (coming soon).
+The logger service provided by the SDK should be used to log information from within your custom code. Anything logged via the logger service will be accessible via StackMob's web platform.
 
 **Java**
 
