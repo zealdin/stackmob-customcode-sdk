@@ -55,6 +55,8 @@ will return a JSON object:
 {"greeting": "hello world!"}
 ```
 
+<span class="tab-divider"/>
+
 <span class="tab extendrestapi" title="Java"/>
 
 **Java**
