@@ -55,6 +55,8 @@ will return a JSON object:
 {"greeting": "hello world!"}
 ```
 
+<span class="tab extendrestapi" title="Java"/>
+
 **Java**
 
 ```java
@@ -106,6 +108,10 @@ public class HelloWorldExample implements CustomCodeMethod {
 }    
 ```
 
+<span class="tab extendrestapi"/>
+
+<span class="tab extendrestapi" title="Scala"/>
+
 **Scala**
 
 ```scala
@@ -152,6 +158,8 @@ class HelloWorldExample extends CustomCodeMethod {
 
 }
 ```
+
+<span class="tab extendrestapi"/>
 
 ### Register your new REST API method
 
