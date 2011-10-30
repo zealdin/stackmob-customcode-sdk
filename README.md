@@ -167,6 +167,8 @@ class HelloWorldExample extends CustomCodeMethod {
 
 In order to register this method as a valid REST API endpoint, create a class that extends `JarEntryObject` and include your custom code method in the list of returned methods.
 
+<span class="tab registermethod" title="Java"/>
+
 **Java**
 
 ```java
@@ -190,6 +192,10 @@ public class EntryPointExtender extends JarEntryObject {
 }
 ```
 
+<span class="tab registermethod"/>
+
+<span class="tab registermethod" title="Scala"/>
+
 **Scala**
 
 ```scala
@@ -206,6 +212,8 @@ class EntryPointExtender extends JarEntryObject {
     
 }
 ```
+
+<span class="tab registermethod"/>
 
 Congratulations! You've just extended your REST API! Let's get it packaged up and ready to upload to StackMob.
 
@@ -291,6 +299,8 @@ Once you have your custom methods written, package it as a JAR so that it can be
 
 Each parameter returned in the `getParams` method of a custom code method can be accessed at runtime via:
 
+<span class="tab fetchparams" title="Java"/>
+
 **Java**
 
 ```java
@@ -300,6 +310,10 @@ public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider
 }
 ```
 
+<span class="tab fetchparams"/>
+
+<span class="tab fetchparams" title="Scala"/>
+
 **Scala**
 
 ```scala
@@ -308,6 +322,8 @@ override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServicePr
   ...
 }
 ```
+
+<span class="tab fetchparams"/>
 
 ## Datastore Service
 
@@ -320,6 +336,8 @@ The example below shows how to set a high score on a user model via the URL:
     http://yourclient.mob1.stackmob.com/api/1/yourapp/set_high_score?username=user_10&score=12345.
 
 Note, this example only shows the execute method of a `CustomCodeMethod` subclass.
+
+<span class="tab datastore" title="Java"/>
 
 **Java**
 
@@ -399,6 +417,10 @@ public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider
 }
 ```
 
+<span class="tab datastore"/>
+
+<span class="tab datastore" title="Scala"/>
+
 **Scala**
 
 ```scala
@@ -445,9 +467,13 @@ override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServicePr
 }
 ```
 
+<span class="tab datastore"/>
+
 ## Push Notifications
 
 The SDK gives access to the StackMob Push Notification service through the PushService class. Here's how to use it:
+
+<span class="tab push" title="Java"/>
 
 **Java**
 
@@ -494,6 +520,10 @@ public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider
 }
 ```
 
+<span class="tab push"/>
+
+<span class="tab push" title="Scala"/>
+
 **Scala**
 
 ```scala
@@ -530,9 +560,13 @@ override def execute(request:ProcessedAPIRequest, serviceProvider:SDKServiceProv
 }
 ```
 
+<span class="tab push"/>
+
 ## Logging
 
 The logger service provided by the SDK should be used to log information from within your custom code. Anything logged via the logger service will be accessible via StackMob's web platform.
+
+<span class="tab logging" title="Java"/>
 
 **Java**
 
@@ -554,6 +588,9 @@ public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider
   return new ResponseToProcess(HttpURLConnection.HTTP_OK, map);
 }
 ```
+<span class="tab logging"/>
+
+<span class="tab logging" title="Scala"/>
 
 **Scala**
 
@@ -574,6 +611,7 @@ override def execute(request: ProcessedAPIRequest, sdk: SDKServiceProvider): Res
   new ResponseToProcess(HTTP_OK, Map("status" -> "ok"))
 }
 ```
+<span class="tab logging"/>
 
 ## Copyright
 
