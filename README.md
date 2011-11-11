@@ -330,11 +330,9 @@ override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServicePr
 
 <span class="tab fetchparams"/>
 
-# Datastore Service
+# Interact with the datastore
 
 The datastore service provides server-side access to the StackMob datastore and can be used to create REST API extensions.
-
-## Interact with the datastore
 
 The example below shows how to set a high score on a user model via the URL:
 
