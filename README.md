@@ -2,7 +2,7 @@
 
 The StackMob Custom Code SDK supports both Java and Scala custom code. Ruby support is also available via a Heroku add-on. Please see the <a href="https://github.com/stackmob/stackmob-ruby">stackmob-ruby</a> SDK for more details.
 
-## Using the SDK
+# Using the SDK
 
 The Custom Code SDK is available via the Central Maven Repository. Below are examples of using the Custom Code SDK with Maven, sbt, or download the latest JAR.
 
@@ -29,21 +29,21 @@ Latest version: 0.3.0
 
 <a href="http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.3.0/customcode-0.3.0.jar">Download the latest JAR</a>.
 
-## Javadocs
+# Javadocs
 
 Javadocs are available <a href="http://stackmob.github.com/stackmob-customcode-sdk/0.3.0/apidocs/">here</a>.
 
-## Release Notes
+# Release Notes
 
 Release notes are available <a href="https://github.com/stackmob/stackmob-customcode-sdk/blob/master/RELEASE_NOTES.md">here</a>.
 
-## Extend your REST API
+# Extend your REST API
 
-### Why should I extend my REST API?
+## Why should I extend my REST API?
 
 StackMob generates your persistence layer and a REST API for you automatically via the <a href="https://www.stackmob.com/platform/api/objects/create">Object Model creation process</a>, but you'll likely want to do more than just save and fetch data. The SDK enables you to run custom server-side code, interact with the datastore, and extend the REST API to support your own custom methods.
 
-### Write a new REST API method
+## Write a new REST API method
 
 Once the JAR file is in your classpath, let's try a "Hello World" example. We will be extending your REST API so that calling:
 
@@ -295,7 +295,7 @@ If the output of the `ls` command showed `EntryPointExtender.class`, then your J
 
 Once you have your custom methods written, package it as a JAR so that it can be uploaded to StackMob. Upon uploading, StackMob will immediately process and roll out the code to your application's sandbox environment. To test your new REST API method, use the <a href="https://www.stackmob.com/platform/api/console">console</a>.
 
-## Fetch Parameters
+# Fetch Parameters
 
 Each parameter returned in the `getParams` method of a custom code method can be accessed at runtime via:
 
@@ -325,11 +325,11 @@ override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServicePr
 
 <span class="tab fetchparams"/>
 
-## Datastore Service
+# Datastore Service
 
 The datastore service provides server-side access to the StackMob datastore and can be used to create REST API extensions.
 
-### Interact with the datastore
+## Interact with the datastore
 
 The example below shows how to set a high score on a user model via the URL:
 
@@ -469,7 +469,7 @@ override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServicePr
 
 <span class="tab datastore"/>
 
-## Push Notifications
+# Push Notifications
 
 The SDK gives access to the StackMob Push Notification service through the PushService class. Here's how to use it:
 
@@ -562,7 +562,7 @@ override def execute(request:ProcessedAPIRequest, serviceProvider:SDKServiceProv
 
 <span class="tab push"/>
 
-## Logging
+# Logging
 
 The logger service provided by the SDK should be used to log information from within your custom code. Anything logged via the logger service will be accessible via StackMob's web platform.
 
@@ -613,7 +613,7 @@ override def execute(request: ProcessedAPIRequest, sdk: SDKServiceProvider): Res
 ```
 <span class="tab logging"/>
 
-## Copyright
+# Copyright
 
 Copyright 2011 StackMob
 
