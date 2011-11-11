@@ -46,7 +46,7 @@ Javadocs are available <a href="http://stackmob.github.com/stackmob-customcode-s
 
 ## Why should I extend my REST API?
 
-StackMob generates your persistence layer and a REST API for you automatically via the <a href="https://www.stackmob.com/platform/api/objects/create">Object Model creation process</a>, but you'll likely want to do more than just save and fetch data. The SDK enables you to run custom server-side code, interact with the datastore, and extend the REST API to support your own custom methods.
+StackMob generates your persistence layer and a REST API for you automatically via the <a href="https://www.stackmob.com/platform/api/objects/create">Object Model creation process</a>, but you'll likely want to do more than just save and fetch data. The SDK enables you to run custom server-side code, interact with the datastore, and extend the REST API to support your own custom methods.  Extending your REST API lets you define your own server behavior and REST API endpoints, allowing you to customize your application even further.
 
 ## Write a new REST API method
 
