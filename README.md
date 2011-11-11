@@ -31,11 +31,11 @@ Latest version: 0.3.0
 
 <a href="http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.3.0/customcode-0.3.0.jar">Download the latest JAR</a>.
 
-# Release Notes
+## Release Notes
 
 Release notes are available <a href="https://github.com/stackmob/stackmob-customcode-sdk/blob/master/RELEASE_NOTES.md">here</a>.
 
-# Javadocs
+## Javadocs
 
 Javadocs are available <a href="http://stackmob.github.com/stackmob-customcode-sdk/0.3.0/apidocs/">here</a>.
 
