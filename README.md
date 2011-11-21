@@ -8,6 +8,8 @@ StackMob provides the ability to run server-side custom code that is accessible 
     
 With the Custom Code SDK, it's possible to extend StackMob's REST API by writing custom server side code. The SDK supports both Java and Scala custom code. Write your code and simply upload your JAR to StackMob. Upon uploading, StackMob will roll out the code and make it accessible via the user-defined REST API endpoint. Ruby support is also available via a Heroku add-on. Please see the <a href="https://github.com/stackmob/stackmob-ruby">stackmob-ruby</a> SDK for more details.
 
+## Get the Custom Code SDK
+
 The Custom Code SDK is available via the Central Maven Repository. Below are examples of using the Custom Code SDK with Maven and sbt. It is also available for download.
 
 **Maven**
@@ -50,7 +52,7 @@ StackMob generates your persistence layer and a REST API for you automatically v
 
 ## Write a new REST API method
 
-Once the JAR file is in your classpath, let's try a "Hello World" example. We will be extending your REST API so that calling:
+Assuming you've downloaded the JAR (see above) and the JAR file is in your classpath, let's try a "Hello World" example. We will be extending your REST API so that calling:
 
     http://yourclient.mob1.stackmob.com/api/1/yourapp/hello_world_example
 
