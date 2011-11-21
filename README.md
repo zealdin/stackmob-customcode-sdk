@@ -8,9 +8,20 @@ StackMob provides the ability to run server-side custom code that is accessible 
     
 With the Custom Code SDK, it's possible to extend StackMob's REST API by writing custom server side code. The SDK supports both Java and Scala custom code. Write your code and simply upload your JAR to StackMob. Upon uploading, StackMob will roll out the code and make it accessible via the user-defined REST API endpoint. Ruby support is also available via a Heroku add-on. Please see the <a href="https://github.com/stackmob/stackmob-ruby">stackmob-ruby</a> SDK for more details.
 
-## Get the Custom Code SDK
+## Including the Custom Code SDK in your Project
 
-The Custom Code SDK is available via the Central Maven Repository. Below are examples of using the Custom Code SDK with Maven and sbt. It is also available for download.
+StackMob provides various ways for you to include the Custom Code SDK in your project.  You may choose according to your preference.
+
+* Download and include the JAR
+* Maven
+* sbt (scala)
+
+**JAR**
+
+Latest version: 0.3.0
+
+<a href="http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.3.0/customcode-0.3.0.jar">Download the latest JAR</a>.
+
 
 **Maven**
 
@@ -28,12 +39,6 @@ The Custom Code SDK is available via the Central Maven Repository. Below are exa
 ```scala
 libraryDependencies += "com.stackmob" % "customcode" % "0.3.0" % "provided"
 ```
-
-**JAR**
-
-Latest version: 0.3.0
-
-<a href="http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.3.0/customcode-0.3.0.jar">Download the latest JAR</a>.
 
 ## Release Notes
 
