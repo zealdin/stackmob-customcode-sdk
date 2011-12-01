@@ -479,6 +479,49 @@ override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServicePr
 
 <span class="tab datastore"/>
 
+# Interacting with your Logged-In Users
+
+The SDK allows you to check for a currently logged-in user, direct from the ProcessedAPIRequest. Here's how:
+
+**Java**
+
+```java
+@Override
+public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider serviceProvider) {
+  String username = request.getLoggedInUser()
+
+  if (username == null || username.isEmpty()) {
+    HashMap<String, String> errParams = new HashMap<String, String>();
+    errParams.put("error", "no user is logged in");
+    return new ResponseToProcess(HttpURLConnection.HTTP_UNAUTHORIZED, errParams); // http 401 - unauthorized
+  }
+
+  Map<String, Object> returnMap = new HashMap<String, Object>();
+  returnMap.put("currentLogin", username);
+  return new ResponseToProcess(HttpURLConnection.HTTP_OK, returnMap);
+}
+```
+
+<span class="tab user"/>
+
+<span class="tab user" title="Scala"/>
+
+**Scala**
+
+```scala
+override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServiceProvider): ResponseToProcess = {
+  val username = request.getLoggedInUser()
+
+  if (username == null || username.isEmpty) {
+    return new ResponseToProcess(HTTP_UNAUTHORIZED, Map("error" -> "no user is logged in"))
+  }
+
+  new ResponseToProcess(HTTP_OK, Map("currentLogin" -> username)) // http 200 - ok
+}
+```
+
+<span class="tab user"/>
+
 # Push Notifications
 
 The SDK gives access to the StackMob Push Notification service through the PushService class. Here's how to use it:
