@@ -488,7 +488,7 @@ The SDK allows you to check for a currently logged-in user, direct from the Proc
 ```java
 @Override
 public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider serviceProvider) {
-  String username = request.getLoggedInUser()
+  String username = request.getLoggedInUser();
 
   if (username == null || username.isEmpty()) {
     HashMap<String, String> errParams = new HashMap<String, String>();
@@ -510,7 +510,7 @@ public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider
 
 ```scala
 override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServiceProvider): ResponseToProcess = {
-  val username = request.getLoggedInUser()
+  val username = request.getLoggedInUser
 
   if (username == null || username.isEmpty) {
     return new ResponseToProcess(HTTP_UNAUTHORIZED, Map("error" -> "no user is logged in"))
