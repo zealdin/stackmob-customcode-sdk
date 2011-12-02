@@ -483,6 +483,8 @@ override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServicePr
 
 The SDK allows you to check for a currently logged-in user, direct from the ProcessedAPIRequest. Here's how:
 
+<span class="tab user" title="Java"/>
+
 **Java**
 
 ```java
@@ -503,8 +505,6 @@ public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider
 ```
 
 <span class="tab user"/>
-
-<span class="tab-divider"/>
 
 <span class="tab user" title="Scala"/>
 
