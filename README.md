@@ -4,7 +4,12 @@
 
 StackMob provides the ability to run server-side custom code that is accessible via user-defined REST API endpoints. For example:
 
-    http://yourdomain.stackmob.com/api/0/yourapp/doCustomServerSideOperation?param1=value1&param2=value2
+    URL:
+    http://api.mob1.stackmob.com/doCustomServerSideOperation?param1=value1&param2=value2
+    
+    Request Headers:
+    Accept: application/vnd.stackmob+json; version=0
+    //"version" sets your REST API Version. "0" for Development. "1" and up for Production
     
 With the Custom Code SDK, it's possible to extend StackMob's REST API by writing custom server side code. The SDK supports both Java and Scala custom code. Write your code and simply upload your JAR to StackMob. Upon uploading, StackMob will roll out the code and make it accessible via the user-defined REST API endpoint. Ruby support is also available via a Heroku add-on. Please see the <a href="https://github.com/stackmob/stackmob-ruby">stackmob-ruby</a> SDK for more details.
 
@@ -59,7 +64,12 @@ StackMob generates your persistence layer and a REST API for you automatically v
 
 Assuming you've downloaded the JAR (see above) and the JAR file is in your classpath, let's try a "Hello World" example. We will be extending your REST API so that calling:
 
-    http://yourclient.mob1.stackmob.com/api/1/yourapp/hello_world_example
+    URL:
+    http://api.mob1.stackmob.com/hello_world_example
+    
+    Request Header:
+    Accept: application/vnd.stackmob+json; version=0
+    //"version" sets your REST API Version. "0" for Development. "1" and up for Production
 
 will return a JSON object:
 
@@ -343,7 +353,11 @@ The datastore service provides server-side access to the StackMob datastore and 
 
 The example below shows how to set a high score on a user model via the URL:
 
-    http://yourclient.mob1.stackmob.com/api/1/yourapp/set_high_score?username=user_10&score=12345.
+    URL:
+    http://api.mob1.stackmob.com/set_high_score?username=user_10&score=12345.
+    
+    Request Headers:
+    Accept: application/vnd.stackmob+json; version=0
 
 Note, this example only shows the execute method of a `CustomCodeMethod` subclass.
 
