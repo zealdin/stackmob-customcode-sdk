@@ -17,7 +17,7 @@
 package com.stackmob.core;
 
 /**
- * Thrown when an object fails to properly conform to the expected datastore schema.
+ * Thrown when a create or update fails to properly conform to the expected datastore schema.
  */
 public class InvalidSchemaException extends Exception {
 

@@ -13,14 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package com.stackmob.core;
-
-import java.io.Serializable;
+package com.stackmob.sdkapi;
 
 /**
- * Represents the HTTP verbs which can be specified by a <code>ProcessedAPIRequest</code>.
+ * A condition in a query on the StackMob datastore
  */
-public enum MethodVerb implements Serializable {
-  GET, POST, PUT, DELETE;
-}
+public abstract class SMCondition {}

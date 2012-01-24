@@ -13,14 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.stackmob.sdkapi;
 
-package com.stackmob.core;
+public class SMEquals {
+  private final String field;
+  private final SMValue value;
 
-import java.io.Serializable;
+  public SMEquals(String field, SMValue value) {
+    this.field = field;
+    this.value = value;
+  }
 
-/**
- * Represents the HTTP verbs which can be specified by a <code>ProcessedAPIRequest</code>.
- */
-public enum MethodVerb implements Serializable {
-  GET, POST, PUT, DELETE;
+  public String getField() {
+    return field;
+  }
+
+  public SMValue getValue() {
+    return value;
+  }
 }

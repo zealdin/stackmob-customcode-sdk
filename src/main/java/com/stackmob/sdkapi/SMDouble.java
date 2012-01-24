@@ -13,14 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package com.stackmob.core;
-
-import java.io.Serializable;
+package com.stackmob.sdkapi;
 
 /**
- * Represents the HTTP verbs which can be specified by a <code>ProcessedAPIRequest</code>.
+ * A Double value
  */
-public enum MethodVerb implements Serializable {
-  GET, POST, PUT, DELETE;
+public class SMDouble extends SMValue<Double> {
+
+  /**
+   * Create a new SMDouble
+   * @param value the <code>Double</code> this SMDouble represents
+   */
+  public SMDouble(Double value) {
+    super(value);
+  }
 }

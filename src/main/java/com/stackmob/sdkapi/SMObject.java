@@ -13,14 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.stackmob.sdkapi;
 
-package com.stackmob.core;
-
-import java.io.Serializable;
+import java.util.Map;
 
 /**
- * Represents the HTTP verbs which can be specified by a <code>ProcessedAPIRequest</code>.
+ * An SMValue representing an object stored, or to be stored, in the StackMob Datastore
  */
-public enum MethodVerb implements Serializable {
-  GET, POST, PUT, DELETE;
+public class SMObject extends SMValue<Map<String, SMValue>> {
+
+  /**
+   * Create a new SMObject
+   * @param value the <code>Map</code> of object fields to their values
+   */
+  public SMObject(Map<String, SMValue> value) {
+    super(value);
+  }
 }

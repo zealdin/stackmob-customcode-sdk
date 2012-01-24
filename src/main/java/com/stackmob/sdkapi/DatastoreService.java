@@ -27,8 +27,9 @@ import java.util.Set;
 /**
  * The datastore service.
  */
+@Deprecated
 public interface DatastoreService {
-  
+
   /**
    * Creates a new object in the datastore. Each such object should be represented as a map of field names to objects,
    * where each sub-object is a List, Map, String, Long, or Double depending on the type of the field in question.
@@ -91,5 +92,5 @@ public interface DatastoreService {
    * @throws ConnectException if the list of object models cannot be retrieved
    */
   Set<String> getObjectModelNames() throws ConnectException;
-  
+
 }

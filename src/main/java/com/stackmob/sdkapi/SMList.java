@@ -13,14 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.stackmob.sdkapi;
 
-package com.stackmob.core;
-
-import java.io.Serializable;
+import java.util.List;
 
 /**
- * Represents the HTTP verbs which can be specified by a <code>ProcessedAPIRequest</code>.
+ * A List of values
+ * @param <T> The type of all values in this list
  */
-public enum MethodVerb implements Serializable {
-  GET, POST, PUT, DELETE;
+public class SMList<T> extends SMValue<List<T>> {
+
+  /**
+   * Create a new SMList
+   * @param value the <code>List</code> of values
+   */
+  public SMList(List<T> value) {
+    super(value);
+  }
 }

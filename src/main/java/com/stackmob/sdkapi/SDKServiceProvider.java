@@ -44,7 +44,15 @@ public interface SDKServiceProvider {
    *
    * @return the datastore service
    */
+  @Deprecated
   DatastoreService getDatastoreService();
+
+  /**
+   * Get the <code>DataService</code> required to access the datastore for the current application.
+   *
+   * @return the data service
+   */
+  DataService getDataService();
 
   /**
    * Get the <code>PushService</code> required to send push notifications for the current application.

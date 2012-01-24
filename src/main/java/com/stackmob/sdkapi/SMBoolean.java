@@ -13,14 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package com.stackmob.core;
-
-import java.io.Serializable;
+package com.stackmob.sdkapi;
 
 /**
- * Represents the HTTP verbs which can be specified by a <code>ProcessedAPIRequest</code>.
+ * A Boolean value
  */
-public enum MethodVerb implements Serializable {
-  GET, POST, PUT, DELETE;
+public class SMBoolean extends SMValue<Boolean> {
+
+  /**
+   * Create a new SMBoolean
+   * @param value the <code>Boolean</code> this SMBoolean represents
+   */
+  public SMBoolean(Boolean value) {
+    super(value);
+  }
 }
