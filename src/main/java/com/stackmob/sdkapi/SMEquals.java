@@ -15,7 +15,7 @@
  */
 package com.stackmob.sdkapi;
 
-public class SMEquals {
+public class SMEquals extends SMCondition {
   private final String field;
   private final SMValue value;
 
@@ -30,5 +30,10 @@ public class SMEquals {
 
   public SMValue getValue() {
     return value;
+  }
+
+  @Override
+  public String toString() {
+    return field + " = " + value.toString();
   }
 }

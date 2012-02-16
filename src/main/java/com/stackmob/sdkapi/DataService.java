@@ -64,7 +64,7 @@ public interface DataService {
    * @throws InvalidSchemaException if the schema does not exist, or the update actions are incompatible with it
    * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
    */
-  SMObject updateObject(String schema, SMString id, List<SMUpdate> updateActions)
+  SMObject updateObject(String schema, String id, List<SMUpdate> updateActions)
           throws InvalidSchemaException, DatastoreException;
 
   /**

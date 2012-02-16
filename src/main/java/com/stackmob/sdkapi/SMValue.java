@@ -46,12 +46,17 @@ public abstract class SMValue<T> {
 
     SMValue smValue = (SMValue) o;
 
-    return value == null ? smValue.value == null : !value.equals(smValue.value);
+    return value == null ? smValue.value == null : value.equals(smValue.value);
 
   }
 
   @Override
   public int hashCode() {
     return value != null ? value.hashCode() : 0;
+  }
+
+  @Override
+  public String toString() {
+    return value.toString();
   }
 }
