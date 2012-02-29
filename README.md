@@ -23,9 +23,9 @@ StackMob provides various ways for you to include the Custom Code SDK in your pr
 
 **JAR**
 
-Latest version: 0.3.0
+Latest version: 0.4.0
 
-<a href="http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.3.0/customcode-0.3.0.jar">Download the latest JAR</a>.
+<a href="http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.4.0/customcode-0.4.0.jar">Download the latest JAR</a>.
 
 
 **Maven**
@@ -34,7 +34,7 @@ Latest version: 0.3.0
 <dependency>
   <groupId>com.stackmob</groupId>
   <artifactId>customcode</artifactId>
-  <version>0.3.0</version>
+  <version>0.4.0</version>
   <scope>provided</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Release notes are available <a href="https://github.com/stackmob/stackmob-custom
 
 ## Javadocs
 
-Javadocs are available <a href="http://stackmob.github.com/stackmob-customcode-sdk/0.3.0/apidocs/">here</a>.
+Javadocs are available <a href="http://stackmob.github.com/stackmob-customcode-sdk/0.4.0/apidocs/">here</a>.
 
 
 # Extend your REST API
