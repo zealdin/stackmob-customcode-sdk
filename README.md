@@ -42,7 +42,7 @@ Latest version: 0.4.0
 **sbt**
 
 ```scala
-libraryDependencies += "com.stackmob" % "customcode" % "0.3.0" % "provided"
+libraryDependencies += "com.stackmob" % "customcode" % "0.4.0" % "provided"
 ```
 
 ## Release Notes
