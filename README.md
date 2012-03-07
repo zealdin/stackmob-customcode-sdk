@@ -93,6 +93,8 @@ import com.stackmob.core.rest.ResponseToProcess;
 import com.stackmob.sdkapi.SDKServiceProvider;
 import java.net.HttpURLConnection;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Arrays;
 
 public class HelloWorldExample implements CustomCodeMethod {
 
@@ -126,7 +128,9 @@ public class HelloWorldExample implements CustomCodeMethod {
    */
   @Override
   public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider serviceProvider) {
-    return new ResponseToProcess(HttpURLConnection.HTTP_OK, new HashMap<String, String>("greeting", "hello world!"));
+    Map<String, String> args = new HashMap<String, String>();
+    args.put("greeting", "hello world!");
+    return new ResponseToProcess(HttpURLConnection.HTTP_OK, args);
   }
 
 }    
