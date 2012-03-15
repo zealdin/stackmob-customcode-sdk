@@ -373,7 +373,7 @@ Note, this example only shows the execute method of a `CustomCodeMethod` subclas
 @Override
 public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider serviceProvider) {
   String username = request.getParams().get("username");
-  Integer score = Integer.parseInt(request.getParams().get("score"));
+  Long score = Long.parseLong(request.getParams().get("score"));
 
   if (username == null || username.isEmpty() || score == null) {
     HashMap<String, String> errParams = new HashMap<String, String>();
@@ -382,47 +382,51 @@ public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider
   }
 
   // get the datastore service and assemble the query
-  DatastoreService datastoreService = serviceProvider.getDatastoreService();
-  HashMap<String, List<String>> query = new HashMap<String, List<String>>();
-  query.put("username", Arrays.asList(username));
+  DataService dataService = serviceProvider.getDataService();
+
+  // build a query
+  List<SMCondition> query = new ArrayList<SMCondition>();
+  query.add(new SMEquals("username", new SMString(username)));
 
   // execute the query
-  List<Map<String, Object>> result;
+  List<SMObject> result;
   try {
     boolean newUser = false;
     boolean updated = false;
 
-    result = datastoreService.readObjects("users", query);
+    result = dataService.readObjects("users", query);
 
-    Map<String, Object> userMap;
+    SMObject userObject;
 
     // user was in the datastore, so check the score and update if necessary
     if (result != null && result.size() == 1) {
-      userMap = result.get(0);
+      userObject = result.get(0);
     } else {
-      userMap = new HashMap<String, Object>();
-      userMap.put("username", username);
-      userMap.put("score", new Integer(0));
+      Map<String, SMValue> userMap = new HashMap<String, SMValue>();
+      userMap.put("username", new SMString(username));
+      userMap.put("score", new SMInt(0L);
       newUser = true;
+      userObject = new SMObject(userMap);
     }
 
-    int oldScore = Integer.decode(userMap.get("score").toString());
+    SMValue oldScore = userObject.getValue().get("score");
 
     // if it was a high score, update the datastore
-    if (oldScore != null && oldScore < score) {
-      userMap.put("score", score);
+    List<SMUpdate> update = new ArrayList<SMUpdate>();
+    if (oldScore == null || ((SMInt)oldScore).getValue() < score) {
+      update.add(new SMSet("score", new SMInt(score)));
       updated = true;
     }
 
     if(newUser) {
-      datastoreService.createObject("users", userMap);
+      dataService.createObject("users", userObject);
     } else if(updated) {
-      datastoreService.updateObject("users", username, userMap);
+      dataService.updateObject("users", username, update);
     }
 
     Map<String, Object> returnMap = new HashMap<String, Object>();
-    returnMap.put("updated", new Boolean(updated));
-    returnMap.put("newUser", new Boolean(newUser));
+    returnMap.put("updated", updated);
+    returnMap.put("newUser", newUser);
     returnMap.put("username", username); 
     return new ResponseToProcess(HttpURLConnection.HTTP_OK, returnMap);
   } catch (InvalidSchemaException e) {
@@ -452,37 +456,39 @@ public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider
 **Scala**
 
 ```scala
-override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServiceProvider): ResponseToProcess = {
+def execute(request: ProcessedAPIRequest, serviceProvider: SDKServiceProvider): ResponseToProcess = {
   val username = request.getParams.get("username")
-  val score = request.getParams.get("score").toInt
+  val score = request.getParams.get("score").toLong
 
-  if (username == null || username.isEmpty || score == null) { // http 400 - bad request
+  if (username == null || username.isEmpty || score == null) {  // http 400 - bad request
+    new HashMap[String, String].put("error", "one or both the username or score was empty or null")
     return new ResponseToProcess(HTTP_BAD_REQUEST, Map("error" -> "one or both the username or score was empty or null"))
   }
 
   // get the datastore service and assemble the query
-  val datastoreService = serviceProvider.getDatastoreService
+  val dataService: DataService = serviceProvider.getDataService
+  val query = List(new SMEquals("username", new SMString(username)))
 
   try {
-    // execute the query
-    val result = datastoreService.readObjects("users", Map("username" -> Arrays.asList(username)))
+    //execute the query
+    val result = dataService.readObjects("users", query)
 
     // check if the user is in the datastore
-    val (userMap: Map[String, Object], newUser) = result match {
-      case _ if result != null && result.size == 1 => (result.get(0), false)
-      case _ => (Map("username" -> username), true)
+    val (userObject, newUser) = result match {
+      case (userObj: SMObject) :: Nil => (userObj,  false)
+      case _ => (new SMObject(Map("username" -> new SMString(username))), true)
     }
 
-    // if it's a new high score, the datastore needs to be updated
-    val updated = userMap.get("score") match {
-      case _ @ s if s != null && s.toString.toInt < score => true
+    // if it's a new high score, the database needs to be updated
+    val updated = userObject.getValue.get("score") match {
+      case s: SMInt if s.getValue < score => true
       case _ => false
     }
 
     if (newUser) {
-      datastoreService.createObject("users", if (updated) userMap + ("score" -> new Integer(score)) else userMap)
+      dataService.createObject("users", new SMObject(userObject.getValue + ("score" -> new SMInt(score))))
     } else if (updated) {
-      datastoreService.updateObject("users", username, userMap + ("score" -> new Integer(score)))
+      dataService.updateObject("users", username, List(new SMSet("score", new SMInt(score))))
     }
 
     new ResponseToProcess(HTTP_OK, Map("updated" -> updated, "newUser" -> newUser, "username" -> username)) // http 200 - ok
@@ -491,7 +497,6 @@ override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServicePr
     case e: DatastoreException => new ResponseToProcess(HTTP_INTERNAL_ERROR , Map("error" -> "datastore_exception", "detail" -> e.toString))
     case e => new ResponseToProcess(HTTP_INTERNAL_ERROR , Map("error" -> "unknown", "detail" -> e.toString))
   }
-
 }
 ```
 
