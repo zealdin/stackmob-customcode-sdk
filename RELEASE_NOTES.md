@@ -1,5 +1,8 @@
 # Stackmob Custom Code SDK (Release Notes)
 
+### 0.4.0 (02/28/12)
+* Added new DataService, replaces deprecated DatastoreService
+
 ### 0.3.0 (10/03/11)
 * Added Logger service
 
