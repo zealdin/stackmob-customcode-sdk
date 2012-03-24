@@ -13,18 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stackmob.sdkapi;
+package com.stackmob.core;
 
-/**
- * A Double value
- */
-public class SMDouble extends SMPrimitive<Double> {
-
-  /**
-   * Create a new SMDouble
-   * @param value the <code>Double</code> this SMDouble represents
-   */
-  public SMDouble(Double value) {
-    super(value);
-  }
+public class CannotCastSMValueException extends Exception {
+    public CannotCastSMValueException(String proposedClassName, String actualClassName) {
+        super(String.format("Cannot cast %s to a %s", actualClassName, proposedClassName));
+    }
 }

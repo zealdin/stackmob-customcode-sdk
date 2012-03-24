@@ -18,7 +18,7 @@ package com.stackmob.sdkapi;
 /**
  * A Boolean value
  */
-public class SMBoolean extends SMValue<Boolean> {
+public class SMBoolean extends SMPrimitive<Boolean> {
 
   /**
    * Create a new SMBoolean

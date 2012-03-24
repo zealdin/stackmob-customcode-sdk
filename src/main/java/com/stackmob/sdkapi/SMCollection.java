@@ -15,16 +15,8 @@
  */
 package com.stackmob.sdkapi;
 
-/**
- * A Double value
- */
-public class SMDouble extends SMPrimitive<Double> {
-
-  /**
-   * Create a new SMDouble
-   * @param value the <code>Double</code> this SMDouble represents
-   */
-  public SMDouble(Double value) {
-    super(value);
-  }
+public abstract class SMCollection<T> extends SMValue<T> {
+    public SMCollection(T t) {
+        super(t);
+    }
 }

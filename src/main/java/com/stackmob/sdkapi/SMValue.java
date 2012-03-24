@@ -15,6 +15,8 @@
  */
 package com.stackmob.sdkapi;
 
+import com.stackmob.core.CannotCastSMValueException;
+
 /**
  * An object representing a value stored in the StackMob datastore
  * @param <T> The type of this value, see subclasses for explicit types
@@ -58,5 +60,18 @@ public abstract class SMValue<T> {
   @Override
   public String toString() {
     return value.toString();
+  }
+
+  public <U extends SMValue> boolean isA(Class<U> cls) {
+    return cls.isAssignableFrom(this.getClass());
+  }
+    
+  public <U extends SMValue> U asA(Class<U> cls) throws CannotCastSMValueException {
+    if(isA(cls)) {
+      return cls.cast(this);
+    }
+    else {
+      throw new CannotCastSMValueException(cls.getCanonicalName(), this.getClass().getCanonicalName());
+    }
   }
 }

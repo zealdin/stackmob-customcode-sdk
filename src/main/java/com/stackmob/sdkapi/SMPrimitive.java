@@ -15,16 +15,8 @@
  */
 package com.stackmob.sdkapi;
 
-/**
- * A Long value
- */
-public class SMLong extends SMValue<Long> {
-
-  /**
-   * Create a new SMLong
-   * @param value the <code>Long</code> this SMLong represents
-   */
-  public SMLong(Long value) {
-    super(value);
-  }
+public abstract class SMPrimitive<T> extends SMValue<T> {
+    public SMPrimitive(T t) {
+        super(t);
+    }
 }
