@@ -21,7 +21,7 @@ import java.util.List;
  * A List of values
  * @param <T> The type of all values in this list
  */
-public class SMList<T> extends SMValue<List<T>> {
+public class SMList<T extends SMValue> extends SMCollection<List<T>> {
 
   /**
    * Create a new SMList
