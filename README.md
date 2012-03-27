@@ -17,9 +17,9 @@ With the Custom Code SDK, it's possible to extend StackMob's REST API by writing
 
 StackMob provides various ways for you to include the Custom Code SDK in your project.  You may choose according to your preference.
 
-* Download and include the JAR
-* Maven
-* sbt (scala)
+* Maven (recommended)
+* sbt (also recommended if you're using Scala)
+* Download and manually include the JAR (not recommended)
 
 **JAR**
 
@@ -39,11 +39,20 @@ Latest version: 0.4.0
 </dependency>
 ```
 
+Also, you can see what an example pom.xml file would look like for your project [here](https://gist.github.com/1646301).
+
 **sbt**
 
 ```scala
 libraryDependencies += "com.stackmob" % "customcode" % "0.4.0" % "provided"
 ```
+
+**Manual**
+We do not recommend that you try to manually include the Custom Code SDK JAR in your project because you will also need 
+to include its dependencies. If you must, however, please 
+[download the SDK JAR](http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.4.0/customcode-0.4.0.jar)
+and [the Netty JAR](http://search.maven.org/remotecontent?filepath=org/jboss/netty/netty/3.2.5.Final/netty-3.2.5.Final.jar),
+and put both JARs into your CLASSPATH.
 
 ## Release Notes
 
@@ -288,9 +297,11 @@ Add this to the build.xml file:
 </jar>
 ```
 
-**Command Line**
+**Manual**
 
-We recommend that you use a build tool like <a href="http://ant.apache.org/manual/index.html">Ant</a> or <a href="http://maven.apache.org/guides/index.html">Maven</a>, but if you decide to use the command line to build your code, create a file called JarManifest with nothing but this line in it:
+Again, we recommend against this approach, but if you must:
+
+Create a file called JarManifest with nothing but this line in it: 
 
     Main-Class: com.stackmob.example.helloworld.EntryPointExtender
 
@@ -326,7 +337,9 @@ If the output of the `ls` command showed `EntryPointExtender.class`, then your J
 
 ### Uploading your JAR to StackMob
 
-Once you have your custom methods written, package it as a JAR so that it can be <a href="https://www.stackmob.com/platform/api/customcode/upload">uploaded to StackMob</a>. Upon uploading, StackMob will immediately process and roll out the code to your application's sandbox environment. To test your new REST API method, use the <a href="https://www.stackmob.com/platform/api/console">console</a>.
+Once you have your custom methods written, package it as a JAR so that it can be <a href="https://www.stackmob.com/platform/api/customcode/upload">uploaded to StackMob</a>. 
+Upon uploading, StackMob will immediately process and roll out the code to your application's sandbox environment. 
+To test your new REST API method, use the <a href="https://www.stackmob.com/platform/api/console">console</a>.
 
 # Fetch Parameters
 
