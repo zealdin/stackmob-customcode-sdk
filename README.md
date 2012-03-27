@@ -83,6 +83,8 @@ will return a JSON object:
 
 **Java**
 
+HelloWorldExample.java:
+
 ```java
 
 package com.stackmob.example.helloworld;
@@ -95,6 +97,7 @@ import java.net.HttpURLConnection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Arrays;
+import java.util.List;
 
 public class HelloWorldExample implements CustomCodeMethod {
 
@@ -197,6 +200,8 @@ In order to register this method as a valid REST API endpoint, create a class th
 
 **Java**
 
+EntryPointExtender.java:
+
 ```java
 package com.stackmob.example.helloworld;
 
@@ -282,6 +287,8 @@ Add this to the build.xml file:
   </manifest>
 </jar>
 ```
+
+**Command Line**
 
 We recommend that you use a build tool like Ant or Maven, but if you decide to use the command line to build your code, create a file called JarManifest with nothing but this line in it:
 
