@@ -53,7 +53,8 @@ We do not recommend that you try to manually include the Custom Code SDK JAR in 
 to include its dependencies. If you must, however, please 
 [download the SDK JAR](http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.4.0/customcode-0.4.0.jar)
 and [the Netty JAR](http://search.maven.org/remotecontent?filepath=org/jboss/netty/netty/3.2.5.Final/netty-3.2.5.Final.jar),
-and put both JARs into your CLASSPATH.
+and put both JARs into your CLASSPATH so that you can compile your code.
+These JARs must not be built into your custom code JAR, however. If they are, you will not be able to upload it to StackMob.
 
 ## Release Notes
 
