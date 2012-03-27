@@ -48,6 +48,7 @@ libraryDependencies += "com.stackmob" % "customcode" % "0.4.0" % "provided"
 ```
 
 **Manual**
+
 We do not recommend that you try to manually include the Custom Code SDK JAR in your project because you will also need 
 to include its dependencies. If you must, however, please 
 [download the SDK JAR](http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.4.0/customcode-0.4.0.jar)
