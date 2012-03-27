@@ -290,7 +290,7 @@ Add this to the build.xml file:
 
 **Command Line**
 
-We recommend that you use a build tool like Ant or Maven, but if you decide to use the command line to build your code, create a file called JarManifest with nothing but this line in it:
+We recommend that you use a build tool like <a href="http://ant.apache.org/manual/index.html">Ant</a> or <a href="http://maven.apache.org/guides/index.html">Maven</a>, but if you decide to use the command line to build your code, create a file called JarManifest with nothing but this line in it:
 
     Main-Class: com.stackmob.example.helloworld.EntryPointExtender
 
