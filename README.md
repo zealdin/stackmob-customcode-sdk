@@ -158,12 +158,12 @@ public class HelloWorldExample implements CustomCodeMethod {
 ```scala
 package com.stackmob.example.helloworld
 
-import com.stackmob.core.customcode.CustomCodeMethod
-import com.stackmob.sdkapi.SDKServiceProvider
-import com.stackmob.core.rest.{ResponseToProcess, ProcessedAPIRequest}
-import java.util.{Arrays, List}
+import java.util.Arrays
 import java.net.HttpURLConnection._
-import scala.collection.JavaConversions._
+import com.stackmob.core.customcode.CustomCodeMethod
+import com.stackmob.sdkapi._
+import com.stackmob.core.rest.{ProcessedAPIRequest, ResponseToProcess}
+import scala.collection.JavaConverters._
 
 class HelloWorldExample extends CustomCodeMethod {
 
@@ -184,7 +184,7 @@ class HelloWorldExample extends CustomCodeMethod {
    *
    * @return a list of the parameters to expect for this REST method
    */
-  override def getParams: List[String] = {
+  override def getParams: java.util.List[String] = {
     Arrays.asList()
   }
 
@@ -194,7 +194,7 @@ class HelloWorldExample extends CustomCodeMethod {
    * @return the response
    */
   override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServiceProvider): ResponseToProcess = {
-    new ResponseToProcess(HTTP_OK, Map("greeting" -> "hello world!"))
+    new ResponseToProcess(HTTP_OK, Map("greeting" -> "hello world!").asJava)
   }
 
 }
@@ -247,8 +247,8 @@ import com.stackmob.core.jar.JarEntryObject
 
 class EntryPointExtender extends JarEntryObject {
 
-  override def methods: List[CustomCodeMethod] = {
-    List(new HelloWorldExample)
+  override def methods: java.util.List[CustomCodeMethod] = {
+    Arrays.asList(new HelloWorldExample)
   }
     
 }
@@ -482,22 +482,21 @@ def execute(request: ProcessedAPIRequest, serviceProvider: SDKServiceProvider): 
   val score = request.getParams.get("score").toLong
 
   if (username == null || username.isEmpty || score == null) {  // http 400 - bad request
-    new HashMap[String, String].put("error", "one or both the username or score was empty or null")
-    return new ResponseToProcess(HTTP_BAD_REQUEST, Map("error" -> "one or both the username or score was empty or null"))
+    return new ResponseToProcess(HTTP_BAD_REQUEST, Map("error" -> "one or both the username or score was empty or null").asJava)
   }
 
   // get the datastore service and assemble the query
   val dataService: DataService = serviceProvider.getDataService
-  val query = List(new SMEquals("username", new SMString(username)))
+  val query = List[SMCondition](new SMEquals("username", new SMString(username)))
 
   try {
     //execute the query
-    val result = dataService.readObjects("users", query)
+    val result = dataService.readObjects("users", query.asJava)
 
     // check if the user is in the datastore
     val (userObject, newUser) = result match {
       case (userObj: SMObject) :: Nil => (userObj,  false)
-      case _ => (new SMObject(Map("username" -> new SMString(username))), true)
+      case _ => (new SMObject(Map[String, SMValue[_]]("username" -> new SMString(username)).asJava), true)
     }
 
     // if it's a new high score, the database needs to be updated
@@ -507,16 +506,16 @@ def execute(request: ProcessedAPIRequest, serviceProvider: SDKServiceProvider): 
     }
 
     if (newUser) {
-      dataService.createObject("users", new SMObject(userObject.getValue + ("score" -> new SMInt(score))))
+      dataService.createObject("users", new SMObject((userObject.getValue.asScala + ("score" -> new SMInt(score))).asJava))
     } else if (updated) {
-      dataService.updateObject("users", username, List(new SMSet("score", new SMInt(score))))
+      dataService.updateObject("users", username, Arrays.asList(new SMSet("score", new SMInt(score))))
     }
 
-    new ResponseToProcess(HTTP_OK, Map("updated" -> updated, "newUser" -> newUser, "username" -> username)) // http 200 - ok
+    new ResponseToProcess(HTTP_OK, Map("updated" -> updated, "newUser" -> newUser, "username" -> username).asJava) // http 200 - ok
   } catch { // http 500 - internal server error
-    case e: InvalidSchemaException => new ResponseToProcess(HTTP_INTERNAL_ERROR , Map("error" -> "invalid_schema", "detail" -> e.toString))
-    case e: DatastoreException => new ResponseToProcess(HTTP_INTERNAL_ERROR , Map("error" -> "datastore_exception", "detail" -> e.toString))
-    case e => new ResponseToProcess(HTTP_INTERNAL_ERROR , Map("error" -> "unknown", "detail" -> e.toString))
+    case e: InvalidSchemaException => new ResponseToProcess(HTTP_INTERNAL_ERROR , Map("error" -> "invalid_schema", "detail" -> e.toString).asJava)
+    case e: DatastoreException => new ResponseToProcess(HTTP_INTERNAL_ERROR , Map("error" -> "datastore_exception", "detail" -> e.toString).asJava)
+    case e => new ResponseToProcess(HTTP_INTERNAL_ERROR , Map("error" -> "unknown", "detail" -> e.toString).asJava)
   }
 }
 ```
@@ -559,10 +558,10 @@ override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServicePr
   val username = request.getLoggedInUser
 
   if (username == null || username.isEmpty) {
-    return new ResponseToProcess(HTTP_UNAUTHORIZED, Map("error" -> "no user is logged in"))
+    return new ResponseToProcess(HTTP_UNAUTHORIZED, Map("error" -> "no user is logged in").asJava)
   }
 
-  new ResponseToProcess(HTTP_OK, Map("currentLogin" -> username)) // http 200 - ok
+  new ResponseToProcess(HTTP_OK, Map("currentLogin" -> username).asJava) // http 200 - ok
 }
 ```
 
@@ -635,27 +634,27 @@ override def execute(request:ProcessedAPIRequest, serviceProvider:SDKServiceProv
   pushService.registerTokenForUser("JohnDoe", androidToken);
 
   //get all tokens for John Doe
-  val users:JavaList[String] = List("JohnDoe")
-  val tokensForJohnDoe = pushService.getAllTokensForUsers(users)
+  val users:List[String] = List("JohnDoe")
+  val tokensForJohnDoe = pushService.getAllTokensForUsers(users.asJava)
 
   //send a push notification just to John Doe's iOS device
-  val tokensToSendTo:JavaList[TokenAndType] = List(iosToken)
-  val payload:JavaMap[String, String] = Map("badge" -> 1,
+  val tokensToSendTo:List[TokenAndType] = List(iOSToken)
+  val payload: Map[String, String] = Map("badge" -> "1",
     "sound" -> "customsound.wav",
     "alert" -> "Hello from Stackmob!",
     "other" -> "stuff")
-  pushService.sendPushToTokens(tokensToSendTo, payload)
+  pushService.sendPushToTokens(tokensToSendTo.asJava, payload.asJava)
 
   //send a push notification to all of John Doe's devices
-  pushService.sendPushToUsers(users, payload)
+  pushService.sendPushToUsers(users.asJava, payload.asJava)
 
   //broadcast a push notification to EVERYONE - use carefully!
-  pushService.broadcastPush(payload)
+  pushService.broadcastPush(payload.asJava)
 
   //remove the iOS token for John Doe
-  pushService.removeToken(iosToken)
-  
-  new ResponseToProcess(HTTP_OK, Map("status" -> "ok"))
+  pushService.removeToken(iOSToken)
+
+  new ResponseToProcess(HTTP_OK, Map("status" -> "ok").asJava)
 }
 ```
 
@@ -707,7 +706,7 @@ override def execute(request: ProcessedAPIRequest, sdk: SDKServiceProvider): Res
     }
   }
 
-  new ResponseToProcess(HTTP_OK, Map("status" -> "ok"))
+  new ResponseToProcess(HTTP_OK, Map("status" -> "ok").asJava)
 }
 ```
 <span class="tab logging"/>
