@@ -57,7 +57,7 @@ and put both JARs into your CLASSPATH so that you can compile your code. These J
 
 ## Example Custom Code on GitHub
 
-To get you started, we've actually provded an example Custom Code example on GitHub for you!  Feel free to fork it, follow the instructions to build a JAR, then <a href="https://www.stackmob.com/platform/api/customcode/upload" target="_blank">upload that JAR to StackMob</a> to get your first custom code example!
+To get you started, we've actually provided an example Custom Code example on GitHub for you!  Feel free to fork it, follow the instructions to build a JAR, then <a href="https://www.stackmob.com/platform/api/customcode/upload" target="_blank">upload that JAR to StackMob</a> to get your first custom code example!
 
 <a href="https://github.com/stackmob/stackmob-customcode-example" target="_blank">Fork the Custom Code Example on GitHub</a>
 
