@@ -2,27 +2,202 @@
 
 ## Why use the Custom Code SDK?
 
-StackMob provides the ability to run server-side custom code that is accessible via user-defined REST API endpoints. For example:
+With StackMob's server-side custom code, you can write Java/Scala/Clojure code, upload it to StackMob, and have server-side code that can run custom server-side operations, callable from StackMob's mobile SDKs.  Custom code also lets you define your own JSON to return in the response.
 
-    URL:
-    http://api.mob1.stackmob.com/doCustomServerSideOperation?param1=value1&param2=value2
+StackMob already gives you datastore persistence and push services in the cloud.  With server-side custom code, you can write a feature-rich app on a full featured platform with the power of server-side operations.  
+
+# How does it work?
+
+Write a simple Java class implementing the `CustomCodeMethod` interface, build it into a JAR, then <a href="https://www.stackmob.com/platform/api/customcode/upload" target="_blank">upload the JAR to StackMob</a>.
+
+Here's a simple `hello_world` example.  Upon uploading your JAR, StackMob will extend your method to your REST API at:
+
+    http://api.mob1.stackmob.com/hello_world
     
-    Request Headers:
-    Accept: application/vnd.stackmob+json; version=0
-    //"version" sets your REST API Version. "0" for Development. "1" and up for Production
+You can then call your code from the mobile iOS, Android, or JS SDKs.  (Or anything else that can hit a REST API!)
+
+The JSON that you define in your server-side code will be returned in the response.
+
+Let's look at the server-side code in Java/Scala:
+
+<span class="tab extendrestapi" title="Java"/>
+
+**Java**
+
+HelloWorldExample.java:
+
+```java
+
+package com.stackmob.example.helloworld;
+
+import com.stackmob.core.customcode.CustomCodeMethod;
+import com.stackmob.core.rest.ProcessedAPIRequest;
+import com.stackmob.core.rest.ResponseToProcess;
+import com.stackmob.sdkapi.SDKServiceProvider;
+import java.net.HttpURLConnection;
+import java.util.*;
+
+public class HelloWorldExample implements CustomCodeMethod {
+
+  /**
+   * This method simply returns the name of your method that we'll expose over REST for
+   * this class. Although this name can be anything you want, we recommend replacing the
+   * camel case convention in your class name with underscores, as shown here.
+   *
+   * @return the name of the method that should be exposed over REST
+   */
+  @Override
+  public String getMethodName() {
+    return "hello_world";
+  }
+
+  /**
+   * This method returns the parameters that your method should expect in its query string.
+   * Here we are using no parameters, so we just return an empty list.
+   *
+   * @return a list of the parameters to expect for this REST method
+   */
+  @Override
+  public List<String> getParams() {
+    return Arrays.asList();
+  }
+
+  /**
+   * This method contains the code that you want to execute.
+   *
+   * @return the response
+   */
+  @Override
+  public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider serviceProvider) {
+    Map<String, String> args = new HashMap<String, String>();
+    args.put("msg", "hello world!");
+    return new ResponseToProcess(HttpURLConnection.HTTP_OK, args);
+  }
+
+}    
+```
+
+<span class="tab extendrestapi"/>
+
+<span class="tab extendrestapi" title="Scala"/>
+
+**Scala**
+
+```scala
+package com.stackmob.example.helloworld
+
+import java.util.Arrays
+import java.net.HttpURLConnection._
+import com.stackmob.core.customcode.CustomCodeMethod
+import com.stackmob.sdkapi._
+import com.stackmob.core.rest.{ProcessedAPIRequest, ResponseToProcess}
+import scala.collection.JavaConverters._
+
+class HelloWorldExample extends CustomCodeMethod {
+
+  /**
+   * This method simply returns the name of your method that we'll expose over REST for
+   * this class. Although this name can be anything you want, we recommend replacing the
+   * camel case convention in your class name with underscores, as shown here.
+   *
+   * @return the name of the method that should be exposed over REST
+   */
+  override def getMethodName: String = {
+    "hello_world"
+  }
+
+  /**
+   * This method returns the parameters that your method should expect in its query string.
+   * Here we are using no parameters, so we just return an empty list.
+   *
+   * @return a list of the parameters to expect for this REST method
+   */
+  override def getParams: java.util.List[String] = {
+    Arrays.asList()
+  }
+
+  /**
+   * This method contains the code that you want to execute.
+   *
+   * @return the response
+   */
+  override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServiceProvider): ResponseToProcess = {
+    new ResponseToProcess(HTTP_OK, Map("msg" -> "hello world!").asJava)
+  }
+
+}
+```
+
+<span class="tab extendrestapi"/>
+
+Custom code allows you to even define the returned JSON.  In this case, our simple Hello World example will return:
+
+    { "msg": "Hello, world!" }
     
-With the Custom Code SDK, it's possible to extend StackMob's REST API by writing custom server side code. The SDK supports both Java and Scala custom code. Write your code and simply upload your JAR to StackMob. Upon uploading, StackMob will roll out the code and make it accessible via the user-defined REST API endpoint. Ruby support is also available via a Heroku add-on. Please see the <a href="https://github.com/stackmob/stackmob-ruby">stackmob-ruby</a> SDK for more details.
+You can call your server-side custom code from your SDK.  The request will be sent from the client, StackMob will route the call to the appropriate code and execute the code you've written, then StackMob will return the JSON you've defined.
+
+Let's see how client-side SDK code calls and interacts with the server-side custom code:
+
+<span class="tab callcc" title="iOS SDK"/>
+**iOS SDK**
+
+```objc
+[[StackMob stackmob] get:@"hello_world" withCallback:^(BOOL success, id result) {
+    if (success) {
+        // result is the JSON as an NSDictionary of "msg" vs. "Hello, world!"
+    } else {
+    }
+}];
+
+```
+<span class="tab"/>
+
+<span class="tab callcc" title="Android SDK"/>
+**Android SDK**
+
+```java
+StackMobCommon.getStackMobInstance().get("hello_world", new StackMobCallback() {
+    @Override public void success(String responseBody) {
+        //responseBody is "{ \"msg\": \"Hello, world!\" }"
+    }
+    @Override public void failure(StackMobException e) {
+    }
+});
+```
+<span class="tab"/>
+
+<span class="tab callcc" title="JS SDK"/>
+**JS SDK**
+
+```javascript
+<script type="text/javascript">
+  StackMob.customcode('hello_world', {}, {
+     success: function(jsonResult) {
+       //jsonResult is the JSON object: { "msg": "Hello, world!" }
+     },
+     
+     error: function(failure) {
+       //doh!
+     }
+  });
+</script>
+```
+
+You've just seen how you can write server-side code and call it from your mobile application, powerfully extending your ability to build a full featured app.
+
+
+
 
 # QuickStart - Example Custom Code on GitHub
 
-To get you started, we've actually provided an example Custom Code example on GitHub for you!  Feel free to fork it, follow the instructions to build a JAR, then <a href="https://www.stackmob.com/platform/api/customcode/upload" target="_blank">upload that JAR to StackMob</a> to get your first custom code example!
+To get you started, we've actually provided an example Custom Code example on GitHub for you.  Feel free to fork it, follow the instructions to build a JAR, then <a href="https://www.stackmob.com/platform/api/customcode/upload" target="_blank">upload that JAR to StackMob</a> to get your first custom code example!
 
 <p><a href="https://github.com/stackmob/stackmob-customcode-example" target="_blank" class="button">Fork the Custom Code Example on GitHub</a></p>
 
-You can feel free to add your own classes and use this as a template to build from.
+You can feel free to add your own classes and use this as a template to build off of.
 
 
-# Introduction to Custom Code
+# Building to Custom Code from Scratch
 
 If you'd rather build a custom code project from scratch, read on.
 
@@ -68,156 +243,9 @@ to include its dependencies. If you must, however, please
 and [the Netty JAR](http://search.maven.org/remotecontent?filepath=org/jboss/netty/netty/3.2.5.Final/netty-3.2.5.Final.jar),
 and put both JARs into your CLASSPATH so that you can compile your code. These JARs must not be built into your custom code JAR, however.
 
-## Release Notes
+## Register your Method
 
-Release notes are available <a href="https://github.com/stackmob/stackmob-customcode-sdk/blob/master/RELEASE_NOTES.md">here</a>.
-
-## Javadocs
-
-Javadocs are available <a href="http://stackmob.github.com/stackmob-customcode-sdk/0.4.0/apidocs/">here</a>.
-
-
-# Extend your REST API
-
-## Why should I extend my REST API?
-
-StackMob generates your persistence layer and a REST API for you automatically via the <a href="https://www.stackmob.com/platform/api/objects/create">Object Model creation process</a>, but you'll likely want to do more than just save and fetch data. The SDK enables you to run custom server-side code, interact with the datastore, and extend the REST API to support your own custom methods.  Extending your REST API lets you define your own server behavior and REST API endpoints, allowing you to customize your application even further.
-
-## Write a new REST API method
-
-Assuming you've downloaded the JAR (see above) and the JAR file is in your classpath, let's try a "Hello World" example. We will be extending your REST API so that calling:
-
-    URL:
-    http://api.mob1.stackmob.com/hello_world_example
-    
-    Request Header:
-    Accept: application/vnd.stackmob+json; version=0
-    //"version" sets your REST API Version. "0" for Development. "1" and up for Production
-
-will return a JSON object:
-
-```json
-{"greeting": "hello world!"}
-```
-
-<span class="tab-divider"/>
-
-<span class="tab extendrestapi" title="Java"/>
-
-**Java**
-
-HelloWorldExample.java:
-
-```java
-
-package com.stackmob.example.helloworld;
-
-import com.stackmob.core.customcode.CustomCodeMethod;
-import com.stackmob.core.rest.ProcessedAPIRequest;
-import com.stackmob.core.rest.ResponseToProcess;
-import com.stackmob.sdkapi.SDKServiceProvider;
-import java.net.HttpURLConnection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Arrays;
-import java.util.List;
-
-public class HelloWorldExample implements CustomCodeMethod {
-
-  /**
-   * This method simply returns the name of your method that we'll expose over REST for
-   * this class. Although this name can be anything you want, we recommend replacing the
-   * camel case convention in your class name with underscores, as shown here.
-   *
-   * @return the name of the method that should be exposed over REST
-   */
-  @Override
-  public String getMethodName() {
-    return "hello_world_example";
-  }
-
-  /**
-   * This method returns the parameters that your method should expect in its query string.
-   * Here we are using no parameters, so we just return an empty list.
-   *
-   * @return a list of the parameters to expect for this REST method
-   */
-  @Override
-  public List<String> getParams() {
-    return Arrays.asList();
-  }
-
-  /**
-   * This method contains the code that you want to execute.
-   *
-   * @return the response
-   */
-  @Override
-  public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider serviceProvider) {
-    Map<String, String> args = new HashMap<String, String>();
-    args.put("greeting", "hello world!");
-    return new ResponseToProcess(HttpURLConnection.HTTP_OK, args);
-  }
-
-}    
-```
-
-<span class="tab extendrestapi"/>
-
-<span class="tab extendrestapi" title="Scala"/>
-
-**Scala**
-
-```scala
-package com.stackmob.example.helloworld
-
-import java.util.Arrays
-import java.net.HttpURLConnection._
-import com.stackmob.core.customcode.CustomCodeMethod
-import com.stackmob.sdkapi._
-import com.stackmob.core.rest.{ProcessedAPIRequest, ResponseToProcess}
-import scala.collection.JavaConverters._
-
-class HelloWorldExample extends CustomCodeMethod {
-
-  /**
-   * This method simply returns the name of your method that we'll expose over REST for
-   * this class. Although this name can be anything you want, we recommend replacing the
-   * camel case convention in your class name with underscores, as shown here.
-   *
-   * @return the name of the method that should be exposed over REST
-   */
-  override def getMethodName: String = {
-    "hello_world_example"
-  }
-
-  /**
-   * This method returns the parameters that your method should expect in its query string.
-   * Here we are using no parameters, so we just return an empty list.
-   *
-   * @return a list of the parameters to expect for this REST method
-   */
-  override def getParams: java.util.List[String] = {
-    Arrays.asList()
-  }
-
-  /**
-   * This method contains the code that you want to execute.
-   *
-   * @return the response
-   */
-  override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServiceProvider): ResponseToProcess = {
-    new ResponseToProcess(HTTP_OK, Map("greeting" -> "hello world!").asJava)
-  }
-
-}
-```
-
-<span class="tab extendrestapi"/>
-
-### Register your new REST API method
-
-In order to register this method as a valid REST API endpoint, create a class that extends `JarEntryObject` and include your custom code method in the list of returned methods.
+StackMob needs to know where to find your defined methods.  Register them in the `EntryPointExtender` and include it in your JAR.
 
 <span class="tab registermethod" title="Java"/>
 
@@ -269,7 +297,6 @@ class EntryPointExtender extends JarEntryObject {
 
 <span class="tab registermethod"/>
 
-Congratulations! You've just extended your REST API! Let's get it packaged up and ready to upload to StackMob.
 
 ## Define the JAR Manifest
 
@@ -723,6 +750,16 @@ override def execute(request: ProcessedAPIRequest, sdk: SDKServiceProvider): Res
 }
 ```
 <span class="tab logging"/>
+
+
+## Release Notes
+
+<a href="https://github.com/stackmob/stackmob-customcode-sdk/blob/master/RELEASE_NOTES.md">Release notes are available here</a>.
+
+## Javadocs
+
+<a href="http://stackmob.github.com/stackmob-customcode-sdk/0.4.0/apidocs/">Javadocs are available here</a>.
+
 
 # Copyright
 
