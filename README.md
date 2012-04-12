@@ -13,6 +13,14 @@ StackMob provides the ability to run server-side custom code that is accessible 
     
 With the Custom Code SDK, it's possible to extend StackMob's REST API by writing custom server side code. The SDK supports both Java and Scala custom code. Write your code and simply upload your JAR to StackMob. Upon uploading, StackMob will roll out the code and make it accessible via the user-defined REST API endpoint. Ruby support is also available via a Heroku add-on. Please see the <a href="https://github.com/stackmob/stackmob-ruby">stackmob-ruby</a> SDK for more details.
 
+# Custom Code QuickStart - Example on GitHub
+
+To get you started, we've actually provided an example Custom Code example on GitHub for you!  Feel free to fork it, follow the instructions to build a JAR, then <a href="https://www.stackmob.com/platform/api/customcode/upload" target="_blank">upload that JAR to StackMob</a> to get your first custom code example!
+
+<a href="https://github.com/stackmob/stackmob-customcode-example" target="_blank" class="button">Fork the Custom Code Example on GitHub</a>
+
+# Introduction to Custom Code
+
 ## Including the Custom Code SDK in your Project
 
 StackMob provides various ways for you to include the Custom Code SDK in your project.  You may choose according to your preference.
@@ -54,13 +62,6 @@ to include its dependencies. If you must, however, please
 [download the SDK JAR](http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.4.0/customcode-0.4.0.jar)
 and [the Netty JAR](http://search.maven.org/remotecontent?filepath=org/jboss/netty/netty/3.2.5.Final/netty-3.2.5.Final.jar),
 and put both JARs into your CLASSPATH so that you can compile your code. These JARs must not be built into your custom code JAR, however.
-
-## Example Custom Code on GitHub
-
-To get you started, we've actually provided an example Custom Code example on GitHub for you!  Feel free to fork it, follow the instructions to build a JAR, then <a href="https://www.stackmob.com/platform/api/customcode/upload" target="_blank">upload that JAR to StackMob</a> to get your first custom code example!
-
-<a href="https://github.com/stackmob/stackmob-customcode-example" target="_blank">Fork the Custom Code Example on GitHub</a>
-
 
 ## Release Notes
 
