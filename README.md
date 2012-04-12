@@ -182,6 +182,7 @@ StackMobCommon.getStackMobInstance().get("hello_world", new StackMobCallback() {
   });
 </script>
 ```
+<span class="tab"/>
 
 You've just seen how you can write server-side code and call it from your mobile application, powerfully extending your ability to build a full featured app.
 
