@@ -19,7 +19,7 @@ To get you started, we've actually provided an example Custom Code example on Gi
 
 <p><a href="https://github.com/stackmob/stackmob-customcode-example" target="_blank" class="button">Fork the Custom Code Example on GitHub</a></p>
 
-You can feel free to add your own classes and use this as a template to build off of.
+You can feel free to add your own classes and use this as a template to build from.
 
 
 # Introduction to Custom Code
