@@ -189,7 +189,7 @@ You've just seen how you can write server-side code and call it from your mobile
 
 
 
-# QuickStart - Example Custom Code on GitHub
+# QuickStart - Fork Example Custom Code on GitHub
 
 To get you started, we've actually provided an example Custom Code example on GitHub for you.  Feel free to fork it, follow the instructions to build a JAR, then <a href="https://www.stackmob.com/platform/api/customcode/upload" target="_blank">upload that JAR to StackMob</a> to get your first custom code example!
 
@@ -198,7 +198,7 @@ To get you started, we've actually provided an example Custom Code example on Gi
 You can feel free to add your own classes and use this as a template to build off of.
 
 
-# Building to Custom Code from Scratch
+# Building Custom Code from Scratch
 
 If you'd rather build a custom code project from scratch, read on.
 
