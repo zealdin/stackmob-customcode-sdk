@@ -2,7 +2,7 @@
 
 ## Why use the Custom Code SDK?
 
-With StackMob's server-side custom code, you can write Java/Scala/Clojure code, upload it to StackMob, and have server-side code that can run custom server-side operations, callable from StackMob's mobile SDKs.  Custom code also lets you define your own JSON to return in the response.
+With StackMob's server-side custom code, you can write Java/Scala/Clojure code and upload it to StackMob.  Using the StackMob mobile SDK's, you can trigger your code/logic on the server-side and process the returned JSON that you defined in your custom code.  This means that you can not only quickly write your app on the mobile client side, but now you can also quickly write powerful code that runs server-side that can interact with your app!
 
 StackMob already gives you datastore persistence and push services in the cloud.  With server-side custom code, you can write a feature-rich app on a full featured platform with the power of server-side operations.  
 
