@@ -55,6 +55,13 @@ to include its dependencies. If you must, however, please
 and [the Netty JAR](http://search.maven.org/remotecontent?filepath=org/jboss/netty/netty/3.2.5.Final/netty-3.2.5.Final.jar),
 and put both JARs into your CLASSPATH so that you can compile your code. These JARs must not be built into your custom code JAR, however.
 
+## Example Custom Code on GitHub
+
+To get you started, we've actually provded an example Custom Code example on GitHub for you!  Feel free to fork it, follow the instructions to build a JAR, then <a href="https://www.stackmob.com/platform/api/customcode/upload" target="_blank">upload that JAR to StackMob</a> to get your first custom code example!
+
+<a href="https://github.com/stackmob/stackmob-customcode-example" target="_blank">Fork the Custom Code Example on GitHub</a>
+
+
 ## Release Notes
 
 Release notes are available <a href="https://github.com/stackmob/stackmob-customcode-sdk/blob/master/RELEASE_NOTES.md">here</a>.
