@@ -17,7 +17,7 @@ With the Custom Code SDK, it's possible to extend StackMob's REST API by writing
 
 To get you started, we've actually provided an example Custom Code example on GitHub for you!  Feel free to fork it, follow the instructions to build a JAR, then <a href="https://www.stackmob.com/platform/api/customcode/upload" target="_blank">upload that JAR to StackMob</a> to get your first custom code example!
 
-<a href="https://github.com/stackmob/stackmob-customcode-example" target="_blank" class="button">Fork the Custom Code Example on GitHub</a>
+<p><a href="https://github.com/stackmob/stackmob-customcode-example" target="_blank" class="button">Fork the Custom Code Example on GitHub</a></p>
 
 You can feel free to add your own classes and use this as a template to build off of.
 
