@@ -8,13 +8,13 @@ StackMob already gives you datastore persistence and push services in the cloud.
 
 # How does it work?
 
-Write a simple Java class implementing the `CustomCodeMethod` interface, build it into a JAR, then <a href="https://www.stackmob.com/platform/api/customcode/upload" target="_blank">upload the JAR to StackMob</a>.
+Write a simple Java/Scala/Clojure class implementing the `CustomCodeMethod` interface, build it into a JAR, then <a href="https://www.stackmob.com/platform/api/customcode/upload" target="_blank">upload the JAR to StackMob</a>.
 
 Here's a simple `hello_world` example.  Upon uploading your JAR, StackMob will extend your method to your REST API at:
 
     http://api.mob1.stackmob.com/hello_world
     
-You can then call your code from the mobile iOS, Android, or JS SDKs.  (Or anything else that can hit a REST API!)
+You can then call your code from the mobile iOS, Android, or JS SDKs (protected with OAuth of course! Our SDKs handle that).  (Or anything else that can hit a REST API!)
 
 The JSON that you define in your server-side code will be returned in the response.
 
@@ -72,6 +72,12 @@ public class HelloWorldExample implements CustomCodeMethod {
    */
   @Override
   public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider serviceProvider) {
+    
+    //Send push messages...
+    //Query the datastore...
+    //Run complex server side operations..
+    
+    //Then prepare your custom JSON to send back to the mobile client
     Map<String, String> args = new HashMap<String, String>();
     args.put("msg", "hello world!");
     return new ResponseToProcess(HttpURLConnection.HTTP_OK, args);
