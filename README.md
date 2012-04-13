@@ -18,7 +18,10 @@ You can then call your code from the mobile iOS, Android, or JS SDKs.  (Or anyth
 
 The JSON that you define in your server-side code will be returned in the response.
 
-Let's look at the server-side code in Java/Scala:
+
+## Hello World - A Custom Code Example
+
+Let's look at server-side code in Java/Scala.  The following code will be found at method `hello_world` and will return the JSON `{ msg: 'hello world!' }`
 
 <span class="tab extendrestapi" title="Java"/>
 
@@ -135,6 +138,10 @@ Custom code allows you to even define the returned JSON.  In this case, our simp
     { "msg": "Hello, world!" }
     
 You can call your server-side custom code from your SDK.  The request will be sent from the client, StackMob will route the call to the appropriate code and execute the code you've written, then StackMob will return the JSON you've defined.
+
+* You'll also need to <a href="https://www.stackmob.com/devcenter/docs/Getting-Started:-Custom-Code-SDK/a-register_your_method">register your method in EntryPointeExtender</a> so that StackMob is aware of it.  Include it in your JAR!
+
+## Calling Server-Side Custom Code from the Mobile SDK
 
 Let's see how client-side SDK code calls and interacts with the server-side custom code:
 
