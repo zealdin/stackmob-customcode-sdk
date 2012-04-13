@@ -1,4 +1,4 @@
-# Stackmob Custom Code SDK
+# StackMob Custom Code SDK
 
 ## Why use the Custom Code SDK?
 
