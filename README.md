@@ -390,7 +390,7 @@ If the output of the `ls` command showed `EntryPointExtender.class`, then your J
     > cd ..
     > rm -rf JarUnzipped
 
-### Uploading your JAR to StackMob
+## Uploading your JAR to StackMob
 
 Once you have your custom methods written, package it as a JAR so that it can be <a href="https://www.stackmob.com/platform/api/customcode/upload">uploaded to StackMob</a>. 
 Upon uploading, StackMob will immediately process and roll out the code to your application's sandbox environment. 
