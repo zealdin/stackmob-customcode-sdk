@@ -55,6 +55,19 @@ public interface DataService {
           throws InvalidSchemaException, DatastoreException;
 
   /**
+   * Reads a list of objects matching the given query fields from the datastore, returning only the specified fields
+   *
+   * @param schema the name of the relevant object model
+   * @param conditions the list of conditions which comprise the query
+   * @param fields the list of fields to be returned
+   * @return a list of all documents matching the query
+   * @throws InvalidSchemaException if the schema specified does not exist, or the query is incompatible with the schema
+   * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
+   */
+  List<SMObject> readObjects(String schema, List<SMCondition> conditions, List<String> fields)
+          throws InvalidSchemaException, DatastoreException;
+
+  /**
    * Updates an object in the datastore.
    *
    * @param schema the name of the relevant object model; must be a type already declared for the current application
