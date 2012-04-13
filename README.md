@@ -766,11 +766,11 @@ override def execute(request: ProcessedAPIRequest, sdk: SDKServiceProvider): Res
 <span class="tab logging"/>
 
 
-## Release Notes
+# Release Notes
 
 <a href="https://github.com/stackmob/stackmob-customcode-sdk/blob/master/RELEASE_NOTES.md">Release notes are available here</a>.
 
-## Javadocs
+# Javadocs
 
 <a href="http://stackmob.github.com/stackmob-customcode-sdk/0.4.0/apidocs/">Javadocs are available here</a>.
 
