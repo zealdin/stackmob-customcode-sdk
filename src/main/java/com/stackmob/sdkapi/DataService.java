@@ -86,11 +86,10 @@ public interface DataService {
    * @param schema the name of the relevant object model; must be a type already declared for the current application
    * @param query the query used to find objects to update
    * @param updateActions the actions to take on the object being updated
-   * @return the updated object
    * @throws InvalidSchemaException if the schema does not exist, or the update actions are incompatible with it
    * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
    */
-  SMObject updateObject(String schema, List<SMCondition> conditions, List<SMUpdate> updateActions)
+  void updateObjects(String schema, List<SMCondition> conditions, List<SMUpdate> updateActions)
           throws InvalidSchemaException, DatastoreException;
 
   /**
