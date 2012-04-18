@@ -59,7 +59,7 @@ public interface DataService {
    *
    * @param schema the name of the relevant object model
    * @param conditions the list of conditions which comprise the query
-   * @param fields the list of fields to be returned
+   * @param fields the list of fields to be returned; regardless of what is specified, the id will always be returned
    * @return a list of all documents matching the query
    * @throws InvalidSchemaException if the schema specified does not exist, or the query is incompatible with the schema
    * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
