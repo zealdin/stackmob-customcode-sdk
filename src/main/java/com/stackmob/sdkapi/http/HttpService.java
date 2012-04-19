@@ -22,6 +22,7 @@ import com.stackmob.sdkapi.http.request.GetRequest;
 import com.stackmob.sdkapi.http.request.PostRequest;
 import com.stackmob.sdkapi.http.request.PutRequest;
 import com.stackmob.sdkapi.http.response.HttpResponse;
+import java.util.concurrent.Future;
 
 abstract class HttpService {
     /**
@@ -41,6 +42,15 @@ abstract class HttpService {
     public abstract HttpResponse get(GetRequest req) throws AccessDeniedException;
 
     /**
+     * execute a GET request in the background
+     * @param req the request to execute
+     * @return a future representing the response that will result from the GET request
+     * @throws AccessDeniedException if the request was rate limited, whitelisted,
+     * or for any other reason denied by the StackMob custom code environment
+     */
+    public abstract Future<HttpResponse> getAsync(GetRequest req) throws AccessDeniedException;
+
+    /**
      * execute a POST request
      * @param req the request to execute
      * @return the response that resulted from the GET request
@@ -48,6 +58,15 @@ abstract class HttpService {
      * or for any other reason denied by the StackMob custom code environment
      */
     public abstract HttpResponse post(PostRequest req) throws AccessDeniedException;
+
+    /**
+     * execute a POST request in the background
+     * @param req the request to execute
+     * @return a future representing the response that will result from the GET request
+     * @throws AccessDeniedException if the request was rate limited, whitelisted,
+     * or for any other reason denied by the StackMob custom code environment
+     */
+    public abstract Future<HttpResponse> postAsync(PostRequest req) throws AccessDeniedException;
 
     /**
      * execute a PUT request
@@ -59,6 +78,15 @@ abstract class HttpService {
     public abstract HttpResponse put(PutRequest req) throws AccessDeniedException;
 
     /**
+     * execute a PUT request in the background
+     * @param req the request to execute
+     * @return a future representing the response that will result from the GET request
+     * @throws AccessDeniedException if the request was rate limited, whitelisted,
+     * or for any other reason denied by the StackMob custom code environment
+     */
+    public abstract Future<HttpResponse> putAsync(PutRequest req) throws AccessDeniedException;
+
+    /**
      * execute a DELETE request
      * @param req the request to execute
      * @return the response that resulted from the GET request
@@ -66,4 +94,13 @@ abstract class HttpService {
      * or for any other reason denied by the StackMob custom code environment
      */
     public abstract HttpResponse delete(DeleteRequest req) throws AccessDeniedException;
+
+    /**
+     * execute a DELETE request in the background
+     * @param req the request to execute
+     * @return a future representing the response that will result from the GET request
+     * @throws AccessDeniedException if the request was rate limited, whitelisted,
+     * or for any other reason denied by the StackMob custom code environment
+     */
+    public abstract Future<HttpResponse> deleteAsync(DeleteRequest req) throws AccessDeniedException;
 }
