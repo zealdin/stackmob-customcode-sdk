@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.Set;
 import java.util.HashSet;
 
-abstract class HttpRequest {
+public abstract class HttpRequest {
     protected static Set<Header> EmptyHeaders = new HashSet<Header>();
 
     private URL url;

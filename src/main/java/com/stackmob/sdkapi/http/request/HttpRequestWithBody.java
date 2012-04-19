@@ -20,7 +20,7 @@ import com.stackmob.sdkapi.http.Header;
 import java.net.MalformedURLException;
 import java.util.Set;
 
-abstract class HttpRequestWithBody extends HttpRequest {
+public abstract class HttpRequestWithBody extends HttpRequest {
     private String body;
 
     public HttpRequestWithBody(String url, Set<Header> headers, String body) throws MalformedURLException {

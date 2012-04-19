@@ -25,7 +25,7 @@ import com.stackmob.sdkapi.http.request.PutRequest;
 import com.stackmob.sdkapi.http.response.HttpResponse;
 import java.util.concurrent.Future;
 
-abstract class HttpService {
+public abstract class HttpService {
     /**
      * determines whether the given URL is on the whitelist
      * @param url the URL to test
