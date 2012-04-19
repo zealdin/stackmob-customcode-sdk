@@ -17,6 +17,7 @@
 package com.stackmob.sdkapi.http;
 
 import com.stackmob.sdkapi.http.exceptions.AccessDeniedException;
+import com.stackmob.sdkapi.http.exceptions.TimeoutException;
 import com.stackmob.sdkapi.http.request.DeleteRequest;
 import com.stackmob.sdkapi.http.request.GetRequest;
 import com.stackmob.sdkapi.http.request.PostRequest;
@@ -39,7 +40,7 @@ abstract class HttpService {
      * @throws AccessDeniedException if the request was rate limited, whitelisted,
      * or for any other reason denied by the StackMob custom code environment
      */
-    public abstract HttpResponse get(GetRequest req) throws AccessDeniedException;
+    public abstract HttpResponse get(GetRequest req) throws AccessDeniedException, TimeoutException;
 
     /**
      * execute a GET request in the background
@@ -57,7 +58,7 @@ abstract class HttpService {
      * @throws AccessDeniedException if the request was rate limited, whitelisted,
      * or for any other reason denied by the StackMob custom code environment
      */
-    public abstract HttpResponse post(PostRequest req) throws AccessDeniedException;
+    public abstract HttpResponse post(PostRequest req) throws AccessDeniedException, TimeoutException;
 
     /**
      * execute a POST request in the background
@@ -75,7 +76,7 @@ abstract class HttpService {
      * @throws AccessDeniedException if the request was rate limited, whitelisted,
      * or for any other reason denied by the StackMob custom code environment
      */
-    public abstract HttpResponse put(PutRequest req) throws AccessDeniedException;
+    public abstract HttpResponse put(PutRequest req) throws AccessDeniedException, TimeoutException;
 
     /**
      * execute a PUT request in the background
@@ -93,7 +94,7 @@ abstract class HttpService {
      * @throws AccessDeniedException if the request was rate limited, whitelisted,
      * or for any other reason denied by the StackMob custom code environment
      */
-    public abstract HttpResponse delete(DeleteRequest req) throws AccessDeniedException;
+    public abstract HttpResponse delete(DeleteRequest req) throws AccessDeniedException, TimeoutException;
 
     /**
      * execute a DELETE request in the background
