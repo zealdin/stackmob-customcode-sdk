@@ -16,12 +16,12 @@
 
 package com.stackmob.sdkapi.http.response;
 
-import java.util.Map;
-import java.util.List;
+import com.stackmob.sdkapi.http.Header;
+import java.util.Set;
 
 public class HttpResponse {
     private Integer code;
-    private List<Map.Entry<String, String>> headers;
+    private Set<Header> headers;
     private String body;
 
     /**
@@ -30,7 +30,7 @@ public class HttpResponse {
      * @param headers the response headers
      * @param body the response body
      */
-    protected HttpResponse(Integer code, List<Map.Entry<String, String>> headers, String body) {
+    protected HttpResponse(Integer code, Set<Header> headers, String body) {
         this.code = code;
         this.headers = headers;
         if(body == null) {
@@ -52,7 +52,7 @@ public class HttpResponse {
      * get the response headers
      * @return a list of the response headers. this list is not sorted
      */
-    public List<Map.Entry<String, String>> getHeaders() {
+    public Set<Header> getHeaders() {
         return headers;
     }
 
