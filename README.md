@@ -145,7 +145,7 @@ Custom code allows you to even define the returned JSON.  In this case, our simp
     
 You can call your server-side custom code from your SDK.  The request will be sent from the client, StackMob will route the call to the appropriate code and execute the code you've written, then StackMob will return the JSON you've defined.
 
-* You'll also need to <a href="https://www.stackmob.com/devcenter/docs/Getting-Started:-Custom-Code-SDK/a-register_your_method">register your method in EntryPointExtender</a> so that StackMob is aware of it.  Include it in your JAR!
+* You'll also need to <a href="https://www.stackmob.com/devcenter/docs/Getting-Started:-Custom-Code-SDK#a-register_your_method">register your method in EntryPointExtender</a> so that StackMob is aware of it.  Include it in your JAR!
 
 ## Calling Server-Side Custom Code from the Mobile SDK
 
