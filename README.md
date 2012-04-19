@@ -720,6 +720,8 @@ The logger service provided by the SDK should be used to log information from wi
 
 * <a href="https://www.stackmob.com/platform/api/app/logs" target="_blank">Find your logs on the platform.</a>
 
+<span class="tabdivider"/>
+
 <span class="tab logging" title="Java"/>
 
 **Java**
