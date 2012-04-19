@@ -1,15 +1,16 @@
 package com.stackmob.sdkapi.http.request;
 
+import com.stackmob.sdkapi.http.Header;
+
 import java.net.MalformedURLException;
-import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 public class DeleteRequest extends HttpRequestWithoutBody {
-    DeleteRequest(String url, List<Map.Entry<String, String>> headers) throws MalformedURLException {
+    public DeleteRequest(String url, Set<Header> headers) throws MalformedURLException {
         super(url, headers);
     }
 
-    DeleteRequest(String url) throws MalformedURLException {
+    public DeleteRequest(String url) throws MalformedURLException {
         super(url, HttpRequest.EmptyHeaders);
     }
 }

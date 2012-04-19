@@ -14,7 +14,7 @@ public class HttpResponse {
      * @param headers the response headers
      * @param body the response body
      */
-    HttpResponse(Integer code, List<Map.Entry<String, String>> headers, String body) {
+    protected HttpResponse(Integer code, List<Map.Entry<String, String>> headers, String body) {
         this.code = code;
         this.headers = headers;
         if(body == null) {

@@ -16,19 +16,20 @@
 
 package com.stackmob.sdkapi.http.request;
 
+import com.stackmob.sdkapi.http.Header;
+
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.Set;
+import java.util.HashSet;
 
 abstract class HttpRequest {
-    protected static List<Map.Entry<String, String>> EmptyHeaders = new ArrayList<Map.Entry<String, String>>();
+    protected static Set<Header> EmptyHeaders = new HashSet<Header>();
 
     private URL url;
-    private List<Map.Entry<String, String>> headers;
+    private Set<Header> headers;
 
-    HttpRequest(String url, List<Map.Entry<String, String>> headers) throws MalformedURLException {
+    public HttpRequest(String url, Set<Header> headers) throws MalformedURLException {
         this.url = new URL(url);
         this.headers = headers;
     }
@@ -37,7 +38,7 @@ abstract class HttpRequest {
         return url;
     }
 
-    public List<Map.Entry<String, String>> getHeaders() {
+    public Set<Header> getHeaders() {
         return headers;
     }
 }

@@ -1,11 +1,13 @@
 package com.stackmob.sdkapi.http.request;
+import com.stackmob.sdkapi.http.Header;
+
 import java.net.MalformedURLException;
-import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 abstract class HttpRequestWithBody extends HttpRequest {
     private String body;
-    HttpRequestWithBody(String url, List<Map.Entry<String, String>> headers, String body) throws MalformedURLException {
+
+    public HttpRequestWithBody(String url, Set<Header> headers, String body) throws MalformedURLException {
         super(url, headers);
         this.body = body;
     }

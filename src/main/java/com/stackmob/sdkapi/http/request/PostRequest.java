@@ -1,15 +1,16 @@
 package com.stackmob.sdkapi.http.request;
 
+import com.stackmob.sdkapi.http.Header;
+
 import java.net.MalformedURLException;
-import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 public class PostRequest extends HttpRequestWithBody {
-    PostRequest(String url, List<Map.Entry<String, String>> headers, String body) throws MalformedURLException {
+    public PostRequest(String url, Set<Header> headers, String body) throws MalformedURLException {
         super(url, headers, body);
     }
 
-    PostRequest(String url, String body) throws MalformedURLException {
+    public PostRequest(String url, String body) throws MalformedURLException {
         super(url, EmptyHeaders, body);
     }
 }
