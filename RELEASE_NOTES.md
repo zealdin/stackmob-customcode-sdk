@@ -1,5 +1,11 @@
 # Stackmob Custom Code SDK (Release Notes)
 
+### 0.4.1 (04/30/12)
+* Added additional query functionality
+  * Update by query
+  * IN query
+  * Field filtering
+
 ### 0.4.0 (02/28/12)
 * Added new DataService, replaces deprecated DatastoreService
 
