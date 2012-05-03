@@ -104,6 +104,16 @@ public interface DataService {
   Boolean deleteObject(String schema, String id) throws InvalidSchemaException, DatastoreException;
 
   /**
+   * Get the number of objects in a schema
+   *
+   * @param schema the name of the object model to count
+   * @return the number of objects in the datastore for the given object model
+   * @throws InvalidSchemaException if the object model specified does not exist
+   * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
+   */
+  long countObjects(String schema) throws InvalidSchemaException, DatastoreException;
+
+  /**
    * Retrieves a list of the object models declared for the current application.
    *
    * @return the set of all valid object model names
