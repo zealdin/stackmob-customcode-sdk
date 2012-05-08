@@ -16,27 +16,8 @@
 package com.stackmob.sdkapi;
 
 /**
- * A "less than" query
+ * Values representing ascending or descending orderings.
  */
-public class SMLess extends SMCondition {
-  private final String field;
-  private final SMValue value;
-
-  public SMLess(String field, SMValue value) {
-    this.field = field;
-    this.value = value;
-  }
-
-  public String getField() {
-    return field;
-  }
-
-  public SMValue getValue() {
-    return value;
-  }
-
-  @Override
-  public String toString() {
-    return field + " < " + value.toString();
-  }
+public enum OrderingDirection {
+  ASCENDING, DESCENDING
 }

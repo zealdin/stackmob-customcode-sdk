@@ -70,17 +70,44 @@ public interface DataService {
           throws InvalidSchemaException, DatastoreException;
 
   /**
-   * Reads a list of objects matching the given query fields from the datastore, returning only the specified fields
+   * Reads a list of objects matching the given query fields from the datastore, returning only the specified fields.
    *
    * @param schema the name of the relevant object model
    * @param conditions the list of conditions which comprise the query
-   * @param fields the list of fields to be returned; regardless of what is specified, the id will always be returned
+   * @param fields the list of fields to be returned; regardless of what is specified, the id will always be returned; if null, all fields will be returned
    * @return a list of all documents matching the query
    * @throws InvalidSchemaException if the schema specified does not exist, or the query is incompatible with the schema
    * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
    */
   List<SMObject> readObjects(String schema, List<SMCondition> conditions, List<String> fields)
           throws InvalidSchemaException, DatastoreException;
+
+  /**
+   * Reads a list of objects matching the given query fields from the datastore, expanding relationships.
+   *
+   * @param schema the name of the relevant object model
+   * @param conditions the list of conditions which comprise the query
+   * @param expandDepth the depth to which a query should be expanded
+   * @return a list of all documents matching the query
+   * @throws InvalidSchemaException if the schema specified does not exist, or the query is incompatible with the schema
+   * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
+   */
+  List<SMObject> readObjects(String schema, List<SMCondition> conditions, int expandDepth)
+          throws InvalidSchemaException, DatastoreException;
+
+  /**
+   * Reads a list of objects matching the given query fields from the datastore subject to several conditions.
+   *
+   * @param schema the name of the relevant object model
+   * @param conditions the list of conditions which comprise the query
+   * @param expandDepth the depth to which a query should be expanded
+   * @param resultFilters the options to be used when filtering the resultset
+   * @return a list of all documents matching the query
+   * @throws InvalidSchemaException if the schema specified does not exist, or the query is incompatible with the schema
+   * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
+   */
+  List<SMObject> readObjects(String schema, List<SMCondition> conditions, List<String> fields, int expandDepth, ResultFilters resultFilters)
+          throws InvalidSchemaException, DatastoreException;  
 
   /**
    * Updates an object in the datastore.
@@ -93,6 +120,20 @@ public interface DataService {
    * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
    */
   SMObject updateObject(String schema, String id, List<SMUpdate> updateActions)
+          throws InvalidSchemaException, DatastoreException;
+
+  /**
+   * Updates an object in the datastore, if and only if it meets additional conditions.
+   *
+   * @param schema the name of the relevant object model; must be a type already declared for the current application
+   * @param id the id of the object to update
+   * @param conditions the conditions which must be met for the update to occur
+   * @param updateActions the actions to take on the object being updated
+   * @return the updated object, or null if no object meets the given conditions
+   * @throws InvalidSchemaException if the schema does not exist, or the update actions are incompatible with it
+   * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
+   */
+  SMObject updateObject(String schema, String id, List<SMCondition> conditions, List<SMUpdate> updateActions)
           throws InvalidSchemaException, DatastoreException;
 
   /**

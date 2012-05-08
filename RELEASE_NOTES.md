@@ -1,5 +1,17 @@
 # Stackmob Custom Code SDK (Release Notes)
 
+### 0.4.2
+* Added additional query conditions
+  * <, <=, >, >=
+  * Geo queries
+* Order-by
+* Pagination
+* Expand queries
+* Relational queries
+* Get count of objects for a schema
+* Atomic, conditional update one
+
+
 ### 0.4.1 (04/30/12)
 * Added additional query functionality
   * Update by query
