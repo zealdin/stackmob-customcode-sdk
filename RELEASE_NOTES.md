@@ -4,6 +4,8 @@
 * Added additional query conditions
   * <, <=, >, >=
   * Geo queries
+  * Null
+  * Not Equal
 * Order-by
 * Pagination
 * Expand queries
