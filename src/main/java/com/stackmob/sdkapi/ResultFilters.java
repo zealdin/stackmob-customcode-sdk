@@ -16,7 +16,6 @@
 package com.stackmob.sdkapi;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Query options for filtering results
@@ -24,13 +23,20 @@ import java.util.Map;
 public class ResultFilters {
   private final long start;
   private final long end;
-  private final Map<String, OrderingDirection> ordering;
+  private final List<SMOrdering> ordering;
   private final List<String> fields;
 
-  public ResultFilters(long start, long end, Map<String, OrderingDirection> ordering, List<String> fields) {
+  /**
+   * Create a new set of result filters
+   * @param start the index (inclusive) of the first record to return, set to zero if you wish to return records from the beginning
+   * @param end the index (inclusive) of the last record to return, if -1, all records after the starting index (inclusive) will be returned
+   * @param orderings the order in which results should be sorted
+   * @param fields the fields to return in the result set
+   */
+  public ResultFilters(long start, long end, List<SMOrdering> orderings, List<String> fields) {
     this.start = start;
     this.end = end;
-    this.ordering = ordering;
+    this.ordering = orderings;
     this.fields = fields;
   }
 
@@ -42,7 +48,7 @@ public class ResultFilters {
     return end;
   }
 
-  public Map<String, OrderingDirection> getOrdering() {
+  public List<SMOrdering> getOrderings() {
     return ordering;
   }
 

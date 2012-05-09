@@ -16,8 +16,8 @@
 package com.stackmob.sdkapi;
 
 public class SMIsNull extends SMCondition {
-  private final SMBoolean field;
-  private final SMValue value;
+  private final String field;
+  private final SMBoolean value;
 
   public SMIsNull(String field, SMBoolean value) {
     this.field = field;

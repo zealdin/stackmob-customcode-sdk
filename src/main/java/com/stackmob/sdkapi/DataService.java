@@ -106,7 +106,7 @@ public interface DataService {
    * @throws InvalidSchemaException if the schema specified does not exist, or the query is incompatible with the schema
    * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
    */
-  List<SMObject> readObjects(String schema, List<SMCondition> conditions, List<String> fields, int expandDepth, ResultFilters resultFilters)
+  List<SMObject> readObjects(String schema, List<SMCondition> conditions, int expandDepth, ResultFilters resultFilters)
           throws InvalidSchemaException, DatastoreException;  
 
   /**

@@ -59,7 +59,7 @@ public abstract class SMValue<T> {
 
   @Override
   public String toString() {
-    return value.toString();
+    return (value == null ? "null" : value.toString());
   }
 
   public <U extends SMValue> boolean isA(Class<U> cls) {
