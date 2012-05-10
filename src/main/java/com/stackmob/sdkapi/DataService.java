@@ -42,20 +42,19 @@ public interface DataService {
           throws InvalidSchemaException, DatastoreException;
 
   /**
-   * Creates a new object in the datastore. Each such object should be represented as a map of field names to objects,
+   * Creates a number of new objects in the datastore. Each such object should be represented as a map of field names to objects,
    * where each sub-object is a List, Map, String, Long, or Double depending on the type of the field in question.
    *
    * @param schema the name of the schema which contains the relation to the object to be inserted
    * @param objectId the ID value of the object to relate to the inserted object
    * @param relatedField the field name of the relationship
-   * @param relatedObjectToCreate the related object to insert
-   * @return the object created
+   * @param relatedObjectsToCreate the related objects to insert
+   * @return a BulkResult containing the ids of objects which were successful, and objects which failed to insert
    * @throws InvalidSchemaException if the object to create does not match the relevant schema
    * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
    */
-  SMObject createRelatedObject(String schema, String objectId, String relatedField, SMObject relatedObjectToCreate)
+  BulkResult createRelatedObjects(String schema, String objectId, String relatedField, List<SMObject> relatedObjectsToCreate)
           throws InvalidSchemaException, DatastoreException;
-
 
   /**
    * Reads a list of objects matching the given query fields from the datastore.
@@ -157,7 +156,7 @@ public interface DataService {
    * @throws InvalidSchemaException if the schema does not exist, or the update actions are incompatible with it
    * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
    */
-  void addRelatedObjects(String schema, String objectId, List<String> relatedIds)
+  SMObject addRelatedObjects(String schema, String objectId, List<String> relatedIds)
           throws InvalidSchemaException, DatastoreException;
 
   /**
@@ -180,7 +179,7 @@ public interface DataService {
    * @throws InvalidSchemaException if the object model specified does not exist
    * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
    */
-  void removeRelatedObjects(String schema, String objectId, List<String> relatedIds, boolean cascadeDelete) 
+  BulkResult removeRelatedObjects(String schema, String objectId, List<String> relatedIds, boolean cascadeDelete) 
           throws InvalidSchemaException, DatastoreException;
 
   /**
