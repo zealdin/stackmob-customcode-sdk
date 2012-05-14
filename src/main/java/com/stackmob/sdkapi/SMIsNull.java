@@ -15,7 +15,25 @@
  */
 package com.stackmob.sdkapi;
 
-/**
- * An update action to take on an object in the StackMob datastore
- */
-public abstract class SMUpdate {}
+public class SMIsNull extends SMCondition {
+  private final String field;
+  private final SMBoolean value;
+
+  public SMIsNull(String field, SMBoolean value) {
+    this.field = field;
+    this.value = value;
+  }
+
+  public String getField() {
+    return field;
+  }
+
+  public SMBoolean getValue() {
+    return value;
+  }
+
+  @Override
+  public String toString() {
+    return field + (value.getValue() ? " is null" : " not null");
+  }
+}

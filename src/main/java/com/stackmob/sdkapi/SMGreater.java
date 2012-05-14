@@ -16,6 +16,27 @@
 package com.stackmob.sdkapi;
 
 /**
- * An update action to take on an object in the StackMob datastore
+ * A "greater than" query
  */
-public abstract class SMUpdate {}
+public class SMGreater extends SMCondition {
+  private final String field;
+  private final SMValue value;
+
+  public SMGreater(String field, SMValue value) {
+    this.field = field;
+    this.value = value;
+  }
+
+  public String getField() {
+    return field;
+  }
+
+  public SMValue getValue() {
+    return value;
+  }
+
+  @Override
+  public String toString() {
+    return field + " > " + value.toString();
+  }
+}

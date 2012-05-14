@@ -15,7 +15,26 @@
  */
 package com.stackmob.sdkapi;
 
-/**
- * An update action to take on an object in the StackMob datastore
- */
-public abstract class SMUpdate {}
+public class SMOrdering {
+
+  private final String field;
+  private final OrderingDirection direction;
+
+  /**
+   * Create a new ordering for filtering result sets
+   * @param field the field on which to sort results
+   * @param direction the direction in which results should be sorted
+   */
+  public SMOrdering(String field, OrderingDirection direction) {
+    this.field = field;
+    this.direction = direction;
+  }
+
+  public String getField() {
+    return field;
+  }
+
+  public OrderingDirection getDirection() {
+    return direction;
+  }
+}

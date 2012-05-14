@@ -15,7 +15,23 @@
  */
 package com.stackmob.sdkapi;
 
-/**
- * An update action to take on an object in the StackMob datastore
- */
-public abstract class SMUpdate {}
+import java.util.List;
+
+public class BulkResult {
+
+  private final List<SMValue> successIds;
+  private final List<SMValue> failedIds;
+
+  public BulkResult(List<SMValue> successIds, List<SMValue> failedIds) {
+    this.successIds = successIds;
+    this.failedIds = failedIds;
+  }
+
+  public List<SMValue> getSuccessIds() {
+    return successIds;
+  }
+
+  public List<SMValue> getFailedIds() {
+    return failedIds;
+  }
+}

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 StackMob
+ * Copyright 2011-2012 StackMob
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ public abstract class SMValue<T> {
 
   @Override
   public String toString() {
-    return value.toString();
+    return (value == null ? "null" : value.toString());
   }
 
   public <U extends SMValue> boolean isA(Class<U> cls) {

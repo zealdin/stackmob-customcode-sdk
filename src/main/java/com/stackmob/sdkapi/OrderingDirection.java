@@ -16,6 +16,8 @@
 package com.stackmob.sdkapi;
 
 /**
- * An update action to take on an object in the StackMob datastore
+ * Values representing ascending or descending orderings.
  */
-public abstract class SMUpdate {}
+public enum OrderingDirection {
+  ASCENDING, DESCENDING
+}

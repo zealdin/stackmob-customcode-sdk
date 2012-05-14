@@ -1,7 +1,7 @@
 package com.stackmob.sdkapi;
 
 /**
- * Copyright 2012 StackMob
+ * Copyright 2011-2012 StackMob
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,6 +41,20 @@ public interface DataService {
   SMObject createObject(String schema, SMObject toCreate)
           throws InvalidSchemaException, DatastoreException;
 
+  /**
+   * Creates a number of new objects in the datastore. Each such object should be represented as a map of field names to objects,
+   * where each sub-object is a List, Map, String, Long, or Double depending on the type of the field in question.
+   *
+   * @param schema the name of the schema which contains the relation to the object to be inserted
+   * @param objectId the ID value of the object to relate to the inserted object
+   * @param relatedField the field name of the relationship
+   * @param relatedObjectsToCreate the related objects to insert
+   * @return a BulkResult containing the ids of objects which were successful, and objects which failed to insert
+   * @throws InvalidSchemaException if the object to create does not match the relevant schema
+   * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
+   */
+  BulkResult createRelatedObjects(String schema, SMValue objectId, String relatedField, List<SMObject> relatedObjectsToCreate)
+          throws InvalidSchemaException, DatastoreException;
 
   /**
    * Reads a list of objects matching the given query fields from the datastore.
@@ -55,17 +69,44 @@ public interface DataService {
           throws InvalidSchemaException, DatastoreException;
 
   /**
-   * Reads a list of objects matching the given query fields from the datastore, returning only the specified fields
+   * Reads a list of objects matching the given query fields from the datastore, returning only the specified fields.
    *
    * @param schema the name of the relevant object model
    * @param conditions the list of conditions which comprise the query
-   * @param fields the list of fields to be returned; regardless of what is specified, the id will always be returned
+   * @param fields the list of fields to be returned; regardless of what is specified, the id will always be returned; if null, all fields will be returned
    * @return a list of all documents matching the query
    * @throws InvalidSchemaException if the schema specified does not exist, or the query is incompatible with the schema
    * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
    */
   List<SMObject> readObjects(String schema, List<SMCondition> conditions, List<String> fields)
           throws InvalidSchemaException, DatastoreException;
+
+  /**
+   * Reads a list of objects matching the given query fields from the datastore, expanding relationships.
+   *
+   * @param schema the name of the relevant object model
+   * @param conditions the list of conditions which comprise the query
+   * @param expandDepth the depth to which a query should be expanded
+   * @return a list of all documents matching the query
+   * @throws InvalidSchemaException if the schema specified does not exist, or the query is incompatible with the schema
+   * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
+   */
+  List<SMObject> readObjects(String schema, List<SMCondition> conditions, int expandDepth)
+          throws InvalidSchemaException, DatastoreException;
+
+  /**
+   * Reads a list of objects matching the given query fields from the datastore subject to several conditions.
+   *
+   * @param schema the name of the relevant object model
+   * @param conditions the list of conditions which comprise the query
+   * @param expandDepth the depth to which a query should be expanded
+   * @param resultFilters the options to be used when filtering the resultset
+   * @return a list of all documents matching the query
+   * @throws InvalidSchemaException if the schema specified does not exist, or the query is incompatible with the schema
+   * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
+   */
+  List<SMObject> readObjects(String schema, List<SMCondition> conditions, int expandDepth, ResultFilters resultFilters)
+          throws InvalidSchemaException, DatastoreException;  
 
   /**
    * Updates an object in the datastore.
@@ -81,6 +122,33 @@ public interface DataService {
           throws InvalidSchemaException, DatastoreException;
 
   /**
+   * Updates an object in the datastore.
+   *
+   * @param schema the name of the relevant object model; must be a type already declared for the current application
+   * @param id the id of the object to update
+   * @param updateActions the actions to take on the object being updated
+   * @return the updated object
+   * @throws InvalidSchemaException if the schema does not exist, or the update actions are incompatible with it
+   * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
+   */
+  SMObject updateObject(String schema, SMValue id, List<SMUpdate> updateActions)
+          throws InvalidSchemaException, DatastoreException;
+
+  /**
+   * Updates an object in the datastore, if and only if it meets additional conditions.
+   *
+   * @param schema the name of the relevant object model; must be a type already declared for the current application
+   * @param id the id of the object to update
+   * @param conditions the conditions which must be met for the update to occur
+   * @param updateActions the actions to take on the object being updated
+   * @return the updated object, or null if no object meets the given conditions
+   * @throws InvalidSchemaException if the schema does not exist, or the update actions are incompatible with it
+   * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
+   */
+  SMObject updateObject(String schema, SMValue id, List<SMCondition> conditions, List<SMUpdate> updateActions)
+          throws InvalidSchemaException, DatastoreException;
+
+  /**
    * Updates all objects matching the given query in the datastore
    *
    * @param schema the name of the relevant object model; must be a type already declared for the current application
@@ -93,6 +161,19 @@ public interface DataService {
           throws InvalidSchemaException, DatastoreException;
 
   /**
+   * Adds the specified IDs to the specified relationship
+   * 
+   * @param schema the name of the relevant object model; must be a type already declared for the current application
+   * @param objectId the id of the object to which relations should be added
+   * @param relation the relation field to follow
+   * @param relatedIds the ids of all objects to be related to the specified parent object
+   * @throws InvalidSchemaException if the schema does not exist, or the update actions are incompatible with it
+   * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
+   */
+  SMObject addRelatedObjects(String schema, SMValue objectId, String relation, List<SMValue> relatedIds)
+          throws InvalidSchemaException, DatastoreException;
+
+  /**
    * Deletes an object in the datastore.
    *
    * @param schema the name of the relevant object model; must be a type already declared for the current application
@@ -102,6 +183,40 @@ public interface DataService {
    * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
    */
   Boolean deleteObject(String schema, String id) throws InvalidSchemaException, DatastoreException;
+
+  /**
+   * Deletes an object in the datastore.
+   *
+   * @param schema the name of the relevant object model; must be a type already declared for the current application
+   * @param id the id of the object to delete
+   * @return a Boolean object representing success (Boolean.TRUE) or failure (Boolean.FALSE)
+   * @throws InvalidSchemaException if the object model specified does not exist
+   * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
+   */
+  Boolean deleteObject(String schema, SMValue id) throws InvalidSchemaException, DatastoreException;
+
+  /**
+   * Removes any number of related objects from a relationship. May also delete the objects removed from the relationship.
+   * @param schema the name of the relevant object model; must be a type already declared for the current application
+   * @param objectId the id of the object to which relations should be removed
+   * @param related the relation field to follow
+   * @param relatedIds the ids of the objects to be removed from the relationship
+   * @param cascadeDelete should be set to true if and only if you wish to also delete from the datastore all objects removed from the relationship
+   * @throws InvalidSchemaException if the object model specified does not exist
+   * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
+   */
+  void removeRelatedObjects(String schema, SMValue objectId, String relation, List<SMValue> relatedIds, boolean cascadeDelete) 
+          throws InvalidSchemaException, DatastoreException;
+
+  /**
+   * Get the number of objects in a schema
+   *
+   * @param schema the name of the object model to count
+   * @return the number of objects in the datastore for the given object model
+   * @throws InvalidSchemaException if the object model specified does not exist
+   * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
+   */
+  long countObjects(String schema) throws InvalidSchemaException, DatastoreException;
 
   /**
    * Retrieves a list of the object models declared for the current application.
