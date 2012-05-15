@@ -170,7 +170,20 @@ public interface DataService {
    * @throws InvalidSchemaException if the schema does not exist, or the update actions are incompatible with it
    * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
    */
-  SMObject addRelatedObjects(String schema, SMValue objectId, String relation, List<SMValue> relatedIds)
+  SMObject addRelatedObjects(String schema, SMValue objectId, String relation, List<? extends SMValue> relatedIds)
+          throws InvalidSchemaException, DatastoreException;
+
+  /**
+   * Adds the specified IDs to the specified relationship
+   * 
+   * @param schema the name of the relevant object model; must be a type already declared for the current application
+   * @param objectId the id of the object to which relations should be added
+   * @param relation the relation field to follow
+   * @param relatedIds the ids of all objects to be related to the specified parent object
+   * @throws InvalidSchemaException if the schema does not exist, or the update actions are incompatible with it
+   * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
+   */
+  SMObject addRelatedObjects(String schema, SMValue objectId, String relation, SMList relatedIds)
           throws InvalidSchemaException, DatastoreException;
 
   /**
@@ -205,7 +218,20 @@ public interface DataService {
    * @throws InvalidSchemaException if the object model specified does not exist
    * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
    */
-  void removeRelatedObjects(String schema, SMValue objectId, String relation, List<SMValue> relatedIds, boolean cascadeDelete) 
+  void removeRelatedObjects(String schema, SMValue objectId, String relation, List<? extends SMValue> relatedIds, boolean cascadeDelete) 
+          throws InvalidSchemaException, DatastoreException;
+
+  /**
+   * Removes any number of related objects from a relationship. May also delete the objects removed from the relationship.
+   * @param schema the name of the relevant object model; must be a type already declared for the current application
+   * @param objectId the id of the object to which relations should be removed
+   * @param related the relation field to follow
+   * @param relatedIds the ids of the objects to be removed from the relationship
+   * @param cascadeDelete should be set to true if and only if you wish to also delete from the datastore all objects removed from the relationship
+   * @throws InvalidSchemaException if the object model specified does not exist
+   * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
+   */
+  void removeRelatedObjects(String schema, SMValue objectId, String relation, SMList relatedIds, boolean cascadeDelete) 
           throws InvalidSchemaException, DatastoreException;
 
   /**

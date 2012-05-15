@@ -37,6 +37,21 @@ public class SMWithin extends SMCondition {
     this.lat = lat;
     this.lon = lon;
     this.dist = dist;
+  }  
+
+  /**
+   * Create a new SMWithin query
+   *
+   * @param field the geoField to query
+   * @param lat the latitude of the location to search
+   * @param lon the longitude of the location to search
+   * @param dist the distance, in radians of the search circle
+   */
+  public SMWithin(String field, double lat, double lon, double dist) {
+    this.field = field;
+    this.lat = new SMDouble(lat);
+    this.lon = new SMDouble(lon);
+    this.dist = new SMDouble(dist);
   }
 
   public String getField() {

@@ -42,6 +42,24 @@ public class SMWithinBox extends SMCondition {
     this.lonUR = lonUR;
   }
 
+  /**
+   * Create a new SMWithinBox query
+   *
+   * @param field the geoField to query
+   * @param latLL the latitude of the lower-left corner of the bounding rectangle
+   * @param lonLL the longitude of the lower-left corner of the bounding rectangle
+   * @param latUR the latitute of the upper-right corner of the bounding rectangle
+   * @param lonUR the longitude of the upper-right corner of the bounding rectangle
+   */
+  public SMWithinBox(String field, double latLL, double lonLL, double latUR, double lonUR)  {
+    this.field = field;
+    this.latLL = new SMDouble(latLL);
+    this.lonLL = new SMDouble(lonLL);
+    this.latUR = new SMDouble(latUR);
+    this.lonUR = new SMDouble(lonUR);
+  }
+
+
   public String getField() {
     return field;
   }

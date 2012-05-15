@@ -38,6 +38,21 @@ public class SMNear extends SMCondition {
     this.lon = lon;
     this.dist = dist;
   }
+  
+  /**
+   * Create a new SMNear query
+   *
+   * @param field the geoField to query
+   * @param lat the latitude of the location to search
+   * @param lon the longitude of the location to search
+   * @param dist the distance, in radians, to search, used to limit search results
+   */
+  public SMNear(String field, double lat, double lon, double dist) {
+    this.field = field;
+    this.lat = new SMDouble(lat);
+    this.lon = new SMDouble(lon);
+    this.dist = new SMDouble(dist);
+  }
 
   public String getField() {
     return field;

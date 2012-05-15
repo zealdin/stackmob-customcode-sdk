@@ -17,20 +17,38 @@ package com.stackmob.sdkapi;
 
 import java.util.List;
 
+/**
+ * An "in" query
+ */
 public class SMIn extends SMCondition {
   private final String field;
-  private final List<SMValue> values;
+  private final List<? extends SMValue> values;
 
-  public SMIn(String field, List<SMValue> values) {
+  /**
+   * Creates a new SMIn query
+   * @param field the field to query
+   * @param values the set of possible values to match
+   */
+  public SMIn(String field, List<? extends SMValue> values) {
     this.field = field;
     this.values = values;
+  }
+
+  /**
+   * Creates a new SMIn query
+   * @param field the field to query
+   * @param values the set of possible values to match
+   */
+  public SMIn(String field, SMList values) {
+    this.field = field;
+    this.values = (List<SMValue>)values.getValue();
   }
 
   public String getField() {
     return field;
   }
 
-  public List<SMValue> getValues() {
+  public List<? extends SMValue> getValues() {
     return values;
   }
 

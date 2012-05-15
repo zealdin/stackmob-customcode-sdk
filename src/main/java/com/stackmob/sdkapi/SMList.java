@@ -16,6 +16,7 @@
 package com.stackmob.sdkapi;
 
 import java.util.List;
+import java.util.Arrays;
 
 /**
  * A List of values
@@ -29,5 +30,13 @@ public class SMList<T extends SMValue> extends SMCollection<List<T>> {
    */
   public SMList(List<T> value) {
     super(value);
+  }
+
+  /**
+   * Create a new SMList
+   * @param values the values which will comprise the list
+   */
+  public SMList(T ... values) {
+    super(Arrays.asList(values));
   }
 }
