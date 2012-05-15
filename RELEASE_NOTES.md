@@ -1,5 +1,12 @@
 # Stackmob Custom Code SDK (Release Notes)
 
+### 0.4.3
+* Correct List<SMValue> to List<? extends SMValue> when appropriate
+* Added additional convenience constructors
+  * Geo queries can be passed doubles or SMDoubles
+  * SMLists can be substituted for List<? extends SMValue>
+* Added Http client
+
 ### 0.4.2
 * Added additional query conditions
   * <, <=, >, >=
