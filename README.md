@@ -720,8 +720,6 @@ The logger service provided by the SDK should be used to log information from wi
 
 * <a href="https://www.stackmob.com/platform/api/app/logs" target="_blank">Find your logs on the platform.</a>
 
-<span class="tabdivider"/>
-
 <span class="tab logging" title="Java"/>
 
 **Java**
@@ -778,8 +776,6 @@ The rate limits and the blacklist are such that you can expect reasonable HTTP c
 
 * <a href="http://stackmob.github.com/stackmob-customcode-sdk/0.4.3/apidocs/com/stackmob/sdkapi/http/HttpService.html" target="_blank">See JavaDoc documentation for HttpService</a>
 
-<span class="tabdivider"/>
-
 <span class="tab http" title="Java"/>
 
 **Java**
@@ -802,6 +798,7 @@ public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider
 }
 ```
 <span class="tab http"/>
+
 <span class="tab http" title="Scala"/>
 
 **Scala**
