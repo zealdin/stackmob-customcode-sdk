@@ -720,6 +720,8 @@ The logger service provided by the SDK should be used to log information from wi
 
 * <a href="https://www.stackmob.com/platform/api/app/logs" target="_blank">Find your logs on the platform.</a>
 
+<span class="tabdivider"/>
+
 <span class="tab logging" title="Java"/>
 
 **Java**
@@ -775,6 +777,8 @@ The SDK includes functionality in an HttpService to make a limited number of HTT
 The rate limits and the blacklist are such that you can expect reasonable HTTP calls to succeed normally, but if StackMob does rate limit or blacklist an HTTP call, you can expect that HttpService will throw an `AccessDeniedException`.
 
 * <a href="http://stackmob.github.com/stackmob-customcode-sdk/0.4.3/apidocs/com/stackmob/sdkapi/http/HttpService.html" target="_blank">See JavaDoc documentation for HttpService</a>
+
+<span class="tabdivider"/>
 
 <span class="tab http" title="Java"/>
 
