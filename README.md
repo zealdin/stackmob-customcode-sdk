@@ -780,7 +780,7 @@ The rate limits and the blacklist are such that you can expect reasonable HTTP c
 
 <span class="tabdivider"/>
 
-<span class="tab logging" title="Java"/>
+<span class="tab http" title="Java"/>
 
 **Java**
 
@@ -802,9 +802,7 @@ public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider
 }
 ```
 
-<span class="tab logging"/>
-
-<span class="tab logging" title="Scala"/>
+<span class="tab http" title="Scala"/>
 
 **Scala**
 
