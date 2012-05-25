@@ -208,7 +208,7 @@ To get you started, we've actually provided an example Custom Code example on Gi
 
 <p><a href="https://github.com/stackmob/stackmob-customcode-example" target="_blank" class="button">Fork the Custom Code Example on GitHub</a></p>
 
-You can feel free to add your own classes and use this as a template to build off of.
+You can feel free to add your own classes and use this as a template from which to build.
 
 
 # Building Custom Code from Scratch
@@ -769,6 +769,61 @@ override def execute(request: ProcessedAPIRequest, sdk: SDKServiceProvider): Res
 ```
 <span class="tab logging"/>
 
+
+# Making HTTP Requests
+
+The SDK includes functionality in an HttpService to make a limited number of HTTP GET, POST, PUT and DELETE requests to most HTTP servers. Behind the scenes, StackMob rate limits the number of HTTP calls an application can make, as well as to which domains it cannot make HTTP requests (ie: a blacklist).
+
+The rate limits and the blacklist are such that you can expect reasonable HTTP calls to succeed normally, but if StackMob does rate limit or blacklist an HTTP call, you can expect that HttpService will throw an `AccessDeniedException`.
+
+* <a href="http://stackmob.github.com/stackmob-customcode-sdk/0.4.3/apidocs/com/stackmob/sdkapi/http/HttpService.html" target="_blank">See JavaDoc documentation for HttpService</a>
+
+<span class="tabdivider"/>
+
+<span class="tab logging" title="Java"/>
+
+**Java**
+
+```java
+@Override
+public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider provider) {
+	HttpService http = provider.getHttpService();
+	//create the HTTP request
+	String url = "http://stackmob.com";
+	GetRequest req = new GetRequest(url);
+	//send the request. this method call will not return until the server at http://stackmob.com returns.
+	//note that this method may throw AccessDeniedException if the URL is whitelisted or rate limited,
+	//or TimeoutException if the server took too long to return
+	HttpResponse resp = http.get(req);
+	Map<String, Object> map = new HashMap<String, Object>();
+	map.put("response_code", resp.getCode());
+	map.put("url", url);
+	return new ResponseToProcess(HttpURLConnection.HTTP_OK, map);
+}
+```
+
+<span class="tab logging"/>
+
+<span class="tab logging" title="Scala"/>
+
+**Scala**
+
+```scala
+override def execute(request: ProcessedAPIRequest, sdk: SDKServiceProvider): ResponseToProcess = {
+	val http = sdk.getHttpService
+	val url = "http://stackmob.com"
+	//create the HTTP request
+	val getReq = new GetRequest(url)
+	//send the request. this method call will not return until the server at http://stackmob.com returns.
+	//note that this method may throw AccessDeniedException if the URL is whitelisted or rate limited,
+	//or TimeoutException if the server took too long to return
+	val resp = http.get(getReq)
+	val map = Map("response_code" -> resp.getCode, "url" -> url)
+	new ResponseToProcess(HttpURLConnection.HTTP_OK, map)
+}
+```
+
+<span class="tab logging"/>
 
 # Release Notes
 
