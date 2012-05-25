@@ -801,7 +801,7 @@ public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider
 	return new ResponseToProcess(HttpURLConnection.HTTP_OK, map);
 }
 ```
-
+<span class="tab http"/>
 <span class="tab http" title="Scala"/>
 
 **Scala**
@@ -821,7 +821,7 @@ override def execute(request: ProcessedAPIRequest, sdk: SDKServiceProvider): Res
 }
 ```
 
-<span class="tab logging"/>
+<span class="tab http"/>
 
 # Release Notes
 
