@@ -225,9 +225,9 @@ StackMob provides various ways for you to include the Custom Code SDK in your pr
 
 **JAR**
 
-Latest version: 0.4.3
+Latest version: 0.4.4
 
-<a href="http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.4.3/customcode-0.4.3.jar">Download the latest JAR</a>.
+<a href="http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.4.4/customcode-0.4.4.jar">Download the latest JAR</a>.
 
 
 **Maven**
@@ -236,26 +236,18 @@ Latest version: 0.4.3
 <dependency>
   <groupId>com.stackmob</groupId>
   <artifactId>customcode</artifactId>
-  <version>0.4.3</version>
+  <version>0.4.4</version>
   <scope>provided</scope>
 </dependency>
 ```
 
-Also, you can see what an example pom.xml file would look like for your project [here](https://gist.github.com/1646301).
+Also, you can see what an example pom.xml file would look like for your project [here](https://github.com/stackmob/stackmob-customcode-example/blob/master/java/pom.xml).
 
 **sbt**
 
 ```scala
-libraryDependencies += "com.stackmob" % "customcode" % "0.4.3" % "provided"
+libraryDependencies += "com.stackmob" % "customcode" % "0.4.4" % "provided"
 ```
-
-**Manual**
-
-We do not recommend that you try to manually include the Custom Code SDK JAR in your project because you will also need 
-to include its dependencies. If you must, however, please 
-[download the SDK JAR](http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.4.3/customcode-0.4.3.jar)
-and [the Netty JAR](http://search.maven.org/remotecontent?filepath=org/jboss/netty/netty/3.2.5.Final/netty-3.2.5.Final.jar),
-and put both JARs into your CLASSPATH so that you can compile your code. These JARs must not be built into your custom code JAR, however.
 
 ## Register your Method
 
@@ -776,7 +768,7 @@ The SDK includes functionality in an HttpService to make a limited number of HTT
 
 The rate limits and the blacklist are such that you can expect reasonable HTTP calls to succeed normally, but if StackMob does rate limit or blacklist an HTTP call, you can expect that HttpService will throw an `AccessDeniedException`.
 
-* <a href="http://stackmob.github.com/stackmob-customcode-sdk/0.4.3/apidocs/com/stackmob/sdkapi/http/HttpService.html" target="_blank">See JavaDoc documentation for HttpService</a>
+* <a href="http://stackmob.github.com/stackmob-customcode-sdk/0.4.4/apidocs/com/stackmob/sdkapi/http/HttpService.html" target="_blank">See JavaDoc documentation for HttpService</a>
 
 <span class="tabdivider"/>
 
@@ -830,7 +822,7 @@ override def execute(request: ProcessedAPIRequest, sdk: SDKServiceProvider): Res
 
 # Javadocs
 
-<a href="http://stackmob.github.com/stackmob-customcode-sdk/0.4.3/apidocs/">Javadocs are available here</a>.
+<a href="http://stackmob.github.com/stackmob-customcode-sdk/0.4.4/apidocs/">Javadocs are available here</a>.
 
 
 # Copyright
