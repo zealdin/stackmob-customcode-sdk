@@ -152,7 +152,7 @@ public interface DataService {
    * Updates all objects matching the given query in the datastore
    *
    * @param schema the name of the relevant object model; must be a type already declared for the current application
-   * @param query the query used to find objects to update
+   * @param conditions the conditions which must be met for the update to occur
    * @param updateActions the actions to take on the object being updated
    * @throws InvalidSchemaException if the schema does not exist, or the update actions are incompatible with it
    * @throws DatastoreException if the connection to the datastore fails or the datastore encounters an error
@@ -212,7 +212,7 @@ public interface DataService {
    * Removes any number of related objects from a relationship. May also delete the objects removed from the relationship.
    * @param schema the name of the relevant object model; must be a type already declared for the current application
    * @param objectId the id of the object to which relations should be removed
-   * @param related the relation field to follow
+   * @param relation the relation field to follow
    * @param relatedIds the ids of the objects to be removed from the relationship
    * @param cascadeDelete should be set to true if and only if you wish to also delete from the datastore all objects removed from the relationship
    * @throws InvalidSchemaException if the object model specified does not exist
@@ -225,7 +225,7 @@ public interface DataService {
    * Removes any number of related objects from a relationship. May also delete the objects removed from the relationship.
    * @param schema the name of the relevant object model; must be a type already declared for the current application
    * @param objectId the id of the object to which relations should be removed
-   * @param related the relation field to follow
+   * @param relation the relation field to follow
    * @param relatedIds the ids of the objects to be removed from the relationship
    * @param cascadeDelete should be set to true if and only if you wish to also delete from the datastore all objects removed from the relationship
    * @throws InvalidSchemaException if the object model specified does not exist
