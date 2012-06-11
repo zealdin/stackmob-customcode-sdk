@@ -247,6 +247,8 @@ Also, you can see what an example pom.xml file would look like for your project 
 
 In our <a href="https://github.com/stackmob/stackmob-customcode-example">custom code example repo</a> you'll find sample scala-sbt project with the file build.sbt. 
 For those not familiar with sbt, here is the <a href="https://github.com/harrah/xsbt/wiki/Getting-Started-Setup">Getting Started with sbt</a>
+
+**build.sbt**
 ```scala
 
 name := "scala-example"
