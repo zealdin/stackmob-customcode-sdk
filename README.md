@@ -245,7 +245,7 @@ Also, you can see what an example pom.xml file would look like for your project 
 
 **sbt - Simple Build Tool**
 
-In our <a href="https://github.com/stackmob/stackmob-customcode-example">custom code example repo</a> you'll find sample scala-sbt project with the file build.sbt. 
+In our <a href="https://github.com/stackmob/stackmob-customcode-example">custom code example repo</a> you'll find a sample scala-sbt project with the file build.sbt. 
 For those not familiar with sbt, here is the <a href="https://github.com/harrah/xsbt/wiki/Getting-Started-Setup">Getting Started with sbt</a>
 
 **build.sbt**
@@ -272,7 +272,9 @@ packageOptions in (Compile, packageBin) +=
 logBuffered := false
 
 ```
+In the terminal, go to your project directory and type `sbt clean package`
 
+Your JAR is located in scala/target/scala-2.9.1.  Now upload the <a href="https://www.stackmob.com/platform/api/customcode/upload">JAR to StackMob</a>.
 
 ## Register your Method
 
