@@ -243,11 +243,35 @@ Latest version: 0.4.4
 
 Also, you can see what an example pom.xml file would look like for your project [here](https://github.com/stackmob/stackmob-customcode-example/blob/master/java/pom.xml).
 
-**sbt**
+**sbt - Simple Build Tool**
+
+You'll modify the build.sbt file for project.
 
 ```scala
-libraryDependencies += "com.stackmob" % "customcode" % "0.4.4" % "provided"
+
+name := "scala-example"
+
+organization := "com.stackmob"
+
+version := "0.1.0-SNAPSHOT"
+
+scalaVersion := "2.9.1"
+
+libraryDependencies ++= {
+  val ccVersion = "0.4.0"
+  Seq(
+    "com.stackmob" % "customcode" % ccVersion % "provided" withSources()
+  )
+}
+
+packageOptions in (Compile, packageBin) += 
+  Package.ManifestAttributes( java.util.jar.Attributes.Name.MAIN_CLASS -> "com.stackmob.example.EntryPointExtender" )
+
+logBuffered := false
+
 ```
+<a href="https://github.com/harrah/xsbt/wiki/Getting-Started-Setup">Getting Started with sbt</a>
+
 
 ## Register your Method
 
