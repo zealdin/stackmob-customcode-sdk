@@ -274,7 +274,7 @@ logBuffered := false
 ```
 In the terminal, go to your project directory and type `sbt clean package`
 
-Your JAR is located in scala/target/scala-2.9.1.  Now upload the <a href="https://www.stackmob.com/platform/api/customcode/upload">JAR to StackMob</a>.
+Your JAR is located in /target/scala-2.9.1.  Now upload the <a href="https://www.stackmob.com/platform/api/customcode/upload">JAR to StackMob</a>.
 
 ## Register your Method
 
