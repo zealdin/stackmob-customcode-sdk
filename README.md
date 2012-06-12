@@ -248,34 +248,6 @@ Also, you can see what an example pom.xml file would look like for your project 
 In our <a href="https://github.com/stackmob/stackmob-customcode-example">custom code example repo</a> you'll find a sample scala-sbt project with the file build.sbt. 
 For those not familiar with sbt, here is the <a href="https://github.com/harrah/xsbt/wiki/Getting-Started-Setup">Getting Started with sbt</a>
 
-**build.sbt**
-
-```scala
-
-name := "scala-example"
-
-organization := "com.stackmob"
-
-version := "0.1.0-SNAPSHOT"
-
-scalaVersion := "2.9.1"
-
-libraryDependencies ++= {
-  val ccVersion = "0.4.0"
-  Seq(
-    "com.stackmob" % "customcode" % ccVersion % "provided" withSources()
-  )
-}
-
-packageOptions in (Compile, packageBin) += 
-  Package.ManifestAttributes( java.util.jar.Attributes.Name.MAIN_CLASS -> "com.stackmob.example.EntryPointExtender" )
-
-logBuffered := false
-```
-In the terminal, go to your project directory and type `sbt clean package`
-
-Your JAR is located in /target/scala-2.9.1.  Now upload the <a href="https://www.stackmob.com/platform/api/customcode/upload">JAR to StackMob</a>.
-
 ## Register your Method
 
 StackMob needs to know where to find your defined methods.  Register them in the `EntryPointExtender` and include it in your JAR.
@@ -370,6 +342,25 @@ Add this to the build.xml file:
   </manifest>
 </jar>
 ```
+
+**sbt**
+
+Set the name of your JAR in the build.sbt
+
+```scala
+
+...
+
+packageOptions in (Compile, packageBin) += 
+  Package.ManifestAttributes( java.util.jar.Attributes.Name.MAIN_CLASS -> "com.stackmob.example.EntryPointExtender" )
+
+logBuffered := false
+```
+In the terminal, go to your project directory and type `sbt clean package`
+
+Your JAR is located in /target/scala-2.9.1.  Now upload the <a href="https://www.stackmob.com/platform/api/customcode/upload">JAR to StackMob</a>.
+
+
 
 **Manual**
 
