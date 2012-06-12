@@ -353,7 +353,6 @@ Customize the build.sbt file for your project.
 
 packageOptions in (Compile, packageBin) += 
   Package.ManifestAttributes( java.util.jar.Attributes.Name.MAIN_CLASS -> "com.stackmob.example.EntryPointExtender" )
-
 ```
 In the terminal, go to your project directory and type `sbt clean package`
 
