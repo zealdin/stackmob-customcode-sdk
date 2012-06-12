@@ -249,6 +249,7 @@ In our <a href="https://github.com/stackmob/stackmob-customcode-example">custom 
 For those not familiar with sbt, here is the <a href="https://github.com/harrah/xsbt/wiki/Getting-Started-Setup">Getting Started with sbt</a>
 
 **build.sbt**
+
 ```scala
 
 name := "scala-example"
@@ -270,7 +271,6 @@ packageOptions in (Compile, packageBin) +=
   Package.ManifestAttributes( java.util.jar.Attributes.Name.MAIN_CLASS -> "com.stackmob.example.EntryPointExtender" )
 
 logBuffered := false
-
 ```
 In the terminal, go to your project directory and type `sbt clean package`
 
