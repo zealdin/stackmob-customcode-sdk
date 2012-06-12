@@ -245,7 +245,11 @@ Also, you can see what an example pom.xml file would look like for your project 
 
 **sbt - Simple Build Tool**
 
-In our <a href="https://github.com/stackmob/stackmob-customcode-example">custom code example repo</a> you'll find a sample scala-sbt project with the file build.sbt. 
+```scala
+libraryDependencies += "com.stackmob" % "customcode" % "0.4.4" % "provided"
+```
+
+In our custom code example repo you'll find a sample scala-sbt project with the file <a href="https://github.com/stackmob/stackmob-customcode-example/blob/master/scala-sbt/build.sbt">build.sbt</a>. 
 For those not familiar with sbt, here is the <a href="https://github.com/harrah/xsbt/wiki/Getting-Started-Setup">Getting Started with sbt</a>
 
 ## Register your Method
