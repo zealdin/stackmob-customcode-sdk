@@ -345,7 +345,7 @@ Add this to the build.xml file:
 
 **sbt**
 
-Set the name of your JAR in the build.sbt
+Customize the build.sbt file for your project.
 
 ```scala
 
