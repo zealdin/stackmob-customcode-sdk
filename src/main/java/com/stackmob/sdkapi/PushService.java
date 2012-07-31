@@ -30,7 +30,8 @@ public interface PushService {
 
   public static enum TokenType {
       iOS,
-      Android
+      Android,
+      AndroidGCM
     }
 
   public static class TokenAndType {
