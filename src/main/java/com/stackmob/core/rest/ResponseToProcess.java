@@ -16,8 +16,6 @@
 
 package com.stackmob.core.rest;
 
-import org.jboss.netty.handler.codec.http.HttpResponseStatus;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,31 +25,8 @@ import java.util.Map;
  */
 public class ResponseToProcess {
 
-  private final HttpResponseStatus responseStatus;
+  private final int responseStatus;
   private final Map<String, ?> responseMap;
-
-  /**
-   * Creates a new API response to process.
-   *
-   * @param responseStatus the response status to return
-   * @param responseMap the response map
-   */
-  @Deprecated
-  public ResponseToProcess(HttpResponseStatus responseStatus, Map<String, ?> responseMap) {
-    this.responseStatus = responseStatus;
-    this.responseMap = responseMap;
-  }
-
-  /**
-   * Creates a new API response to process.
-   *
-   * @param responseStatus the response status to return
-   */
-  @Deprecated
-  public ResponseToProcess(HttpResponseStatus responseStatus) {
-    this.responseStatus = responseStatus;
-    this.responseMap = new HashMap<String, Object>();
-  }
 
   /**
    * Creates a new API response to process.
@@ -60,7 +35,7 @@ public class ResponseToProcess {
    * @param responseMap the response map
    */
   public ResponseToProcess(int responseCode, Map<String, ?> responseMap) {
-    this.responseStatus = HttpResponseStatus.valueOf(responseCode);
+    this.responseStatus = responseCode;
     this.responseMap = responseMap;
   }
 
@@ -70,18 +45,8 @@ public class ResponseToProcess {
    * @param responseCode the HTTP response code
    */
   public ResponseToProcess(int responseCode) {
-    this.responseStatus = HttpResponseStatus.valueOf(responseCode);
+    this.responseStatus = responseCode;
     this.responseMap = new HashMap<String, Object>();
-  }
-
-  /**
-   * Returns the HTTP response status.
-   *
-   * @return the response status
-   */
-  @Deprecated
-  public HttpResponseStatus getResponseStatus() {
-    return responseStatus;
   }
 
   /**
@@ -90,7 +55,7 @@ public class ResponseToProcess {
    * @return the response code
    */
   public int getResponseCode() {
-    return responseStatus.getCode();
+    return responseStatus;
   }
 
   /**

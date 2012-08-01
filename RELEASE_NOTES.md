@@ -1,5 +1,9 @@
 # Stackmob Custom Code SDK (Release Notes)
 
+### 0.4.4
+* Remove Netty dependency and related @deprecated methods
+* Add atomic increment support
+
 ### 0.4.3
 * Correct List<SMValue> to List<? extends SMValue> when appropriate
 * Added additional convenience constructors
