@@ -33,6 +33,7 @@ public class ProcessedAPIRequest {
   private final int apiVersion;
   private final String methodName;
   private final long counter;
+  private final String body;
   
   /**
    * Create a new processed API request.
@@ -46,8 +47,15 @@ public class ProcessedAPIRequest {
    * @param loggedInUser if a logged in user sent the request, their username is represented here
    * @param counter the number of requests this particular JVM instance has handled up until this request
    */
-  public ProcessedAPIRequest(MethodVerb verb, String url, String loggedInUser, Map<String, String> params,
-                             String appName, int apiVersion, String methodName, long counter) {
+  public ProcessedAPIRequest(MethodVerb verb,
+                             String url,
+                             String loggedInUser,
+                             Map<String, String> params,
+                             String body,
+                             String appName,
+                             int apiVersion,
+                             String methodName,
+                             long counter) {
     this.verb = verb;
     this.url = url;
     this.appName = appName;
@@ -56,6 +64,7 @@ public class ProcessedAPIRequest {
     this.loggedInUser = (loggedInUser != null && loggedInUser.isEmpty()) ? null : loggedInUser;
     this.params = params;
     this.counter = counter;
+    this.body = body;
   }
 
   /**
@@ -145,5 +154,14 @@ public class ProcessedAPIRequest {
   public long getCounter() {
     return counter;
   }
-  
+
+  /**
+   * Returns the body of this request
+   *
+   * @return the body of this request, or an empty string if the request has no body,
+   * for example a GET request or a POST request with no body submitted
+   */
+  public String getBody() {
+    return this.body;
+  }
 }
