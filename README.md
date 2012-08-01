@@ -335,6 +335,12 @@ Add this to the pom.xml file, in the build plugins section:
 </build>
 ```
 
+Then go to the pom.xml directory and type:
+
+    > mvn package
+    
+Your jar should be inside `target` folder.
+
 **Ant**
 
 Add this to the build.xml file:
