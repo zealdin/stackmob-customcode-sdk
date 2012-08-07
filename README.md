@@ -848,7 +848,7 @@ override def execute(request: ProcessedAPIRequest, sdk: SDKServiceProvider): Res
 
 # Javadocs
 
-<a href="http://stackmob.github.com/stackmob-customcode-sdk/0.4.4/apidocs/">Javadocs are available here</a>.
+<a href="http://stackmob.github.com/stackmob-customcode-sdk/0.5.0/apidocs/">Javadocs are available here</a>.
 
 
 # Copyright
