@@ -225,9 +225,9 @@ StackMob provides various ways for you to include the Custom Code SDK in your pr
 
 **JAR**
 
-Latest version: 0.4.4
+Latest version: 0.5.0
 
-<a href="http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.4.4/customcode-0.4.4.jar">Download the latest JAR</a>.
+<a href="http://search.maven.org/remotecontent?filepath=com/stackmob/customcode/0.5.0/customcode-0.5.0.jar">Download the latest JAR</a>.
 
 
 **Maven**
@@ -236,7 +236,7 @@ Latest version: 0.4.4
 <dependency>
   <groupId>com.stackmob</groupId>
   <artifactId>customcode</artifactId>
-  <version>0.4.4</version>
+  <version>0.5.0</version>
   <scope>provided</scope>
 </dependency>
 ```
@@ -246,7 +246,7 @@ Also, you can see what an example pom.xml file would look like for your project 
 **sbt - Simple Build Tool**
 
 ```scala
-libraryDependencies += "com.stackmob" % "customcode" % "0.4.4" % "provided"
+libraryDependencies += "com.stackmob" % "customcode" % "0.5.0" % "provided"
 ```
 
 In our custom code example repo you'll find a sample scala-sbt project with the file <a href="https://github.com/stackmob/stackmob-customcode-example/blob/master/scala-sbt/build.sbt">build.sbt</a>. 
@@ -794,7 +794,7 @@ The SDK includes functionality in an HttpService to make a limited number of HTT
 
 The rate limits and the blacklist are such that you can expect reasonable HTTP calls to succeed normally, but if StackMob does rate limit or blacklist an HTTP call, you can expect that HttpService will throw an `AccessDeniedException`.
 
-* <a href="http://stackmob.github.com/stackmob-customcode-sdk/0.4.4/apidocs/com/stackmob/sdkapi/http/HttpService.html" target="_blank">See JavaDoc documentation for HttpService</a>
+* <a href="http://stackmob.github.com/stackmob-customcode-sdk/0.5.0/apidocs/com/stackmob/sdkapi/http/HttpService.html" target="_blank">See JavaDoc documentation for HttpService</a>
 
 <span class="tabdivider"/>
 
