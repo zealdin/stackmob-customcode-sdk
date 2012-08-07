@@ -1,5 +1,8 @@
 # Stackmob Custom Code SDK (Release Notes)
 
+### 0.5.0
+* add body parameter to `ProcessedAPIRequest`
+
 ### 0.4.4
 * Remove Netty dependency and related @deprecated methods
 * Add atomic increment support
