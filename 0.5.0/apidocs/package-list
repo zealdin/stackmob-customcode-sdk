@@ -1,0 +1,9 @@
+com.stackmob.core
+com.stackmob.core.customcode
+com.stackmob.core.jar
+com.stackmob.core.rest
+com.stackmob.sdkapi
+com.stackmob.sdkapi.http
+com.stackmob.sdkapi.http.exceptions
+com.stackmob.sdkapi.http.request
+com.stackmob.sdkapi.http.response
