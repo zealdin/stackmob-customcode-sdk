@@ -29,10 +29,35 @@ import java.util.Set;
 public interface PushService {
 
   public static enum TokenType {
-      iOS,
-      Android,
-      AndroidGCM
+    iOS("ios"),
+    Android("android"),
+    AndroidGCM("androidgcm");
+    
+    private final String value;
+      
+    TokenType(String value) {
+      this.value = value;
     }
+    
+    // prefer this to deserialize TokenType values
+    public static TokenType fromValue(String value) {
+      if (value != null) {
+        for (TokenType type : values()) {
+          if (token.value.equalsIgnoreCase(value)) {
+            return type;
+          }
+        }
+      }
+      
+      // if not matched, raise an exception
+      throw new IllegalArgumentException("Invalid token type: " + value);
+    }
+    
+    // prefer this to serialize TokenType values
+    public String toValue() {
+      return value;
+    }
+  }
 
   public static class TokenAndType {
     private String token;
