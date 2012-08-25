@@ -28,6 +28,9 @@ import java.util.Set;
  */
 public interface PushService {
 
+  /**
+    At current, iOS, Android, and Android GCM push types are supported.
+   */
   public static enum TokenType {
     iOS("ios"),
     Android("android"),
@@ -39,8 +42,17 @@ public interface PushService {
       this.value = value;
     }
     
-    // prefer this to deserialize TokenType values
-    public static TokenType fromValue(String value) {
+    /**
+      Return the enumerated TokenType of a String value. This should be preferred for deserialization.
+      
+      Example:
+      <code>TokenType type = TokenType.fromString(serialized)</code>
+      
+      @param value the String value of a TokenType
+      @return the TokenType as interpreted from value
+      @throws IllegalArgumentException if a value is passed that is not recognized as a TokenType 
+     */
+    public static TokenType fromString(String value) {
       if (value != null) {
         for (TokenType type : values()) {
           if (token.value.equalsIgnoreCase(value)) {
@@ -53,8 +65,17 @@ public interface PushService {
       throw new IllegalArgumentException("Invalid token type: " + value);
     }
     
-    // prefer this to serialize TokenType values
-    public String toValue() {
+    /**
+      Return the String value of a TokenType. This should be preferred for serialization.
+      
+      Example:
+      <code>TokenType type = TokenType.iOS;
+      String toSerialize = type.toString();</code>
+      
+      @return the String value of a TokenType 
+     */
+    @Override
+    public String toString() {
       return value;
     }
   }
