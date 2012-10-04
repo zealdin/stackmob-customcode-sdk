@@ -28,6 +28,20 @@ import java.util.Set;
  * DataService allows you to interact with your data on StackMob
  */
 public interface DataService {
+
+
+  /**
+   * Returns the primary user schema for this app.
+   * @return the schema
+   */
+  String getUserSchema();
+
+  /**
+   * Returns the name of the app currently being run
+   * @return the name of the app
+   */
+  String getAppName();
+
   /**
    * Creates a new object in the datastore. Each such object should be represented as a map of field names to objects,
    * where each sub-object is a List, Map, String, Long, or Double depending on the type of the field in question.
