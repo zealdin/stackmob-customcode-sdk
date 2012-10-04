@@ -169,7 +169,7 @@ Let's see how client-side SDK code calls and interacts with the server-side cust
 **Android SDK**
 
 ```java
-StackMobCommon.getStackMobInstance().get("hello_world", new StackMobCallback() {
+StackMob.getStackMob().getDatastore().get("hello_world", new StackMobCallback() {
     @Override public void success(String responseBody) {
         //responseBody is "{ \"msg\": \"Hello, world!\" }"
     }
