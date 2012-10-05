@@ -80,7 +80,7 @@ public interface SDKServiceProvider {
   FacebookService getFacebookService() throws ServiceNotActivatedException;
 
   /**
-   * get the <code>HttpService</code> required to talk generically to HTTP servers from the current application.
+   * Get the <code>HttpService</code> required to talk generically to HTTP servers from the current application.
    *
    * @return an HttpService that can be used to communicate with any HTTP server, subject to rate limiting and
    * URL domain whitelisting
@@ -90,10 +90,10 @@ public interface SDKServiceProvider {
 
 
   /**
-   * get the <code>ConfigVarService</code> required to access config vars for the current application
+   * Get the <code>ConfigVarService</code> required to access config vars for the current application.
    *
    * @return the config var service
-   * @throws ServiceNotActivatedException
+   * @throws ServiceNotActivatedException if the config var service has not yet been set up for the current application
    */
   ConfigVarService getConfigVarService() throws ServiceNotActivatedException;
 
