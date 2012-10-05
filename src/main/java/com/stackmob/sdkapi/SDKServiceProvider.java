@@ -88,6 +88,15 @@ public interface SDKServiceProvider {
    */
   HttpService getHttpService() throws ServiceNotActivatedException;
 
+
+  /**
+   * get the <code>ConfigVarService</code> required to access config vars for the current application
+   *
+   * @return the config var service
+   * @throws ServiceNotActivatedException
+   */
+  ConfigVarService getConfigVarService() throws ServiceNotActivatedException;
+
   /**
    * Determine whether this custom code instance is currently running in sandbox.
    *
