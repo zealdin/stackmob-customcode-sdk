@@ -155,11 +155,14 @@ Let's see how client-side SDK code calls and interacts with the server-side cust
 **iOS SDK**
 
 ```objc
-[[StackMob stackmob] get:@"hello_world" withCallback:^(BOOL success, id result) {
-    if (success) {
+SMCustomCodeRequest *request = [[SMCustomCodeRequest alloc] initGetRequestWithMethod:@"hello_world"];
+         
+[[[SMClient defaultClient] dataStore] performCustomCodeRequest:request 
+  onSuccess:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         // result is the JSON as an NSDictionary of "msg" vs. "Hello, world!"
-    } else {
-    }
+        NSLog(@"Success: %@",JSON);
+  } onFailure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
+        NSLog(@"Failure: %@",error);
 }];
 
 ```
