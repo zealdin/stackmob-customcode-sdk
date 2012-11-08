@@ -829,8 +829,19 @@ public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider
 **Scala**
 
 ```scala
-override def execute(request: ProcessedAPIRequest, sdk: SDKServiceProvider): ResponseToProcess = {
-	val http = sdk.getHttpService
+
+// Make sure to import these
+import com.stackmob.core.customcode.CustomCodeMethod
+import com.stackmob.sdkapi.SDKServiceProvider
+import com.stackmob.sdkapi.http.request.GetRequest
+import com.stackmob.core.rest.{ResponseToProcess, ProcessedAPIRequest}
+import java.net.HttpURLConnection
+import scala.collection.JavaConverters._
+
+...
+
+override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServiceProvider): ResponseToProcess = {
+	val http = serviceProvider.getHttpService
 	val url = "http://stackmob.com"
 	//create the HTTP request
 	val getReq = new GetRequest(url)
@@ -839,7 +850,7 @@ override def execute(request: ProcessedAPIRequest, sdk: SDKServiceProvider): Res
 	//or TimeoutException if the server took too long to return
 	val resp = http.get(getReq)
 	val map = Map("response_code" -> resp.getCode, "url" -> url)
-	new ResponseToProcess(HttpURLConnection.HTTP_OK, map)
+	new ResponseToProcess(HttpURLConnection.HTTP_OK, map.asJava)
 }
 ```
 
