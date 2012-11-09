@@ -15,16 +15,28 @@
  */
 package com.stackmob.sdkapi;
 
+import com.stackmob.core.ConfigVarServiceException;
+
 /**
  * ConfigVarService allows you to access key-value pairs specific to this app.
  */
 public abstract class ConfigVarService {
 
     /**
-     * Get the value for the given key. Returns null if the key doesn't exist
+     * Get the value for the given key
      * @param key the key to lookup
+     * @throws ConfigVarServiceException if the config vars can't be reached
      * @return the value associated with that key or null
      */
-    public abstract String get(String key);
+    public abstract String get(String key) throws ConfigVarServiceException;
+
+    /**
+     * Get the value for the given key
+     * @param key the key to lookup
+     * @param name where to load config vars from
+     * @throws ConfigVarServiceException if the config vars can't be reached
+     * @return the value associated with that key or null
+     */
+    public abstract String get(String key, String name) throws ConfigVarServiceException;
 
 }
