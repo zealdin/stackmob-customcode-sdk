@@ -90,7 +90,9 @@ public interface SDKServiceProvider {
 
 
   /**
-   * Get the <code>ConfigVarService</code> required to access config vars for the current application.
+   * Get the <code>ConfigVarService</code> required to access config vars for the current application. Config vars
+   * are information from third party modules, usually authentication credentials, that let you interact with their
+   * services.
    *
    * @return the config var service
    * @throws ServiceNotActivatedException if the config var service has not yet been set up for the current application

@@ -1,5 +1,10 @@
 # Stackmob Custom Code SDK (Release Notes)
 
+### 0.5.2
+* Add support for module jars
+  * Config var access
+  * Get the current user schema name
+
 ### 0.5.0
 * add body parameter to `ProcessedAPIRequest`
 
