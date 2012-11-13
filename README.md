@@ -8,7 +8,7 @@ StackMob already gives you datastore persistence and push services in the cloud.
 
 # How does it work?
 
-Write a simple Java/Scala/Clojure class implementing the `CustomCodeMethod` interface, build it into a JAR, then <a href="https://www.stackmob.com/platform/api/customcode/upload" target="_blank">upload the JAR to StackMob</a>.
+Write a simple Java/Scala/Clojure class implementing the `CustomCodeMethod` interface, build it into a JAR, then <a href="https://dashboard.stackmob.com/module/customcode/upload" target="_blank">upload the JAR to StackMob</a>.
 
 Here's a simple `hello_world` example.  Upon uploading your JAR, StackMob will extend your method to your REST API at:
 
@@ -207,7 +207,7 @@ You've just seen how you can write server-side code and call it from your mobile
 
 # QuickStart - Fork Example Custom Code on GitHub
 
-To get you started, we've actually provided an example Custom Code example on GitHub for you.  Feel free to fork it, follow the instructions to build a JAR, then <a href="https://www.stackmob.com/platform/api/customcode/upload" target="_blank">upload that JAR to StackMob</a> to get your first custom code example!
+To get you started, we've actually provided an example Custom Code example on GitHub for you.  Feel free to fork it, follow the instructions to build a JAR, then <a href="https://dashboard.stackmob.com/module/customcode/upload" target="_blank">upload that JAR to StackMob</a> to get your first custom code example!
 
 <p><a href="https://github.com/stackmob/stackmob-customcode-example" target="_blank" class="button">Fork the Custom Code Example on GitHub</a></p>
 
@@ -369,7 +369,7 @@ packageOptions in (Compile, packageBin) +=
 ```
 In the terminal, go to your project directory and type `sbt clean package`
 
-Your JAR is located in /target/scala-2.9.1.  Now upload the <a href="https://www.stackmob.com/platform/api/customcode/upload">JAR to StackMob</a>.
+Your JAR is located in /target/scala-2.9.1.  Now upload the <a href="https://dashboard.stackmob.com/module/customcode/upload">JAR to StackMob</a>.
 
 
 
@@ -413,9 +413,9 @@ If the output of the `ls` command showed `EntryPointExtender.class`, then your J
 
 ## Uploading your JAR to StackMob
 
-Once you have your custom methods written, package it as a JAR so that it can be <a href="https://www.stackmob.com/platform/api/customcode/upload">uploaded to StackMob</a>. 
+Once you have your custom methods written, package it as a JAR so that it can be <a href="https://dashboard.stackmob.com/module/customcode/upload">uploaded to StackMob</a>. 
 Upon uploading, StackMob will immediately process and roll out the code to your application's sandbox environment. 
-To test your new REST API method, use the <a href="https://www.stackmob.com/platform/api/console">console</a>.
+To test your new REST API method, use the <a href="https://dashboard.stackmob.com/data/console">console</a>.
 
 # Fetch Parameters
 
@@ -739,7 +739,7 @@ override def execute(request:ProcessedAPIRequest, serviceProvider:SDKServiceProv
 
 The logger service provided by the SDK should be used to log information from within your custom code. Anything logged via the logger service will be accessible via StackMob's web platform.
 
-* <a href="https://www.stackmob.com/platform/api/app/logs" target="_blank">Find your logs on the platform.</a>
+* <a href="https://dashboard.stackmob.com/data/logs" target="_blank">Find your logs on the platform.</a>
 
 <span class="tabdivider"/>
 
