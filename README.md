@@ -155,11 +155,14 @@ Let's see how client-side SDK code calls and interacts with the server-side cust
 **iOS SDK**
 
 ```objc
-[[StackMob stackmob] get:@"hello_world" withCallback:^(BOOL success, id result) {
-    if (success) {
+SMCustomCodeRequest *request = [[SMCustomCodeRequest alloc] initGetRequestWithMethod:@"hello_world"];
+         
+[[[SMClient defaultClient] dataStore] performCustomCodeRequest:request 
+  onSuccess:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         // result is the JSON as an NSDictionary of "msg" vs. "Hello, world!"
-    } else {
-    }
+        NSLog(@"Success: %@",JSON);
+  } onFailure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
+        NSLog(@"Failure: %@",error);
 }];
 
 ```
@@ -826,8 +829,19 @@ public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider
 **Scala**
 
 ```scala
-override def execute(request: ProcessedAPIRequest, sdk: SDKServiceProvider): ResponseToProcess = {
-	val http = sdk.getHttpService
+
+// Make sure to import these
+import com.stackmob.core.customcode.CustomCodeMethod
+import com.stackmob.sdkapi.SDKServiceProvider
+import com.stackmob.sdkapi.http.request.GetRequest
+import com.stackmob.core.rest.{ResponseToProcess, ProcessedAPIRequest}
+import java.net.HttpURLConnection
+import scala.collection.JavaConverters._
+
+...
+
+override def execute(request: ProcessedAPIRequest, serviceProvider: SDKServiceProvider): ResponseToProcess = {
+	val http = serviceProvider.getHttpService
 	val url = "http://stackmob.com"
 	//create the HTTP request
 	val getReq = new GetRequest(url)
@@ -836,7 +850,7 @@ override def execute(request: ProcessedAPIRequest, sdk: SDKServiceProvider): Res
 	//or TimeoutException if the server took too long to return
 	val resp = http.get(getReq)
 	val map = Map("response_code" -> resp.getCode, "url" -> url)
-	new ResponseToProcess(HttpURLConnection.HTTP_OK, map)
+	new ResponseToProcess(HttpURLConnection.HTTP_OK, map.asJava)
 }
 ```
 
