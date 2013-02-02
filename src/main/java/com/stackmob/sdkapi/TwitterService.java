@@ -60,7 +60,7 @@ public interface TwitterService {
    * @param username the user whose Twitter token/secret should be removed
    * @throws TwitterServiceException if a datastore error occurs
    */
-  public void unlinkFacebookIdFromUser(String modelName, String username)
+  public void unlinkUserFromTwitter(String modelName, String username)
     throws TwitterServiceException;
 
   /**
