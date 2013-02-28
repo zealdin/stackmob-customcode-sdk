@@ -49,6 +49,19 @@ public interface TwitterService {
    */
   boolean linkUserWithTwitter(String modelName, String smUsername, String token, String tokenSecret)
     throws TwitterServiceException;
+  
+  /**
+   * Disconnects the user with the given username from any linked Twitter access tokens. The access token will then
+   * cease to authenticate this user. The user and token/secret may be linked again in the future, if so desired.
+   *
+   * If the user with the given username does not exist, or is not linked to a token, calling this will still succeed.
+   *
+   * @param modelName the name of the relevant object model; must be a type already declared for the current application
+   * @param username the user whose Twitter token/secret should be removed
+   * @throws TwitterServiceException if a datastore error occurs
+   */
+  public void unlinkUserFromTwitter(String modelName, String username)
+    throws TwitterServiceException;
 
   /**
    * Finds a StackMob user with the given Twitter token and token secret and then

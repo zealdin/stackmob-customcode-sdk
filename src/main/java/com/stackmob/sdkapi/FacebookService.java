@@ -52,6 +52,19 @@ public interface FacebookService {
     throws FacebookServiceException;
 
   /**
+   * Disconnects the user with the given username from any linked Facebook access tokens. The access token will then
+   * cease to authenticate this user. The user and token may be linked again in the future, if so desired.
+   *
+   * If the user with the given username does not exist, or is not linked to a token, calling this will still succeed.
+   *
+   * @param modelName the name of the relevant object model; must be a type already declared for the current application
+   * @param username the user whose Facebook token should be removed
+   * @throws FacebookServiceException if a datastore error occurs
+   */
+  public void unlinkFacebookIdFromUser(String modelName, String username)
+    throws FacebookServiceException;
+
+  /**
    * Find the username assigned to the Facebook user ID contained in the given access token.
    *
    * @param modelName the name of the relevant object model; must be a type already declared for the current application
