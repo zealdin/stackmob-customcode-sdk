@@ -210,7 +210,7 @@ You've just seen how you can write server-side code and call it from your mobile
 To get you started, we've actually provided an example Custom Code example on GitHub for you.  Feel free to fork it.  From there you have two choices:
 
 * Use StackMob's <a href="https://dashboard.stackmob.com/module/customcode/upload_github" target="_blank">Custom Code GitHub Integration</a>: link your forked custom code repo and we'll build your JAR for you directly from your GitHub repo
-* follow the instructions to build a JAR, then <a href="https://dashboard.stackmob.com/module/customcode/upload" target="_blank">upload that JAR to StackMob</a> to get your first custom code example
+* Or follow the instructions to build a JAR, then <a href="https://dashboard.stackmob.com/module/customcode/upload" target="_blank">upload that JAR to StackMob</a> to get your first custom code example
 
 <p><a href="https://github.com/stackmob/stackmob-customcode-example" target="_blank" class="button">Fork the Custom Code Example on GitHub</a></p>
 
