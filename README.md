@@ -8,7 +8,7 @@ StackMob already gives you datastore persistence and push services in the cloud.
 
 # How does it work?
 
-Write a simple Java/Scala/Clojure class implementing the `CustomCodeMethod` interface, build it into a JAR, then <a href="https://dashboard.stackmob.com/module/customcode/upload" target="_blank">upload the JAR to StackMob</a>.
+Write a simple Java/Scala/Clojure class implementing the `CustomCodeMethod` interface.
 
 Here's a simple `hello_world` example.  Upon uploading your JAR, StackMob will extend your method to your REST API at:
 
