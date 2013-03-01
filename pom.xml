@@ -77,6 +77,11 @@
       <name>Will Palmeri</name>
       <email>will@stackmob.com</email>
     </developer>
+    <developer>
+      <id>andrew</id>
+      <name>Andrew Harris</name>
+      <email>andrew@stackmob.com</email>
+    </developer>
   </developers>
 
   <organization>
