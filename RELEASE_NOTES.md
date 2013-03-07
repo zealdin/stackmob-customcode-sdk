@@ -1,5 +1,8 @@
 # Stackmob Custom Code SDK (Release Notes)
 
+### 0.5.3
+* Add support for social token unlinking (Facebook and Twitter services)
+
 ### 0.5.2
 * Add support for module jars
   * Config var access
