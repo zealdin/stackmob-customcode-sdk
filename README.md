@@ -14,7 +14,7 @@ Write a simple Java/Scala/Clojure class implementing the `CustomCodeMethod` inte
 
 Here's a simple `hello_world` example.  Upon uploading your JAR, StackMob will extend your method to your REST API at:
 
-    http://api.mob1.stackmob.com/hello_world
+    http://api.stackmob.com/hello_world
     
 You can then call your code from the mobile iOS, Android, or JS SDKs (protected with OAuth of course! Our SDKs handle that).  (Or anything else that can hit a REST API!)
 
@@ -459,7 +459,7 @@ The datastore service provides server-side access to the StackMob datastore and 
 The example below shows how to set a high score on a user model via the URL:
 
     URL:
-    http://api.mob1.stackmob.com/set_high_score?username=user_10&score=12345.
+    http://api.stackmob.com/set_high_score?username=user_10&score=12345.
     
     Request Headers:
     Accept: application/vnd.stackmob+json; version=0
