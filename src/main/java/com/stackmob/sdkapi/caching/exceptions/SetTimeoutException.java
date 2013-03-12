@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.stackmob.sdkapi.http.exceptions;
+package com.stackmob.sdkapi.caching.exceptions;
 
-public class TimeoutException extends Exception {
-    public TimeoutException(String url) {
-        super(String.format("Request to %s timed out", url));
+public class SetTimeoutException extends TimeoutException {
+    public SetTimeoutException(String key, Long valueSizeBytes) {
+        super(String.format("A cache set request for key %s (the value is %d bytes) has timed out", key, valueSizeBytes));
     }
 }
