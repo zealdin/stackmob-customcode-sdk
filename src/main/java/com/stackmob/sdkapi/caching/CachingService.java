@@ -34,14 +34,12 @@ import com.stackmob.sdkapi.caching.exceptions.*;
  *     if(json == null) {
  *         json = executeLargeDatastoreQuery();
  *         //cache the result of the large query for 5 seconds
- *         cachingService.setString("largeQuery", json, CachingService.utf8Charset(), 5000);
+ *         cachingService.setString("largeQuery", json, CachingService.utf8Charset, 5000);
  *     }
  * </code>
  */
 public abstract class CachingService {
-    public static Charset utf8Charset() {
-        return Charset.forName("UTF-8");
-    }
+    public static final Charset utf8Charset = Charset.forName("UTF-8");
 
     /**
      * get the value for the given key, in String format
@@ -70,7 +68,7 @@ public abstract class CachingService {
      * @throws DataSizeException if the size of the key or its value in the cache was over the Stackmob-defined limit
      */
     public String getString(String key) throws GetTimeoutException, GetRateLimitedException, DataSizeException {
-        return getString(key, CachingService.utf8Charset());
+        return getString(key, CachingService.utf8Charset);
     }
 
     /**
@@ -104,7 +102,7 @@ public abstract class CachingService {
      * @throws DataSizeException if the size of the key or its value was over the Stackmob defined limit
      */
     public void setString(String key, String value, long ttlMilliseconds) throws SetTimeoutException, SetRateLimitedException, DataSizeException {
-        setString(key, value, CachingService.utf8Charset(), ttlMilliseconds);
+        setString(key, value, CachingService.utf8Charset, ttlMilliseconds);
     }
 
     /**
