@@ -48,6 +48,9 @@ public abstract class CachingService {
      * @param key the key to get
      * @param charset the charset to use to build the resultant
      * @return the String for that key, or null if the key didn't exist
+     * @throws GetTimeoutException if there was a timeout communicating with the cache
+     * @throws GetRateLimitedException if there was a rate limit imposed on the cache get request
+     * @throws DataSizeException if the size of the key or its value in the cache was over the Stackmob-defined limit
      */
     public String getString(String key, Charset charset) throws GetTimeoutException, GetRateLimitedException, DataSizeException {
         byte[] rawBytes = getBytes(key);
@@ -59,16 +62,31 @@ public abstract class CachingService {
     }
 
     /**
+     * alias for <code>getString(key, CachingService.utf8Charset());</code>
+     * @param key the key to fetch
+     * @return the value for <code>key</code>
+     * @throws GetTimeoutException if there was a timeout communicating with the cache
+     * @throws GetRateLimitedException if there was a rate limit imposed on the cache get request
+     * @throws DataSizeException if the size of the key or its value in the cache was over the Stackmob-defined limit
+     */
+    public String getString(String key) throws GetTimeoutException, GetRateLimitedException, DataSizeException {
+        return getString(key, CachingService.utf8Charset());
+    }
+
+    /**
      * get the value for the given key, in raw byte format
      * @param key the key to get
      * @return the byte array for that key, or null if the key didn't exist
+     * @throws GetTimeoutException if there was a timeout communicating with the cache
+     * @throws GetRateLimitedException if there was a rate limit imposed on the cache get request
+     * @throws DataSizeException if the size of the key or its value in the cache was over the Stackmob-defined limit
      */
     public abstract byte[] getBytes(String key) throws GetTimeoutException, GetRateLimitedException, DataSizeException;
 
     /**
      * store the given key/value pair. convenience method for <code>setBytes(key, value.getBytes(charset), ttlMilliseconds)</code>
      * @param key the key to store
-     * @param value the value to store for <code>key</code>
+     * @param value the value to store for the given key
      * @param charset the charset to use
      * @param ttlMilliseconds the TTL for this key/value pair, in milliseconds
      */
@@ -77,10 +95,26 @@ public abstract class CachingService {
     }
 
     /**
+     * alias for <code>setString(key, value, CachingService.utf8Charset(), ttlMilliseconds)</code>
+     * @param key the key to store
+     * @param value the value to store for the given key
+     * @param ttlMilliseconds the TTL for this key/value pair, in milliseconds
+     * @throws SetTimeoutException if there was a timeout communicating with the cache
+     * @throws SetRateLimitedException if there was a rate limit impose on this cache get request
+     * @throws DataSizeException if the size of the key or its value was over the Stackmob defined limit
+     */
+    public void setString(String key, String value, long ttlMilliseconds) throws SetTimeoutException, SetRateLimitedException, DataSizeException {
+        setString(key, value, CachingService.utf8Charset(), ttlMilliseconds);
+    }
+
+    /**
      * store the given key/value pair
      * @param key the key to store
      * @param value the value to store for <code>key</code>
      * @param ttlMilliseconds the TTL for this key/value pair, in milliseconds
+     * @throws SetTimeoutException if there was a timeout communicating with the cache
+     * @throws SetRateLimitedException if there was a rate limit impose on this cache get request
+     * @throws DataSizeException if the size of the key or its value was over the Stackmob defined limit
      */
     public abstract void setBytes(String key, byte[] value, long ttlMilliseconds) throws SetTimeoutException, SetRateLimitedException, DataSizeException;
 }
