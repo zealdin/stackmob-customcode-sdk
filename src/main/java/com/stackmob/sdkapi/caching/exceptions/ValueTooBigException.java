@@ -15,8 +15,8 @@
  */
 package com.stackmob.sdkapi.caching.exceptions;
 
-public abstract class DataSizeException extends Exception {
-    public DataSizeException(String desc) {
-        super(desc);
+public class ValueTooBigException extends DataSizeException {
+    public ValueTooBigException(byte[] value) {
+        super(String.format("value of size %d is too big", value.length));
     }
 }
