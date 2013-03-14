@@ -87,7 +87,7 @@ public abstract class CachingService {
      * @param key the key to store
      * @param value the value to store for the given key
      * @param charset the charset to use
-     * @param ttlMilliseconds the TTL for this key/value pair, in milliseconds
+     * @param ttlMilliseconds the TTL for this key/value pair, in milliseconds. if ttlMillseconds <= 0, it's equivalent to passing the longest available TTL
      * @throws com.stackmob.sdkapi.caching.exceptions.TimeoutException if there was a timeout communicating with the cache
      * @throws com.stackmob.sdkapi.caching.exceptions.RateLimitedException if there was a rate limit imposed1 on this cache get request
      * @throws com.stackmob.sdkapi.caching.exceptions.TTLTooBigException if the given TTL was too big for our caching system to handle
@@ -101,7 +101,7 @@ public abstract class CachingService {
      * alias for <code>setString(key, value, CachingService.utf8Charset(), ttlMilliseconds)</code>
      * @param key the key to store
      * @param value the value to store for the given key
-     * @param ttlMilliseconds the TTL for this key/value pair, in milliseconds
+     * @param ttlMilliseconds the TTL for this key/value pair, in milliseconds. if ttlMillseconds <= 0, it's equivalent to passing the longest available TTL
      * @throws com.stackmob.sdkapi.caching.exceptions.TimeoutException if there was a timeout communicating with the cache
      * @throws com.stackmob.sdkapi.caching.exceptions.RateLimitedException if there was a rate limit imposed1 on this cache get request
      * @throws com.stackmob.sdkapi.caching.exceptions.TTLTooBigException if the given TTL was too big for our caching system to handle
@@ -115,7 +115,7 @@ public abstract class CachingService {
      * store the given key/value pair
      * @param key the key to store
      * @param value the value to store for <code>key</code>
-     * @param ttlMilliseconds the TTL for this key/value pair, in milliseconds
+     * @param ttlMilliseconds the TTL for this key/value pair, in milliseconds. if ttlMillseconds <= 0, it's equivalent to passing the longest available TTL
      * @throws com.stackmob.sdkapi.caching.exceptions.TimeoutException if there was a timeout communicating with the cache
      * @throws com.stackmob.sdkapi.caching.exceptions.RateLimitedException if there was a rate limit imposed1 on this cache get request
      * @throws com.stackmob.sdkapi.caching.exceptions.TTLTooBigException if the given TTL was too big for our caching system to handle
