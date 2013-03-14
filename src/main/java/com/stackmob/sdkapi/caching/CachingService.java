@@ -88,9 +88,12 @@ public abstract class CachingService {
      * @param value the value to store for the given key
      * @param charset the charset to use
      * @param ttlMilliseconds the TTL for this key/value pair, in milliseconds
+     * @throws com.stackmob.sdkapi.caching.exceptions.TimeoutException if there was a timeout communicating with the cache
+     * @throws com.stackmob.sdkapi.caching.exceptions.RateLimitedException if there was a rate limit imposed1 on this cache get request
+     * @throws com.stackmob.sdkapi.caching.exceptions.TTLTooBigException if the given TTL was too big for our caching system to handle
      * @return true if the set succeeded, false otherwise
      */
-    public Boolean setString(String key, String value, Charset charset, long ttlMilliseconds) throws TimeoutException, RateLimitedException, DataSizeException {
+    public Boolean setString(String key, String value, Charset charset, long ttlMilliseconds) throws TimeoutException, RateLimitedException, DataSizeException, TTLTooBigException {
         return setBytes(key, value.getBytes(charset), ttlMilliseconds);
     }
 
@@ -99,12 +102,12 @@ public abstract class CachingService {
      * @param key the key to store
      * @param value the value to store for the given key
      * @param ttlMilliseconds the TTL for this key/value pair, in milliseconds
-     * @return true if the set succeeded, false otherwise
      * @throws com.stackmob.sdkapi.caching.exceptions.TimeoutException if there was a timeout communicating with the cache
-     * @throws com.stackmob.sdkapi.caching.exceptions.RateLimitedException if there was a rate limit impose on this cache get request
-     * @throws DataSizeException if the size of the key or its value was over the Stackmob defined limit
+     * @throws com.stackmob.sdkapi.caching.exceptions.RateLimitedException if there was a rate limit imposed1 on this cache get request
+     * @throws com.stackmob.sdkapi.caching.exceptions.TTLTooBigException if the given TTL was too big for our caching system to handle
+     * @return true if the set succeeded, false otherwise
      */
-    public Boolean setString(String key, String value, long ttlMilliseconds) throws TimeoutException, RateLimitedException, DataSizeException {
+    public Boolean setString(String key, String value, long ttlMilliseconds) throws TimeoutException, RateLimitedException, DataSizeException, TTLTooBigException {
         return setString(key, value, CachingService.utf8Charset, ttlMilliseconds);
     }
 
@@ -113,10 +116,10 @@ public abstract class CachingService {
      * @param key the key to store
      * @param value the value to store for <code>key</code>
      * @param ttlMilliseconds the TTL for this key/value pair, in milliseconds
-     * @return true if the set succeeded, false otherwise
      * @throws com.stackmob.sdkapi.caching.exceptions.TimeoutException if there was a timeout communicating with the cache
      * @throws com.stackmob.sdkapi.caching.exceptions.RateLimitedException if there was a rate limit imposed1 on this cache get request
-     * @throws DataSizeException if the size of the key or its value was over the Stackmob defined limit
+     * @throws com.stackmob.sdkapi.caching.exceptions.TTLTooBigException if the given TTL was too big for our caching system to handle
+     * @return true if the set succeeded, false otherwise
      */
-    public abstract Boolean setBytes(String key, byte[] value, long ttlMilliseconds) throws TimeoutException, RateLimitedException, DataSizeException;
+    public abstract Boolean setBytes(String key, byte[] value, long ttlMilliseconds) throws TimeoutException, RateLimitedException, DataSizeException, TTLTooBigException;
 }
