@@ -15,8 +15,10 @@
  */
 package com.stackmob.sdkapi.caching.exceptions;
 
+import com.stackmob.sdkapi.caching.Operation;
+
 public abstract class RateLimitedException extends Exception {
-    public RateLimitedException(String key) {
-        super(String.format("this cache request for key %s has been rate limited", key));
+    public RateLimitedException(Operation operation) {
+        super(String.format("this %s request has been rate limited", operation));
     }
 }
