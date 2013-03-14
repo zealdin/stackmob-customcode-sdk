@@ -17,7 +17,7 @@ package com.stackmob.sdkapi.caching.exceptions;
 
 import com.stackmob.sdkapi.caching.Operation;
 
-public abstract class DataSizeException extends Exception {
+public class DataSizeException extends Exception {
     public DataSizeException(Operation op) {
         super(String.format("%s operation failed because the data size was too big", op.toString()));
     }

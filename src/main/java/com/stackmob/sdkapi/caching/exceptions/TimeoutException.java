@@ -18,7 +18,7 @@ package com.stackmob.sdkapi.caching.exceptions;
 
 import com.stackmob.sdkapi.caching.Operation;
 
-public abstract class TimeoutException extends Exception {
+public class TimeoutException extends Exception {
     public TimeoutException(Operation op) {
         super(String.format("%s operation timed out", op.toString()));
     }
