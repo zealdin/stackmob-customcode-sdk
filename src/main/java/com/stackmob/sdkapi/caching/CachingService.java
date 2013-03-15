@@ -136,7 +136,7 @@ public abstract class CachingService {
     public abstract Boolean setBytes(String key, byte[] value, long ttlMilliseconds) throws TimeoutException, RateLimitedException, DataSizeException, TTLTooBigException;
 
     /**
-     * delete the given key eventually
+     * delete the given key in the background. note that the key may not be deleted immediately after this method returns
      * @param key the key to delete
      * @throws DataSizeException if the given key is too big
      */
