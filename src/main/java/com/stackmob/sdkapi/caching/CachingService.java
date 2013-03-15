@@ -20,12 +20,12 @@ import java.nio.charset.Charset;
 import com.stackmob.sdkapi.caching.exceptions.*;
 
 /**
- * CachingService provides fast, in memory access to data, like the results of DataService queries.
- * Data are stored as key/value pairs. A single key/value pair is assigned a TTL (time to live) and will be stored for
- * no longer than that duration. Additionally, a key/value pair can be evicted at any time before that duration has
- * passed. If an eviction happens, CachingService will treat the data as non-existent.
+ * CachingService provides fast, distributed, in memory access to data. Since your custom code can run on different
+ * machines, you can use CachingService to store the results of operations that take a long time to run (like
+ * DataService queries) and then get those results from any other machine.
  *
- * Here's a pattern illustrating basic usage of CachingService in your CustomCodeMethod's <code>execute</code> method:
+ * Here's an example showing some common usage of CachingService:
+ *
  * <code>
  *     CachingService cachingService = sdkServiceProvider.getCachingService();
  *     String json =  null;
@@ -38,7 +38,19 @@ import com.stackmob.sdkapi.caching.exceptions.*;
  *         cachingService.setString("largeQuery", json, CachingService.utf8Charset, 5000);
  *     }
  * </code>
+ *
+ * A few things to notice:
+ *
+ * <ol>
+ *     <li>you pair the datastore data with a key, and the cache stores the 2 together</li>
+ *     <li>to get the data back by calling <code>get</code> and passing in the key</li>
+ *     <li>each key/value pair has a TTL (time-to-live) assigned to it. the TTL value tells the cache how long you want that value to last (in milliseconds)</li>
+ *     <li>the cache might evict your data at any time to free up memory, so your data might not be there even before the TTL</li>
+ *     <li>if the cache evicts your data, CachingService will treat it as if it's missing</li>
+ *     <li>CachingService puts size limits on keys and values, and rate limits on cache operations</li>
+ * </ol>
  */
+
 public abstract class CachingService {
     public static final Charset utf8Charset = Charset.forName("UTF-8");
 
@@ -78,7 +90,7 @@ public abstract class CachingService {
      * @return the byte array for that key, or null if the key didn't exist
      * @throws com.stackmob.sdkapi.caching.exceptions.TimeoutException if there was a timeout communicating with the cache
      * @throws com.stackmob.sdkapi.caching.exceptions.RateLimitedException if there was a rate limit imposed on the cache get request
-     * @throws DataSizeException if the size of the key or its value in the cache was over the Stackmob-defined limit
+     * @throws com.stackmob.sdkapi.caching.exceptions.DataSizeException if the size of the key or its value in the cache was over the Stackmob-defined limit
      */
     public abstract byte[] getBytes(String key) throws TimeoutException, RateLimitedException, DataSizeException;
 
@@ -122,4 +134,11 @@ public abstract class CachingService {
      * @return true if the set succeeded, false otherwise
      */
     public abstract Boolean setBytes(String key, byte[] value, long ttlMilliseconds) throws TimeoutException, RateLimitedException, DataSizeException, TTLTooBigException;
+
+    /**
+     * delete the given key eventually
+     * @param key the key to delete
+     * @throws DataSizeException if the given key is too big
+     */
+    public abstract void deleteEventually(String key) throws DataSizeException;
 }
