@@ -42,7 +42,7 @@ import com.stackmob.sdkapi.caching.exceptions.*;
  * A few things to notice:
  *
  * <ol>
- *     <li>you pair the datastore data with a key, and the cache stores the 2 together</li>
+ *     <li>each value has a key associated with it, and the cache stores the 2 together</li>
  *     <li>to get the data back by calling <code>get</code> and passing in the key</li>
  *     <li>each key/value pair has a TTL (time-to-live) assigned to it. the TTL value tells the cache how long you want that value to last (in milliseconds)</li>
  *     <li>the cache might evict your data at any time to free up memory, so your data might not be there even before the TTL</li>
