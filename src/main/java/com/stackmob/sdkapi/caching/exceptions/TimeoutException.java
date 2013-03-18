@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
-package com.stackmob.sdkapi.http.exceptions;
+package com.stackmob.sdkapi.caching.exceptions;
+
+import com.stackmob.sdkapi.caching.Operation;
 
 public class TimeoutException extends Exception {
-    public TimeoutException(String url) {
-        super(String.format("Request to %s timed out", url));
+    public TimeoutException(Operation op) {
+        super(String.format("%s operation timed out", op.toString()));
     }
 }

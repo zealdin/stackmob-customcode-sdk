@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.stackmob.sdkapi.caching.exceptions;
 
-package com.stackmob.sdkapi.http.exceptions;
+import com.stackmob.sdkapi.caching.Operation;
 
-public class TimeoutException extends Exception {
-    public TimeoutException(String url) {
-        super(String.format("Request to %s timed out", url));
+public class RateLimitedException extends Exception {
+    public RateLimitedException(Operation operation) {
+        super(String.format("this %s request has been rate limited", operation));
     }
 }

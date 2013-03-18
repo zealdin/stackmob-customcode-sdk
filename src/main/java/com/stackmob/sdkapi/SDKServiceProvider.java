@@ -17,6 +17,7 @@
 package com.stackmob.sdkapi;
 
 import com.stackmob.core.ServiceNotActivatedException;
+import com.stackmob.sdkapi.caching.CachingService;
 import com.stackmob.sdkapi.http.HttpService;
 
 /**
@@ -87,6 +88,13 @@ public interface SDKServiceProvider {
    * @throws ServiceNotActivatedException if the Http service has not yet been set up for the current application
    */
   HttpService getHttpService() throws ServiceNotActivatedException;
+
+  /**
+   * get the <code>CachingService</code> required to talk to StackMob's fast, in memory cache
+   * @return a CachingService to talk to StackMob's fast, in memory cache, subject to rate and size limiting.
+   * @throws ServiceNotActivatedException if the CachingService has not yet been set up for the current application
+   */
+  CachingService getCachingService() throws ServiceNotActivatedException;
 
 
   /**

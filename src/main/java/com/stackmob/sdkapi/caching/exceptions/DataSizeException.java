@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.stackmob.sdkapi.caching.exceptions;
 
-package com.stackmob.sdkapi.http.exceptions;
+import com.stackmob.sdkapi.caching.Operation;
 
-public class TimeoutException extends Exception {
-    public TimeoutException(String url) {
-        super(String.format("Request to %s timed out", url));
+public class DataSizeException extends Exception {
+    public DataSizeException(Operation op) {
+        super(String.format("%s operation failed because the data size was too big", op.toString()));
     }
 }
